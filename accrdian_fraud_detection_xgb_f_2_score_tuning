@@ -1,0 +1,755 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "998bfe85",
+   "metadata": {
+    "_cell_guid": "b1076dfc-b9ad-4769-8c92-a6c4dae69d19",
+    "_uuid": "8f2839f25d086af736a60e9eeb907d3b93b6e0e5",
+    "execution": {
+     "iopub.execute_input": "2024-10-22T20:47:11.286731Z",
+     "iopub.status.busy": "2024-10-22T20:47:11.286293Z",
+     "iopub.status.idle": "2024-10-22T20:47:12.094720Z",
+     "shell.execute_reply": "2024-10-22T20:47:12.093703Z"
+    },
+    "papermill": {
+     "duration": 0.816906,
+     "end_time": "2024-10-22T20:47:12.097146",
+     "exception": false,
+     "start_time": "2024-10-22T20:47:11.280240",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "/kaggle/input/ddfdfdf/trials_xgb_gbtree_file.pkl\n"
+     ]
+    }
+   ],
+   "source": [
+    "# This Python 3 environment comes with many helpful analytics libraries installed\n",
+    "# It is defined by the kaggle/python Docker image: https://github.com/kaggle/docker-python\n",
+    "# For example, here's several helpful packages to load\n",
+    "\n",
+    "import numpy as np # linear algebra\n",
+    "import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)\n",
+    "\n",
+    "# Input data files are available in the read-only \"../input/\" directory\n",
+    "# For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory\n",
+    "\n",
+    "import os\n",
+    "for dirname, _, filenames in os.walk('/kaggle/input'):\n",
+    "    for filename in filenames:\n",
+    "        print(os.path.join(dirname, filename))\n",
+    "\n",
+    "# You can write up to 20GB to the current directory (/kaggle/working/) that gets preserved as output when you create a version using \"Save & Run All\" \n",
+    "# You can also write temporary files to /kaggle/temp/, but they won't be saved outside of the current session"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "644eef10",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-22T20:47:12.106533Z",
+     "iopub.status.busy": "2024-10-22T20:47:12.106056Z",
+     "iopub.status.idle": "2024-10-22T20:47:38.914344Z",
+     "shell.execute_reply": "2024-10-22T20:47:38.913275Z"
+    },
+    "papermill": {
+     "duration": 26.815068,
+     "end_time": "2024-10-22T20:47:38.916504",
+     "exception": false,
+     "start_time": "2024-10-22T20:47:12.101436",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Collecting gdown\r\n",
+      "  Downloading gdown-5.2.0-py3-none-any.whl.metadata (5.8 kB)\r\n",
+      "Requirement already satisfied: beautifulsoup4 in /opt/conda/lib/python3.10/site-packages (from gdown) (4.12.3)\r\n",
+      "Requirement already satisfied: filelock in /opt/conda/lib/python3.10/site-packages (from gdown) (3.15.1)\r\n",
+      "Requirement already satisfied: requests[socks] in /opt/conda/lib/python3.10/site-packages (from gdown) (2.32.3)\r\n",
+      "Requirement already satisfied: tqdm in /opt/conda/lib/python3.10/site-packages (from gdown) (4.66.4)\r\n",
+      "Requirement already satisfied: soupsieve>1.2 in /opt/conda/lib/python3.10/site-packages (from beautifulsoup4->gdown) (2.5)\r\n",
+      "Requirement already satisfied: charset-normalizer<4,>=2 in /opt/conda/lib/python3.10/site-packages (from requests[socks]->gdown) (3.3.2)\r\n",
+      "Requirement already satisfied: idna<4,>=2.5 in /opt/conda/lib/python3.10/site-packages (from requests[socks]->gdown) (3.7)\r\n",
+      "Requirement already satisfied: urllib3<3,>=1.21.1 in /opt/conda/lib/python3.10/site-packages (from requests[socks]->gdown) (1.26.18)\r\n",
+      "Requirement already satisfied: certifi>=2017.4.17 in /opt/conda/lib/python3.10/site-packages (from requests[socks]->gdown) (2024.8.30)\r\n",
+      "Requirement already satisfied: PySocks!=1.5.7,>=1.5.6 in /opt/conda/lib/python3.10/site-packages (from requests[socks]->gdown) (1.7.1)\r\n",
+      "Downloading gdown-5.2.0-py3-none-any.whl (18 kB)\r\n",
+      "Installing collected packages: gdown\r\n",
+      "Successfully installed gdown-5.2.0\r\n",
+      "downloading the datasets and data dictionary: \n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "Downloading...\n",
+      "From: https://drive.google.com/uc?id=1VQ-HAm0oHbv0GmDKP2iqqFNc5aI91OLn&export=download\n",
+      "To: /kaggle/working/data_dict.txt\n",
+      "100%|██████████| 1.30k/1.30k [00:00<00:00, 2.04MB/s]\n",
+      "Downloading...\n",
+      "From: https://drive.google.com/uc?export=download&confirm=6gh6&id=1VNpyNkGxHdskfdTNRSjjyNa5qC9u0JyV\n",
+      "To: /kaggle/working/fraud_data.csv\n",
+      "100%|██████████| 494M/494M [00:06<00:00, 72.6MB/s]\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "'fraud_data.csv'"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "!pip install gdown\n",
+    "import gdown\n",
+    "print(f'downloading the datasets and data dictionary: ')\n",
+    "data_url = 'https://drive.google.com/uc?export=download&confirm=6gh6&id=1VNpyNkGxHdskfdTNRSjjyNa5qC9u0JyV'\n",
+    "output_data = \"fraud_data.csv\"\n",
+    "data_dict_url = 'https://drive.google.com/uc?id=1VQ-HAm0oHbv0GmDKP2iqqFNc5aI91OLn&export=download'\n",
+    "output_dict = \"data_dict.txt\"\n",
+    "gdown.download(data_dict_url, output_dict, quiet=False)\n",
+    "gdown.download(data_url, output_data, quiet=False)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "dec02503",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-22T20:47:38.936297Z",
+     "iopub.status.busy": "2024-10-22T20:47:38.935779Z",
+     "iopub.status.idle": "2024-10-22T20:47:53.546133Z",
+     "shell.execute_reply": "2024-10-22T20:47:53.545194Z"
+    },
+    "papermill": {
+     "duration": 14.62324,
+     "end_time": "2024-10-22T20:47:53.548821",
+     "exception": false,
+     "start_time": "2024-10-22T20:47:38.925581",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "reading the data into pandas dataframe: \n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "\n",
+    "print(f'reading the data into pandas dataframe: ')\n",
+    "df = pd.read_csv('/kaggle/working/fraud_data.csv')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "f673ec4f",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-22T20:47:53.569568Z",
+     "iopub.status.busy": "2024-10-22T20:47:53.569183Z",
+     "iopub.status.idle": "2024-10-22T20:48:01.770924Z",
+     "shell.execute_reply": "2024-10-22T20:48:01.769799Z"
+    },
+    "papermill": {
+     "duration": 8.214942,
+     "end_time": "2024-10-22T20:48:01.773108",
+     "exception": false,
+     "start_time": "2024-10-22T20:47:53.558166",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "cleaning and encoding the features in the dataframe: \n",
+      "splitting the dataset into train and test datasets: \n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "((5090096, 12), (1272524, 12), (5090096,), (1272524,))"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from sklearn.model_selection import StratifiedShuffleSplit\n",
+    "\n",
+    "print(f'cleaning and encoding the features in the dataframe: ')\n",
+    "df_encoded = pd.get_dummies(df, columns=['type'])\n",
+    "df_encoded[df_encoded.select_dtypes(include=['bool']).columns] = df_encoded.select_dtypes(include=['bool']).astype(int)\n",
+    "df_final = df_encoded.drop(['nameOrig', 'nameDest'], axis=1)\n",
+    "split = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)\n",
+    "X = df_final.drop('isFraud', axis=1)\n",
+    "y = df_final['isFraud']\n",
+    "print(f'splitting the dataset into train and test datasets: ')\n",
+    "for train_index, test_index in split.split(X, y):\n",
+    "  X_train, X_test = X.iloc[train_index], X.iloc[test_index]\n",
+    "  y_train, y_test = y.iloc[train_index], y.iloc[test_index]\n",
+    "X_train.shape, X_test.shape, y_train.shape, y_test.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "9e39c2b7",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-22T20:48:01.793848Z",
+     "iopub.status.busy": "2024-10-22T20:48:01.793274Z",
+     "iopub.status.idle": "2024-10-22T20:48:01.797642Z",
+     "shell.execute_reply": "2024-10-22T20:48:01.796731Z"
+    },
+    "papermill": {
+     "duration": 0.016812,
+     "end_time": "2024-10-22T20:48:01.799504",
+     "exception": false,
+     "start_time": "2024-10-22T20:48:01.782692",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# import pickle\n",
+    "\n",
+    "# with open('/kaggle/input/ddfdfdf/trials_xgb_gbtree_file.pkl', 'rb') as f:\n",
+    "#     trials_resume = pickle.load(f)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "4f9abc30",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-22T20:48:01.817995Z",
+     "iopub.status.busy": "2024-10-22T20:48:01.817699Z",
+     "iopub.status.idle": "2024-10-22T21:40:13.631448Z",
+     "shell.execute_reply": "2024-10-22T21:40:13.629984Z"
+    },
+    "papermill": {
+     "duration": 3131.83998,
+     "end_time": "2024-10-22T21:40:13.648302",
+     "exception": false,
+     "start_time": "2024-10-22T20:48:01.808322",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "starting hyperparameter tuning\n",
+      "  0%|          | 0/50 [00:00<?, ?trial/s, best loss=?]"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "/opt/conda/lib/python3.10/site-packages/xgboost/core.py:160: UserWarning: [20:48:50] WARNING: /workspace/src/common/error_msg.cc:58: Falling back to prediction using DMatrix due to mismatched devices. This might lead to higher memory usage and slower performance. XGBoost is running on: cuda:0, while the input data is on: cpu.\n",
+      "Potential solutions:\n",
+      "- Use a data structure that matches the device ordinal in the booster.\n",
+      "- Set the device for booster before call to inplace_predict.\n",
+      "\n",
+      "This warning will only be shown once.\n",
+      "\n",
+      "  warnings.warn(smsg, UserWarning)\n",
+      "/opt/conda/lib/python3.10/site-packages/xgboost/core.py:160: UserWarning: [20:48:51] WARNING: /workspace/src/common/error_msg.cc:58: Falling back to prediction using DMatrix due to mismatched devices. This might lead to higher memory usage and slower performance. XGBoost is running on: cuda:0, while the input data is on: cpu.\n",
+      "Potential solutions:\n",
+      "- Use a data structure that matches the device ordinal in the booster.\n",
+      "- Set the device for booster before call to inplace_predict.\n",
+      "\n",
+      "This warning will only be shown once.\n",
+      "\n",
+      "  warnings.warn(smsg, UserWarning)\n",
+      "/opt/conda/lib/python3.10/site-packages/xgboost/core.py:160: UserWarning: [20:48:51] WARNING: /workspace/src/common/error_msg.cc:58: Falling back to prediction using DMatrix due to mismatched devices. This might lead to higher memory usage and slower performance. XGBoost is running on: cuda:0, while the input data is on: cpu.\n",
+      "Potential solutions:\n",
+      "- Use a data structure that matches the device ordinal in the booster.\n",
+      "- Set the device for booster before call to inplace_predict.\n",
+      "\n",
+      "This warning will only be shown once.\n",
+      "\n",
+      "  warnings.warn(smsg, UserWarning)\n",
+      "/opt/conda/lib/python3.10/site-packages/xgboost/core.py:160: UserWarning: [20:48:52] WARNING: /workspace/src/common/error_msg.cc:58: Falling back to prediction using DMatrix due to mismatched devices. This might lead to higher memory usage and slower performance. XGBoost is running on: cuda:0, while the input data is on: cpu.\n",
+      "Potential solutions:\n",
+      "- Use a data structure that matches the device ordinal in the booster.\n",
+      "- Set the device for booster before call to inplace_predict.\n",
+      "\n",
+      "This warning will only be shown once.\n",
+      "\n",
+      "  warnings.warn(smsg, UserWarning)\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "100%|██████████| 50/50 [52:09<00:00, 62.59s/trial, best loss: -0.8715329685488852]\n",
+      "downloading the trials object using pickle to the file named:\n"
+     ]
+    }
+   ],
+   "source": [
+    "from xgboost import XGBClassifier\n",
+    "from sklearn.model_selection import cross_val_score\n",
+    "from sklearn.preprocessing import StandardScaler\n",
+    "from sklearn.pipeline import Pipeline\n",
+    "from sklearn.metrics import make_scorer, roc_auc_score, f1_score, r2_score, precision_score, recall_score, fbeta_score\n",
+    "from hyperopt import fmin, hp, tpe, Trials\n",
+    "import pickle\n",
+    "\n",
+    "print('starting hyperparameter tuning')\n",
+    "sss2 = StratifiedShuffleSplit(n_splits=5, test_size=0.2, random_state=42)\n",
+    "scaler = StandardScaler()\n",
+    "X_train_scaled = scaler.fit_transform(X_train)\n",
+    "\n",
+    "beta = 2\n",
+    "fbeta_scorer = make_scorer(fbeta_score, beta=beta)\n",
+    "def objective(params):\n",
+    "    # print(f'params: {params}')\n",
+    "    model = XGBClassifier(random_state=42, booster='gbtree', device='cuda', **params)\n",
+    "    scores = cross_val_score(model, X_train_scaled, y_train, cv=sss2, scoring=fbeta_scorer, n_jobs=-1)\n",
+    "    mean_scores = np.mean(scores)\n",
+    "    return -mean_scores\n",
+    "\n",
+    "space = {\n",
+    "    \n",
+    "    'learning_rate':hp.loguniform('learning_rate', 0.0001, 0.3),\n",
+    "    'n_estimators':hp.uniformint('n_estimators', 60, 600),\n",
+    "    'max_depth':hp.uniformint('max_depth', 3, 10),\n",
+    "    'gamma':hp.uniformint('gamma', 0, 5),\n",
+    "    'subsample':hp.uniform('subsample', 0.5, 1.0),\n",
+    "    'lambda':hp.uniform('lambda', 0.0, 1.0),\n",
+    "    'alpha':hp.uniform('alpha', 0.0, 1.0),\n",
+    "    \n",
+    "}\n",
+    "\n",
+    "trials_xgb_gbtree_f_2_score = Trials()\n",
+    "best = fmin(fn=objective, space=space, algo=tpe.suggest, trials=trials_xgb_gbtree_f_2_score, max_evals=50, verbose=1)\n",
+    "\n",
+    "\n",
+    "trials_file_name = \"trials_xgb_gbtree_f_2_score.pkl\"\n",
+    "print(f'downloading the trials object using pickle to the file named:')\n",
+    "\n",
+    "with open(trials_file_name, 'wb') as f:\n",
+    "    pickle.dump(trials_xgb_gbtree_f_2_score, f)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "2cd1719d",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-22T21:40:13.681430Z",
+     "iopub.status.busy": "2024-10-22T21:40:13.680519Z",
+     "iopub.status.idle": "2024-10-22T21:40:13.685898Z",
+     "shell.execute_reply": "2024-10-22T21:40:13.684811Z"
+    },
+    "papermill": {
+     "duration": 0.024636,
+     "end_time": "2024-10-22T21:40:13.688195",
+     "exception": false,
+     "start_time": "2024-10-22T21:40:13.663559",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# trials_file_name = \"trials_xgb_gbtree_file.pkl\"\n",
+    "# print(f'downloading the trials object using pickle to the file named:')\n",
+    "\n",
+    "# with open(trials_file_name, 'wb') as f:\n",
+    "#     pickle.dump(trials_xgb_gbtree, f)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "02de30ca",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-22T21:40:13.722239Z",
+     "iopub.status.busy": "2024-10-22T21:40:13.721566Z",
+     "iopub.status.idle": "2024-10-22T21:40:13.732679Z",
+     "shell.execute_reply": "2024-10-22T21:40:13.731393Z"
+    },
+    "papermill": {
+     "duration": 0.030514,
+     "end_time": "2024-10-22T21:40:13.735341",
+     "exception": false,
+     "start_time": "2024-10-22T21:40:13.704827",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "extracting best hyperparams from trials object: \n",
+      "-0.8715329685488852\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "{'alpha': 0.6572868306739756,\n",
+       " 'gamma': 0.0,\n",
+       " 'lambda': 0.9961620034575316,\n",
+       " 'learning_rate': 1.0099881771691666,\n",
+       " 'max_depth': 9,\n",
+       " 'n_estimators': 447,\n",
+       " 'subsample': 0.9001992804889818}"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# best_trial = trials_resume.best_trial\n",
+    "print(f'extracting best hyperparams from trials object: ')\n",
+    "best_trial = trials_xgb_gbtree_f_2_score.best_trial\n",
+    "print(best_trial['result']['loss'])\n",
+    "best_hyperparams = {k:v[0] for k, v in best_trial['misc']['vals'].items()}\n",
+    "for key in ('max_depth', 'n_estimators'):\n",
+    "    best_hyperparams[key] = int(best_hyperparams[key])\n",
+    "best_hyperparams"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "48744f2c",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-22T21:40:13.769066Z",
+     "iopub.status.busy": "2024-10-22T21:40:13.768082Z",
+     "iopub.status.idle": "2024-10-22T21:40:36.763861Z",
+     "shell.execute_reply": "2024-10-22T21:40:36.762800Z"
+    },
+    "papermill": {
+     "duration": 23.015412,
+     "end_time": "2024-10-22T21:40:36.766189",
+     "exception": false,
+     "start_time": "2024-10-22T21:40:13.750777",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "fitting the train data with the best hyperparams found from hyperopt.\n"
+     ]
+    },
+    {
+     "data": {
+      "text/html": [
+       "<style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: \"▸\";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: \"▾\";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: \"\";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: \"\";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: \"\";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id=\"sk-container-id-1\" class=\"sk-top-container\"><div class=\"sk-text-repr-fallback\"><pre>XGBClassifier(alpha=0.6572868306739756, base_score=None, booster=&#x27;gbtree&#x27;,\n",
+       "              callbacks=None, colsample_bylevel=None, colsample_bynode=None,\n",
+       "              colsample_bytree=None, device=&#x27;cuda&#x27;, early_stopping_rounds=None,\n",
+       "              enable_categorical=False, eval_metric=None, feature_types=None,\n",
+       "              gamma=0.0, grow_policy=None, importance_type=None,\n",
+       "              interaction_constraints=None, lambda=0.9961620034575316,\n",
+       "              learning_rate=1.0099881771691666, max_bin=None,\n",
+       "              max_cat_threshold=None, max_cat_to_onehot=None,\n",
+       "              max_delta_step=None, max_depth=9, max_leaves=None,\n",
+       "              min_child_weight=None, missing=nan, monotone_constraints=None,\n",
+       "              multi_strategy=None, n_estimators=447, n_jobs=None, ...)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class=\"sk-container\" hidden><div class=\"sk-item\"><div class=\"sk-estimator sk-toggleable\"><input class=\"sk-toggleable__control sk-hidden--visually\" id=\"sk-estimator-id-1\" type=\"checkbox\" checked><label for=\"sk-estimator-id-1\" class=\"sk-toggleable__label sk-toggleable__label-arrow\">XGBClassifier</label><div class=\"sk-toggleable__content\"><pre>XGBClassifier(alpha=0.6572868306739756, base_score=None, booster=&#x27;gbtree&#x27;,\n",
+       "              callbacks=None, colsample_bylevel=None, colsample_bynode=None,\n",
+       "              colsample_bytree=None, device=&#x27;cuda&#x27;, early_stopping_rounds=None,\n",
+       "              enable_categorical=False, eval_metric=None, feature_types=None,\n",
+       "              gamma=0.0, grow_policy=None, importance_type=None,\n",
+       "              interaction_constraints=None, lambda=0.9961620034575316,\n",
+       "              learning_rate=1.0099881771691666, max_bin=None,\n",
+       "              max_cat_threshold=None, max_cat_to_onehot=None,\n",
+       "              max_delta_step=None, max_depth=9, max_leaves=None,\n",
+       "              min_child_weight=None, missing=nan, monotone_constraints=None,\n",
+       "              multi_strategy=None, n_estimators=447, n_jobs=None, ...)</pre></div></div></div></div></div>"
+      ],
+      "text/plain": [
+       "XGBClassifier(alpha=0.6572868306739756, base_score=None, booster='gbtree',\n",
+       "              callbacks=None, colsample_bylevel=None, colsample_bynode=None,\n",
+       "              colsample_bytree=None, device='cuda', early_stopping_rounds=None,\n",
+       "              enable_categorical=False, eval_metric=None, feature_types=None,\n",
+       "              gamma=0.0, grow_policy=None, importance_type=None,\n",
+       "              interaction_constraints=None, lambda=0.9961620034575316,\n",
+       "              learning_rate=1.0099881771691666, max_bin=None,\n",
+       "              max_cat_threshold=None, max_cat_to_onehot=None,\n",
+       "              max_delta_step=None, max_depth=9, max_leaves=None,\n",
+       "              min_child_weight=None, missing=nan, monotone_constraints=None,\n",
+       "              multi_strategy=None, n_estimators=447, n_jobs=None, ...)"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from xgboost import XGBClassifier\n",
+    "import xgboost as xgb\n",
+    "from sklearn.preprocessing import StandardScaler\n",
+    "\n",
+    "scaler = StandardScaler()\n",
+    "X_train_scaled = scaler.fit_transform(X_train)\n",
+    "\n",
+    "final_model = XGBClassifier(random_state=42, verbosity=2, booster='gbtree', device='cuda', **best_hyperparams)\n",
+    "print(f'fitting the train data with the best hyperparams found from hyperopt.')\n",
+    "final_model.fit(X_train_scaled, y_train)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "2e10abe9",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-22T21:40:36.800945Z",
+     "iopub.status.busy": "2024-10-22T21:40:36.800531Z",
+     "iopub.status.idle": "2024-10-22T21:40:42.248910Z",
+     "shell.execute_reply": "2024-10-22T21:40:42.247841Z"
+    },
+    "papermill": {
+     "duration": 5.468796,
+     "end_time": "2024-10-22T21:40:42.251119",
+     "exception": false,
+     "start_time": "2024-10-22T21:40:36.782323",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Calculating the scores on the test set: \n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "/opt/conda/lib/python3.10/site-packages/xgboost/core.py:160: UserWarning: [21:40:36] WARNING: /workspace/src/common/error_msg.cc:58: Falling back to prediction using DMatrix due to mismatched devices. This might lead to higher memory usage and slower performance. XGBoost is running on: cuda:0, while the input data is on: cpu.\n",
+      "Potential solutions:\n",
+      "- Use a data structure that matches the device ordinal in the booster.\n",
+      "- Set the device for booster before call to inplace_predict.\n",
+      "\n",
+      "This warning will only be shown once.\n",
+      "\n",
+      "  warnings.warn(smsg, UserWarning)\n"
+     ]
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>f1</th>\n",
+       "      <th>roc_auc</th>\n",
+       "      <th>precision</th>\n",
+       "      <th>recall</th>\n",
+       "      <th>f_2_score</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>0.893858</td>\n",
+       "      <td>0.931788</td>\n",
+       "      <td>0.92624</td>\n",
+       "      <td>0.863664</td>\n",
+       "      <td>0.875494</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         f1   roc_auc  precision    recall  f_2_score\n",
+       "0  0.893858  0.931788    0.92624  0.863664   0.875494"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from sklearn.metrics import make_scorer, roc_auc_score, f1_score, r2_score, precision_score, recall_score\n",
+    "import pandas as pd\n",
+    "\n",
+    "print(f'Calculating the scores on the test set: ')\n",
+    "X_test_scaled = scaler.transform(X_test)\n",
+    "y_pred = final_model.predict(X_test_scaled)\n",
+    "\n",
+    "columns = ['f1', 'roc_auc',  'precision', 'recall', 'f_2_score']\n",
+    "scores = [f1_score(y_test, y_pred), roc_auc_score(y_test, y_pred),  precision_score(y_test, y_pred), recall_score(y_test, y_pred), fbeta_score(y_test, y_pred, beta=2)]\n",
+    "res_df = pd.DataFrame([scores], columns=columns)\n",
+    "res_df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "42c05906",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-22T21:40:42.286637Z",
+     "iopub.status.busy": "2024-10-22T21:40:42.285900Z",
+     "iopub.status.idle": "2024-10-22T21:40:42.295258Z",
+     "shell.execute_reply": "2024-10-22T21:40:42.293964Z"
+    },
+    "papermill": {
+     "duration": 0.029902,
+     "end_time": "2024-10-22T21:40:42.297668",
+     "exception": false,
+     "start_time": "2024-10-22T21:40:42.267766",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "saving the results df into the file: results_recall_score_tuned.csv\n",
+      "DONE\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(f'saving the results df into the file: results_recall_score_tuned.csv')\n",
+    "res_df.to_csv('results_recall_score_tuned.csv', index=False)\n",
+    "print(f'DONE')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "718d2626",
+   "metadata": {
+    "papermill": {
+     "duration": 0.015885,
+     "end_time": "2024-10-22T21:40:42.330125",
+     "exception": false,
+     "start_time": "2024-10-22T21:40:42.314240",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kaggle": {
+   "accelerator": "gpu",
+   "dataSources": [
+    {
+     "datasetId": 5921947,
+     "sourceId": 9687145,
+     "sourceType": "datasetVersion"
+    }
+   ],
+   "dockerImageVersionId": 30787,
+   "isGpuEnabled": true,
+   "isInternetEnabled": true,
+   "language": "python",
+   "sourceType": "notebook"
+  },
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.14"
+  },
+  "papermill": {
+   "default_parameters": {},
+   "duration": 3216.729418,
+   "end_time": "2024-10-22T21:40:45.068032",
+   "environment_variables": {},
+   "exception": null,
+   "input_path": "__notebook__.ipynb",
+   "output_path": "__notebook__.ipynb",
+   "parameters": {},
+   "start_time": "2024-10-22T20:47:08.338614",
+   "version": "2.6.0"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
