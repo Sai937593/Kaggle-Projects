@@ -1,1 +1,2111 @@
-{"metadata":{"kernelspec":{"name":"python3","display_name":"Python 3","language":"python"},"language_info":{"name":"python","version":"3.10.14","mimetype":"text/x-python","codemirror_mode":{"name":"ipython","version":3},"pygments_lexer":"ipython3","nbconvert_exporter":"python","file_extension":".py"},"kaggle":{"accelerator":"nvidiaTeslaT4","dataSources":[{"sourceId":84894,"databundleVersionId":9709193,"sourceType":"competition"},{"sourceId":9706567,"sourceType":"datasetVersion","datasetId":5936521},{"sourceId":9722405,"sourceType":"datasetVersion","datasetId":5948628}],"dockerImageVersionId":30787,"isInternetEnabled":true,"language":"python","sourceType":"notebook","isGpuEnabled":true},"colab":{"provenance":[],"gpuType":"V28","include_colab_link":true},"accelerator":"TPU","widgets":{"application/vnd.jupyter.widget-state+json":{"c720aeb19f0340f2814f90060ca725a0":{"model_module":"@jupyter-widgets/controls","model_name":"HBoxModel","model_module_version":"1.5.0","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_0251a40a64084074b0dcd481dc987ec1","IPY_MODEL_27eda0234c0c41cca597039d6ba013f0","IPY_MODEL_e485ad01203f4892bfca150001841277"],"layout":"IPY_MODEL_c7d47a9e7dcc470c90258b0e4bdc861b"}},"0251a40a64084074b0dcd481dc987ec1":{"model_module":"@jupyter-widgets/controls","model_name":"HTMLModel","model_module_version":"1.5.0","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HTMLView","description":"","description_tooltip":null,"layout":"IPY_MODEL_80bbcfd89fe5479293a041f412f627de","placeholder":"​","style":"IPY_MODEL_48659b8a38044461a7667c33dcc2533c","value":" 90%"}},"27eda0234c0c41cca597039d6ba013f0":{"model_module":"@jupyter-widgets/controls","model_name":"FloatProgressModel","model_module_version":"1.5.0","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"ProgressView","bar_style":"","description":"","description_tooltip":null,"layout":"IPY_MODEL_a9ff7cbc02fb4ccbb974a31262ae5ecc","max":10,"min":0,"orientation":"horizontal","style":"IPY_MODEL_54d688765c00479e98216630d7855cf2","value":9}},"e485ad01203f4892bfca150001841277":{"model_module":"@jupyter-widgets/controls","model_name":"HTMLModel","model_module_version":"1.5.0","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HTMLView","description":"","description_tooltip":null,"layout":"IPY_MODEL_d7d39aa9302a432b981e35f8a686eb2e","placeholder":"​","style":"IPY_MODEL_a783d51d1bbd489f8abbb4de55f15835","value":" 9/10 [1:12:52&lt;07:08, 428.51s/it]"}},"c7d47a9e7dcc470c90258b0e4bdc861b":{"model_module":"@jupyter-widgets/base","model_name":"LayoutModel","model_module_version":"1.2.0","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"80bbcfd89fe5479293a041f412f627de":{"model_module":"@jupyter-widgets/base","model_name":"LayoutModel","model_module_version":"1.2.0","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"48659b8a38044461a7667c33dcc2533c":{"model_module":"@jupyter-widgets/controls","model_name":"DescriptionStyleModel","model_module_version":"1.5.0","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"DescriptionStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","description_width":""}},"a9ff7cbc02fb4ccbb974a31262ae5ecc":{"model_module":"@jupyter-widgets/base","model_name":"LayoutModel","model_module_version":"1.2.0","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"54d688765c00479e98216630d7855cf2":{"model_module":"@jupyter-widgets/controls","model_name":"ProgressStyleModel","model_module_version":"1.5.0","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"d7d39aa9302a432b981e35f8a686eb2e":{"model_module":"@jupyter-widgets/base","model_name":"LayoutModel","model_module_version":"1.2.0","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"a783d51d1bbd489f8abbb4de55f15835":{"model_module":"@jupyter-widgets/controls","model_name":"DescriptionStyleModel","model_module_version":"1.5.0","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"DescriptionStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","description_width":""}}}}},"nbformat_minor":4,"nbformat":4,"cells":[{"cell_type":"code","source":"!pip install --upgrade pip\n!pip install ipywidgets jupyter","metadata":{"execution":{"iopub.status.busy":"2024-10-25T19:45:40.978441Z","iopub.execute_input":"2024-10-25T19:45:40.978759Z","iopub.status.idle":"2024-10-25T19:46:11.905795Z","shell.execute_reply.started":"2024-10-25T19:45:40.978705Z","shell.execute_reply":"2024-10-25T19:46:11.904657Z"},"trusted":true},"execution_count":1,"outputs":[{"name":"stdout","text":"Requirement already satisfied: pip in /opt/conda/lib/python3.10/site-packages (24.0)\nCollecting pip\n  Downloading pip-24.2-py3-none-any.whl.metadata (3.6 kB)\nDownloading pip-24.2-py3-none-any.whl (1.8 MB)\n\u001b[2K   \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m1.8/1.8 MB\u001b[0m \u001b[31m28.2 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0ma \u001b[36m0:00:01\u001b[0m\n\u001b[?25hInstalling collected packages: pip\n  Attempting uninstall: pip\n    Found existing installation: pip 24.0\n    Uninstalling pip-24.0:\n      Successfully uninstalled pip-24.0\nSuccessfully installed pip-24.2\nRequirement already satisfied: ipywidgets in /opt/conda/lib/python3.10/site-packages (7.7.1)\nCollecting jupyter\n  Downloading jupyter-1.1.1-py2.py3-none-any.whl.metadata (2.0 kB)\nRequirement already satisfied: ipykernel>=4.5.1 in /opt/conda/lib/python3.10/site-packages (from ipywidgets) (6.29.4)\nRequirement already satisfied: ipython-genutils~=0.2.0 in /opt/conda/lib/python3.10/site-packages (from ipywidgets) (0.2.0)\nRequirement already satisfied: traitlets>=4.3.1 in /opt/conda/lib/python3.10/site-packages (from ipywidgets) (5.14.3)\nRequirement already satisfied: widgetsnbextension~=3.6.0 in /opt/conda/lib/python3.10/site-packages (from ipywidgets) (3.6.9)\nRequirement already satisfied: ipython>=4.0.0 in /opt/conda/lib/python3.10/site-packages (from ipywidgets) (8.21.0)\nRequirement already satisfied: jupyterlab-widgets>=1.0.0 in /opt/conda/lib/python3.10/site-packages (from ipywidgets) (3.0.11)\nRequirement already satisfied: notebook in /opt/conda/lib/python3.10/site-packages (from jupyter) (6.5.7)\nRequirement already satisfied: jupyter-console in /opt/conda/lib/python3.10/site-packages (from jupyter) (6.6.3)\nRequirement already satisfied: nbconvert in /opt/conda/lib/python3.10/site-packages (from jupyter) (6.4.5)\nRequirement already satisfied: jupyterlab in /opt/conda/lib/python3.10/site-packages (from jupyter) (4.2.5)\nRequirement already satisfied: comm>=0.1.1 in /opt/conda/lib/python3.10/site-packages (from ipykernel>=4.5.1->ipywidgets) (0.2.2)\nRequirement already satisfied: debugpy>=1.6.5 in /opt/conda/lib/python3.10/site-packages (from ipykernel>=4.5.1->ipywidgets) (1.8.1)\nRequirement already satisfied: jupyter-client>=6.1.12 in /opt/conda/lib/python3.10/site-packages (from ipykernel>=4.5.1->ipywidgets) (7.4.9)\nRequirement already satisfied: jupyter-core!=5.0.*,>=4.12 in /opt/conda/lib/python3.10/site-packages (from ipykernel>=4.5.1->ipywidgets) (5.7.2)\nRequirement already satisfied: matplotlib-inline>=0.1 in /opt/conda/lib/python3.10/site-packages (from ipykernel>=4.5.1->ipywidgets) (0.1.7)\nRequirement already satisfied: nest-asyncio in /opt/conda/lib/python3.10/site-packages (from ipykernel>=4.5.1->ipywidgets) (1.6.0)\nRequirement already satisfied: packaging in /opt/conda/lib/python3.10/site-packages (from ipykernel>=4.5.1->ipywidgets) (21.3)\nRequirement already satisfied: psutil in /opt/conda/lib/python3.10/site-packages (from ipykernel>=4.5.1->ipywidgets) (5.9.3)\nRequirement already satisfied: pyzmq>=24 in /opt/conda/lib/python3.10/site-packages (from ipykernel>=4.5.1->ipywidgets) (26.0.3)\nRequirement already satisfied: tornado>=6.1 in /opt/conda/lib/python3.10/site-packages (from ipykernel>=4.5.1->ipywidgets) (6.4.1)\nRequirement already satisfied: decorator in /opt/conda/lib/python3.10/site-packages (from ipython>=4.0.0->ipywidgets) (5.1.1)\nRequirement already satisfied: jedi>=0.16 in /opt/conda/lib/python3.10/site-packages (from ipython>=4.0.0->ipywidgets) (0.19.1)\nRequirement already satisfied: prompt-toolkit<3.1.0,>=3.0.41 in /opt/conda/lib/python3.10/site-packages (from ipython>=4.0.0->ipywidgets) (3.0.47)\nRequirement already satisfied: pygments>=2.4.0 in /opt/conda/lib/python3.10/site-packages (from ipython>=4.0.0->ipywidgets) (2.18.0)\nRequirement already satisfied: stack-data in /opt/conda/lib/python3.10/site-packages (from ipython>=4.0.0->ipywidgets) (0.6.2)\nRequirement already satisfied: exceptiongroup in /opt/conda/lib/python3.10/site-packages (from ipython>=4.0.0->ipywidgets) (1.2.0)\nRequirement already satisfied: pexpect>4.3 in /opt/conda/lib/python3.10/site-packages (from ipython>=4.0.0->ipywidgets) (4.9.0)\nRequirement already satisfied: jinja2 in /opt/conda/lib/python3.10/site-packages (from notebook->jupyter) (3.1.4)\nRequirement already satisfied: argon2-cffi in /opt/conda/lib/python3.10/site-packages (from notebook->jupyter) (23.1.0)\nRequirement already satisfied: nbformat in /opt/conda/lib/python3.10/site-packages (from notebook->jupyter) (5.10.4)\nRequirement already satisfied: Send2Trash>=1.8.0 in /opt/conda/lib/python3.10/site-packages (from notebook->jupyter) (1.8.3)\nRequirement already satisfied: terminado>=0.8.3 in /opt/conda/lib/python3.10/site-packages (from notebook->jupyter) (0.18.1)\nRequirement already satisfied: prometheus-client in /opt/conda/lib/python3.10/site-packages (from notebook->jupyter) (0.20.0)\nRequirement already satisfied: nbclassic>=0.4.7 in /opt/conda/lib/python3.10/site-packages (from notebook->jupyter) (1.1.0)\nRequirement already satisfied: mistune<2,>=0.8.1 in /opt/conda/lib/python3.10/site-packages (from nbconvert->jupyter) (0.8.4)\nRequirement already satisfied: jupyterlab-pygments in /opt/conda/lib/python3.10/site-packages (from nbconvert->jupyter) (0.3.0)\nRequirement already satisfied: entrypoints>=0.2.2 in /opt/conda/lib/python3.10/site-packages (from nbconvert->jupyter) (0.4)\nRequirement already satisfied: bleach in /opt/conda/lib/python3.10/site-packages (from nbconvert->jupyter) (6.1.0)\nRequirement already satisfied: pandocfilters>=1.4.1 in /opt/conda/lib/python3.10/site-packages (from nbconvert->jupyter) (1.5.0)\nRequirement already satisfied: testpath in /opt/conda/lib/python3.10/site-packages (from nbconvert->jupyter) (0.6.0)\nRequirement already satisfied: defusedxml in /opt/conda/lib/python3.10/site-packages (from nbconvert->jupyter) (0.7.1)\nRequirement already satisfied: beautifulsoup4 in /opt/conda/lib/python3.10/site-packages (from nbconvert->jupyter) (4.12.3)\nRequirement already satisfied: nbclient<0.6.0,>=0.5.0 in /opt/conda/lib/python3.10/site-packages (from nbconvert->jupyter) (0.5.13)\nRequirement already satisfied: MarkupSafe>=2.0 in /opt/conda/lib/python3.10/site-packages (from nbconvert->jupyter) (2.1.5)\nRequirement already satisfied: async-lru>=1.0.0 in /opt/conda/lib/python3.10/site-packages (from jupyterlab->jupyter) (2.0.4)\nRequirement already satisfied: httpx>=0.25.0 in /opt/conda/lib/python3.10/site-packages (from jupyterlab->jupyter) (0.27.0)\nCollecting jupyter-lsp>=2.0.0 (from jupyterlab->jupyter)\n  Downloading jupyter_lsp-2.2.5-py3-none-any.whl.metadata (1.8 kB)\nRequirement already satisfied: jupyter-server<3,>=2.4.0 in /opt/conda/lib/python3.10/site-packages (from jupyterlab->jupyter) (2.12.5)\nRequirement already satisfied: jupyterlab-server<3,>=2.27.1 in /opt/conda/lib/python3.10/site-packages (from jupyterlab->jupyter) (2.27.2)\nRequirement already satisfied: notebook-shim>=0.2 in /opt/conda/lib/python3.10/site-packages (from jupyterlab->jupyter) (0.2.4)\nRequirement already satisfied: setuptools>=40.1.0 in /opt/conda/lib/python3.10/site-packages (from jupyterlab->jupyter) (70.0.0)\nRequirement already satisfied: tomli>=1.2.2 in /opt/conda/lib/python3.10/site-packages (from jupyterlab->jupyter) (2.0.1)\nRequirement already satisfied: typing-extensions>=4.0.0 in /opt/conda/lib/python3.10/site-packages (from async-lru>=1.0.0->jupyterlab->jupyter) (4.12.2)\nRequirement already satisfied: anyio in /opt/conda/lib/python3.10/site-packages (from httpx>=0.25.0->jupyterlab->jupyter) (4.4.0)\nRequirement already satisfied: certifi in /opt/conda/lib/python3.10/site-packages (from httpx>=0.25.0->jupyterlab->jupyter) (2024.8.30)\nRequirement already satisfied: httpcore==1.* in /opt/conda/lib/python3.10/site-packages (from httpx>=0.25.0->jupyterlab->jupyter) (1.0.5)\nRequirement already satisfied: idna in /opt/conda/lib/python3.10/site-packages (from httpx>=0.25.0->jupyterlab->jupyter) (3.7)\nRequirement already satisfied: sniffio in /opt/conda/lib/python3.10/site-packages (from httpx>=0.25.0->jupyterlab->jupyter) (1.3.1)\nRequirement already satisfied: h11<0.15,>=0.13 in /opt/conda/lib/python3.10/site-packages (from httpcore==1.*->httpx>=0.25.0->jupyterlab->jupyter) (0.14.0)\nRequirement already satisfied: parso<0.9.0,>=0.8.3 in /opt/conda/lib/python3.10/site-packages (from jedi>=0.16->ipython>=4.0.0->ipywidgets) (0.8.4)\nRequirement already satisfied: python-dateutil>=2.8.2 in /opt/conda/lib/python3.10/site-packages (from jupyter-client>=6.1.12->ipykernel>=4.5.1->ipywidgets) (2.9.0.post0)\nRequirement already satisfied: platformdirs>=2.5 in /opt/conda/lib/python3.10/site-packages (from jupyter-core!=5.0.*,>=4.12->ipykernel>=4.5.1->ipywidgets) (3.11.0)\nRequirement already satisfied: jupyter-events>=0.9.0 in /opt/conda/lib/python3.10/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.10.0)\nRequirement already satisfied: jupyter-server-terminals in /opt/conda/lib/python3.10/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.5.3)\nRequirement already satisfied: overrides in /opt/conda/lib/python3.10/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (7.7.0)\nRequirement already satisfied: websocket-client in /opt/conda/lib/python3.10/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (1.8.0)\nRequirement already satisfied: babel>=2.10 in /opt/conda/lib/python3.10/site-packages (from jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (2.15.0)\nRequirement already satisfied: json5>=0.9.0 in /opt/conda/lib/python3.10/site-packages (from jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (0.9.25)\nRequirement already satisfied: jsonschema>=4.18.0 in /opt/conda/lib/python3.10/site-packages (from jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (4.22.0)\nRequirement already satisfied: requests>=2.31 in /opt/conda/lib/python3.10/site-packages (from jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (2.32.3)\nRequirement already satisfied: fastjsonschema>=2.15 in /opt/conda/lib/python3.10/site-packages (from nbformat->notebook->jupyter) (2.19.1)\nRequirement already satisfied: pyparsing!=3.0.5,>=2.0.2 in /opt/conda/lib/python3.10/site-packages (from packaging->ipykernel>=4.5.1->ipywidgets) (3.1.2)\nRequirement already satisfied: ptyprocess>=0.5 in /opt/conda/lib/python3.10/site-packages (from pexpect>4.3->ipython>=4.0.0->ipywidgets) (0.7.0)\nRequirement already satisfied: wcwidth in /opt/conda/lib/python3.10/site-packages (from prompt-toolkit<3.1.0,>=3.0.41->ipython>=4.0.0->ipywidgets) (0.2.13)\nRequirement already satisfied: argon2-cffi-bindings in /opt/conda/lib/python3.10/site-packages (from argon2-cffi->notebook->jupyter) (21.2.0)\nRequirement already satisfied: soupsieve>1.2 in /opt/conda/lib/python3.10/site-packages (from beautifulsoup4->nbconvert->jupyter) (2.5)\nRequirement already satisfied: six>=1.9.0 in /opt/conda/lib/python3.10/site-packages (from bleach->nbconvert->jupyter) (1.16.0)\nRequirement already satisfied: webencodings in /opt/conda/lib/python3.10/site-packages (from bleach->nbconvert->jupyter) (0.5.1)\nRequirement already satisfied: executing>=1.2.0 in /opt/conda/lib/python3.10/site-packages (from stack-data->ipython>=4.0.0->ipywidgets) (2.0.1)\nRequirement already satisfied: asttokens>=2.1.0 in /opt/conda/lib/python3.10/site-packages (from stack-data->ipython>=4.0.0->ipywidgets) (2.4.1)\nRequirement already satisfied: pure-eval in /opt/conda/lib/python3.10/site-packages (from stack-data->ipython>=4.0.0->ipywidgets) (0.2.2)\nRequirement already satisfied: attrs>=22.2.0 in /opt/conda/lib/python3.10/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (23.2.0)\nRequirement already satisfied: jsonschema-specifications>=2023.03.6 in /opt/conda/lib/python3.10/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (2023.12.1)\nRequirement already satisfied: referencing>=0.28.4 in /opt/conda/lib/python3.10/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (0.35.1)\nRequirement already satisfied: rpds-py>=0.7.1 in /opt/conda/lib/python3.10/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (0.18.1)\nRequirement already satisfied: python-json-logger>=2.0.4 in /opt/conda/lib/python3.10/site-packages (from jupyter-events>=0.9.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (2.0.7)\nRequirement already satisfied: pyyaml>=5.3 in /opt/conda/lib/python3.10/site-packages (from jupyter-events>=0.9.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (6.0.2)\nRequirement already satisfied: rfc3339-validator in /opt/conda/lib/python3.10/site-packages (from jupyter-events>=0.9.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.1.4)\nRequirement already satisfied: rfc3986-validator>=0.1.1 in /opt/conda/lib/python3.10/site-packages (from jupyter-events>=0.9.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.1.1)\nRequirement already satisfied: charset-normalizer<4,>=2 in /opt/conda/lib/python3.10/site-packages (from requests>=2.31->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (3.3.2)\nRequirement already satisfied: urllib3<3,>=1.21.1 in /opt/conda/lib/python3.10/site-packages (from requests>=2.31->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (1.26.18)\nRequirement already satisfied: cffi>=1.0.1 in /opt/conda/lib/python3.10/site-packages (from argon2-cffi-bindings->argon2-cffi->notebook->jupyter) (1.16.0)\nRequirement already satisfied: pycparser in /opt/conda/lib/python3.10/site-packages (from cffi>=1.0.1->argon2-cffi-bindings->argon2-cffi->notebook->jupyter) (2.22)\nRequirement already satisfied: fqdn in /opt/conda/lib/python3.10/site-packages (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.9.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (1.5.1)\nRequirement already satisfied: isoduration in /opt/conda/lib/python3.10/site-packages (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.9.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (20.11.0)\nRequirement already satisfied: jsonpointer>1.13 in /opt/conda/lib/python3.10/site-packages (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.9.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (2.4)\nRequirement already satisfied: uri-template in /opt/conda/lib/python3.10/site-packages (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.9.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (1.3.0)\nRequirement already satisfied: webcolors>=1.11 in /opt/conda/lib/python3.10/site-packages (from jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.9.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (24.6.0)\nRequirement already satisfied: arrow>=0.15.0 in /opt/conda/lib/python3.10/site-packages (from isoduration->jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.9.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (1.3.0)\nRequirement already satisfied: types-python-dateutil>=2.8.10 in /opt/conda/lib/python3.10/site-packages (from arrow>=0.15.0->isoduration->jsonschema[format-nongpl]>=4.18.0->jupyter-events>=0.9.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (2.9.0.20240316)\nDownloading jupyter-1.1.1-py2.py3-none-any.whl (2.7 kB)\nDownloading jupyter_lsp-2.2.5-py3-none-any.whl (69 kB)\nInstalling collected packages: jupyter-lsp, jupyter\n  Attempting uninstall: jupyter-lsp\n    Found existing installation: jupyter-lsp 1.5.1\n    Uninstalling jupyter-lsp-1.5.1:\n      Successfully uninstalled jupyter-lsp-1.5.1\nSuccessfully installed jupyter-1.1.1 jupyter-lsp-2.2.5\n","output_type":"stream"}]},{"cell_type":"code","source":"import tensorflow as tf\n\n# List all physical devices, specifically looking for GPUs\ngpus = tf.config.list_physical_devices('GPU')\nprint(f\"GPUs available: {gpus}\")\n","metadata":{"execution":{"iopub.status.busy":"2024-10-25T19:46:11.908196Z","iopub.execute_input":"2024-10-25T19:46:11.908968Z","iopub.status.idle":"2024-10-25T19:46:24.882742Z","shell.execute_reply.started":"2024-10-25T19:46:11.908920Z","shell.execute_reply":"2024-10-25T19:46:24.881752Z"},"trusted":true},"execution_count":2,"outputs":[{"name":"stdout","text":"GPUs available: [PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU'), PhysicalDevice(name='/physical_device:GPU:1', device_type='GPU')]\n","output_type":"stream"}]},{"cell_type":"code","source":"for gpu in gpus:\n    tf.config.experimental.set_memory_growth(gpu, True)","metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"qFctU49L3YWs","outputId":"38be3b31-91d8-4a86-c8c8-4c088ae2afa7","execution":{"iopub.status.busy":"2024-10-25T19:46:24.883839Z","iopub.execute_input":"2024-10-25T19:46:24.884370Z","iopub.status.idle":"2024-10-25T19:46:24.888640Z","shell.execute_reply.started":"2024-10-25T19:46:24.884335Z","shell.execute_reply":"2024-10-25T19:46:24.887789Z"},"trusted":true},"execution_count":3,"outputs":[]},{"cell_type":"code","source":"# import os\n\n# # Create the directory explicitly with the absolute path\n# os.makedirs(\"~/.kaggle\", exist_ok=True)\n\n# !cp \"/kaggle/input/kaggle-token/kaggle (1).json\" ~/kaggle.json\n# # Copy the kaggle.json file from your Google Drive to the required location\n# !cp ~/kaggle.json ~/.kaggle/\n\n# # Set the correct permissions for the Kaggle API token\n# !chmod 600 ~/.kaggle/kaggle.json\n","metadata":{"id":"AGwgatwy4zqh","execution":{"iopub.status.busy":"2024-10-25T19:46:24.890680Z","iopub.execute_input":"2024-10-25T19:46:24.891031Z","iopub.status.idle":"2024-10-25T19:46:24.927834Z","shell.execute_reply.started":"2024-10-25T19:46:24.890994Z","shell.execute_reply":"2024-10-25T19:46:24.927026Z"},"trusted":true},"execution_count":4,"outputs":[]},{"cell_type":"code","source":"","metadata":{"trusted":true},"execution_count":null,"outputs":[]},{"cell_type":"code","source":"# !pip install kaggle\n# !kaggle competitions download -c playground-series-s4e10","metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"lnWQ8Xfp5RWI","outputId":"51ac6c76-76f4-4d42-a310-f2987df37d13","execution":{"iopub.status.busy":"2024-10-25T19:46:24.928834Z","iopub.execute_input":"2024-10-25T19:46:24.929145Z","iopub.status.idle":"2024-10-25T19:46:24.937985Z","shell.execute_reply.started":"2024-10-25T19:46:24.929103Z","shell.execute_reply":"2024-10-25T19:46:24.937148Z"},"trusted":true},"execution_count":5,"outputs":[]},{"cell_type":"code","source":"# from zipfile import ZipFile\n\n# with ZipFile('/content/playground-series-s4e10.zip', 'r') as zip_ref:\n#     zip_ref.extractall('/content')","metadata":{"id":"SStBLetO6Lzv","execution":{"iopub.status.busy":"2024-10-25T19:46:24.939407Z","iopub.execute_input":"2024-10-25T19:46:24.939719Z","iopub.status.idle":"2024-10-25T19:46:24.949309Z","shell.execute_reply.started":"2024-10-25T19:46:24.939688Z","shell.execute_reply":"2024-10-25T19:46:24.948448Z"},"trusted":true},"execution_count":6,"outputs":[]},{"cell_type":"code","source":"import pandas as pd\n\nprint(f'reading the csv files into pandas dataframes.')\ntrain_df = pd.read_csv('/kaggle/input/playground-series-s4e10/train.csv')\ntest_df = pd.read_csv('/kaggle/input/playground-series-s4e10/test.csv')\nsub_df = pd.read_csv('/kaggle/input/playground-series-s4e10/sample_submission.csv')\n","metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"4-aOwIrp2pYI","outputId":"e6ef0214-f215-4ace-94ca-27dcaf0ca8f8","execution":{"iopub.status.busy":"2024-10-25T19:46:24.950451Z","iopub.execute_input":"2024-10-25T19:46:24.950817Z","iopub.status.idle":"2024-10-25T19:46:25.198646Z","shell.execute_reply.started":"2024-10-25T19:46:24.950774Z","shell.execute_reply":"2024-10-25T19:46:25.197798Z"},"trusted":true},"execution_count":7,"outputs":[{"name":"stdout","text":"reading the csv files into pandas dataframes.\n","output_type":"stream"}]},{"cell_type":"code","source":"# train_df.info()","metadata":{"id":"msVqxn5m2pYI","execution":{"iopub.status.busy":"2024-10-25T19:46:25.200024Z","iopub.execute_input":"2024-10-25T19:46:25.200498Z","iopub.status.idle":"2024-10-25T19:46:25.205018Z","shell.execute_reply.started":"2024-10-25T19:46:25.200433Z","shell.execute_reply":"2024-10-25T19:46:25.204122Z"},"trusted":true},"execution_count":8,"outputs":[]},{"cell_type":"code","source":"# test_df.info()","metadata":{"id":"8CVAOYiU2pYJ","execution":{"iopub.status.busy":"2024-10-25T19:46:25.206035Z","iopub.execute_input":"2024-10-25T19:46:25.206291Z","iopub.status.idle":"2024-10-25T19:46:25.214906Z","shell.execute_reply.started":"2024-10-25T19:46:25.206263Z","shell.execute_reply":"2024-10-25T19:46:25.214113Z"},"trusted":true},"execution_count":9,"outputs":[]},{"cell_type":"code","source":"# train_df.isnull().any(), test_df.isnull().any()","metadata":{"id":"dhU-Nqzs2pYJ","execution":{"iopub.status.busy":"2024-10-25T19:46:25.219234Z","iopub.execute_input":"2024-10-25T19:46:25.219518Z","iopub.status.idle":"2024-10-25T19:46:25.225031Z","shell.execute_reply.started":"2024-10-25T19:46:25.219488Z","shell.execute_reply":"2024-10-25T19:46:25.224157Z"},"trusted":true},"execution_count":10,"outputs":[]},{"cell_type":"code","source":"cat_cols = train_df.select_dtypes('object').columns\nnum_cols = []\nfor col in train_df.select_dtypes(exclude='object').columns:\n    if col not in ('id', 'loan_status'):\n        num_cols.append(col)\n# num_cols, cat_cols","metadata":{"id":"A4GXB1u62pYJ","execution":{"iopub.status.busy":"2024-10-25T19:46:25.226345Z","iopub.execute_input":"2024-10-25T19:46:25.226672Z","iopub.status.idle":"2024-10-25T19:46:25.237230Z","shell.execute_reply.started":"2024-10-25T19:46:25.226614Z","shell.execute_reply":"2024-10-25T19:46:25.236460Z"},"trusted":true},"execution_count":11,"outputs":[]},{"cell_type":"code","source":"# train_df['loan_status'].value_counts(normalize=True)","metadata":{"id":"8MTuOiD92pYJ","execution":{"iopub.status.busy":"2024-10-25T19:46:25.238221Z","iopub.execute_input":"2024-10-25T19:46:25.238578Z","iopub.status.idle":"2024-10-25T19:46:25.245343Z","shell.execute_reply.started":"2024-10-25T19:46:25.238538Z","shell.execute_reply":"2024-10-25T19:46:25.244582Z"},"trusted":true},"execution_count":12,"outputs":[]},{"cell_type":"code","source":"import matplotlib.pyplot as plt\n\ndef box_plots_num_cols(df, columns):\n    df = df.copy()\n    base_width = 10\n    base_height = 5\n    rows = len(columns)\n    cols = 1\n    fig_width = cols * base_width\n    fig_height = rows * base_height\n    fig, axes = plt.subplots(rows, cols, figsize=(fig_width, fig_height))\n    axes = axes.flatten() if rows > 1 else [axes]\n    for i, col in enumerate(columns):\n        axes[i].boxplot(df[col])\n        axes[i].set_title(col)\n    for j in range(i+1, len(axes)):\n        axes[j].axis('off')\n    plt.tight_layout()","metadata":{"id":"59Vicvtb2pYJ","execution":{"iopub.status.busy":"2024-10-25T19:46:25.246767Z","iopub.execute_input":"2024-10-25T19:46:25.247207Z","iopub.status.idle":"2024-10-25T19:46:25.256395Z","shell.execute_reply.started":"2024-10-25T19:46:25.247166Z","shell.execute_reply":"2024-10-25T19:46:25.255577Z"},"trusted":true},"execution_count":13,"outputs":[]},{"cell_type":"code","source":"# box_plots_num_cols(train_df, num_cols)","metadata":{"id":"5q3wrA282pYK","execution":{"iopub.status.busy":"2024-10-25T19:46:25.257428Z","iopub.execute_input":"2024-10-25T19:46:25.257756Z","iopub.status.idle":"2024-10-25T19:46:25.270246Z","shell.execute_reply.started":"2024-10-25T19:46:25.257691Z","shell.execute_reply":"2024-10-25T19:46:25.269441Z"},"trusted":true},"execution_count":14,"outputs":[]},{"cell_type":"code","source":"from scipy import stats\nimport numpy as np\n\ndef remove_outliers(df:pd.DataFrame(), cols, beta):\n    df = df.copy()\n    for col in cols:\n#         print(f'removing {col} outliers:\\n')\n        data = df[col]\n        iqr = stats.iqr(data)\n        q1 = np.percentile(data, 25)\n        q3 = np.percentile(data, 75)\n        outlier_low = q1 - beta * iqr\n        outlier_high = q1 + beta * iqr\n#         print(f'outlier_low:{outlier_low}, outlier_high: {outlier_high}')\n        df = df[(data >= outlier_low) & (data <= outlier_high)]\n    return df\n","metadata":{"id":"ZtOn9zxs2pYK","execution":{"iopub.status.busy":"2024-10-25T19:46:25.271506Z","iopub.execute_input":"2024-10-25T19:46:25.272205Z","iopub.status.idle":"2024-10-25T19:46:25.896013Z","shell.execute_reply.started":"2024-10-25T19:46:25.272163Z","shell.execute_reply":"2024-10-25T19:46:25.895238Z"},"trusted":true},"execution_count":15,"outputs":[]},{"cell_type":"code","source":"print(f'removing outliers before oversampling')\ndf_clean = remove_outliers(train_df, num_cols, 1.5)\n# box_plots_num_cols(df_clean, num_cols)\ndf_clean.shape, train_df.shape","metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"CbzNHkWx2pYK","outputId":"d4f41e9f-20c6-45a8-d9a6-3b153ddb7ad9","execution":{"iopub.status.busy":"2024-10-25T19:46:25.897177Z","iopub.execute_input":"2024-10-25T19:46:25.897646Z","iopub.status.idle":"2024-10-25T19:46:25.963609Z","shell.execute_reply.started":"2024-10-25T19:46:25.897612Z","shell.execute_reply":"2024-10-25T19:46:25.962795Z"},"trusted":true},"execution_count":16,"outputs":[{"name":"stdout","text":"removing outliers before oversampling\n","output_type":"stream"},{"execution_count":16,"output_type":"execute_result","data":{"text/plain":"((24802, 13), (58645, 13))"},"metadata":{}}]},{"cell_type":"code","source":"def hist_plot_cat_cols(df:pd.DataFrame(), cat_cols=cat_cols):\n    df = df.copy()\n    fig, axes_cat = plt.subplots(1, len(cat_cols), figsize=(20, 10))\n    for i, col in enumerate(cat_cols):\n        axes_cat[i].hist(df[col])\n        axes_cat[i].set_title(col)","metadata":{"id":"fkP1sW402pYK","execution":{"iopub.status.busy":"2024-10-25T19:46:25.964773Z","iopub.execute_input":"2024-10-25T19:46:25.965059Z","iopub.status.idle":"2024-10-25T19:46:25.970902Z","shell.execute_reply.started":"2024-10-25T19:46:25.965028Z","shell.execute_reply":"2024-10-25T19:46:25.969779Z"},"trusted":true},"execution_count":17,"outputs":[]},{"cell_type":"code","source":"# hist_plot_cat_cols(train_df)","metadata":{"id":"XWZIcwpD2pYK","execution":{"iopub.status.busy":"2024-10-25T19:46:25.972074Z","iopub.execute_input":"2024-10-25T19:46:25.972410Z","iopub.status.idle":"2024-10-25T19:46:25.980305Z","shell.execute_reply.started":"2024-10-25T19:46:25.972373Z","shell.execute_reply":"2024-10-25T19:46:25.979508Z"},"trusted":true},"execution_count":18,"outputs":[]},{"cell_type":"code","source":"# hist_plot_cat_cols(df_clean)","metadata":{"id":"6Daiqx6X2pYL","execution":{"iopub.status.busy":"2024-10-25T19:46:25.981476Z","iopub.execute_input":"2024-10-25T19:46:25.981779Z","iopub.status.idle":"2024-10-25T19:46:25.990407Z","shell.execute_reply.started":"2024-10-25T19:46:25.981721Z","shell.execute_reply":"2024-10-25T19:46:25.989524Z"},"trusted":true},"execution_count":19,"outputs":[]},{"cell_type":"code","source":"from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder\nfrom sklearn.compose import ColumnTransformer\nfrom sklearn.pipeline import Pipeline\n\nprint('encoding the categorical features')\ndf_clean = df_clean.drop(columns=['id'])\n\nord_enc = OrdinalEncoder()\none_hot_enc = OneHotEncoder(sparse_output=False)\n\nordinal_cols = ['loan_grade']\none_hot_cols = [col for col in cat_cols if col != 'loan_grade']\nremaining_cols = [col for col in df_clean.columns if col not in cat_cols]\n\nencoder = ColumnTransformer(\n            transformers=[\n                ('ordinal_encoder', ord_enc, ordinal_cols),\n                ('one_hot_encoder', one_hot_enc, one_hot_cols),\n                ('passthrough', 'passthrough', remaining_cols )\n            ]\n)\n\nencoded_data = encoder.fit_transform(df_clean)\none_hot_enc.fit(df_clean[one_hot_cols])\none_hot_encoded_cols = one_hot_enc.get_feature_names_out(one_hot_cols)\nall_cols = ordinal_cols + list(one_hot_encoded_cols) + remaining_cols\ndf_encoded = pd.DataFrame(encoded_data, columns=all_cols)\ndf_encoded.info()","metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"iz0XxUy12pYL","outputId":"a04b5901-3a48-4ba2-d72e-b9cef5e045fe","execution":{"iopub.status.busy":"2024-10-25T19:46:25.991667Z","iopub.execute_input":"2024-10-25T19:46:25.992251Z","iopub.status.idle":"2024-10-25T19:46:26.178721Z","shell.execute_reply.started":"2024-10-25T19:46:25.992208Z","shell.execute_reply":"2024-10-25T19:46:26.177843Z"},"trusted":true},"execution_count":20,"outputs":[{"name":"stdout","text":"encoding the categorical features\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 24802 entries, 0 to 24801\nData columns (total 21 columns):\n #   Column                          Non-Null Count  Dtype  \n---  ------                          --------------  -----  \n 0   loan_grade                      24802 non-null  float64\n 1   person_home_ownership_MORTGAGE  24802 non-null  float64\n 2   person_home_ownership_OTHER     24802 non-null  float64\n 3   person_home_ownership_OWN       24802 non-null  float64\n 4   person_home_ownership_RENT      24802 non-null  float64\n 5   loan_intent_DEBTCONSOLIDATION   24802 non-null  float64\n 6   loan_intent_EDUCATION           24802 non-null  float64\n 7   loan_intent_HOMEIMPROVEMENT     24802 non-null  float64\n 8   loan_intent_MEDICAL             24802 non-null  float64\n 9   loan_intent_PERSONAL            24802 non-null  float64\n 10  loan_intent_VENTURE             24802 non-null  float64\n 11  cb_person_default_on_file_N     24802 non-null  float64\n 12  cb_person_default_on_file_Y     24802 non-null  float64\n 13  person_age                      24802 non-null  float64\n 14  person_income                   24802 non-null  float64\n 15  person_emp_length               24802 non-null  float64\n 16  loan_amnt                       24802 non-null  float64\n 17  loan_int_rate                   24802 non-null  float64\n 18  loan_percent_income             24802 non-null  float64\n 19  cb_person_cred_hist_length      24802 non-null  float64\n 20  loan_status                     24802 non-null  float64\ndtypes: float64(21)\nmemory usage: 4.0 MB\n","output_type":"stream"}]},{"cell_type":"code","source":"!pip install imblearn\nfrom imblearn.over_sampling import SMOTE, SVMSMOTE\n\nprint(f'oversampling using SVMSMOTE')\ndf_enc_copy = df_encoded.copy()\n\nsmote = SMOTE(random_state=32,  k_neighbors=10)\nsvm_smote = SVMSMOTE(random_state=32, k_neighbors=10,m_neighbors=10)\n\nX = df_enc_copy.drop(columns=['loan_status'])\ny = df_enc_copy.loc[:, 'loan_status']\n\nX_smote, y_smote = smote.fit_resample(X, y)\nX_svm_smote, y_svm_smote = svm_smote.fit_resample(X, y)\nX_smote.shape, y_smote.shape, X_svm_smote.shape, y_svm_smote.shape","metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"6bnWn1Nk2pYL","outputId":"19936ed2-b00d-4dd5-8be8-12669aa48076","execution":{"iopub.status.busy":"2024-10-25T19:46:26.179884Z","iopub.execute_input":"2024-10-25T19:46:26.180222Z","iopub.status.idle":"2024-10-25T19:46:36.252321Z","shell.execute_reply.started":"2024-10-25T19:46:26.180187Z","shell.execute_reply":"2024-10-25T19:46:36.251127Z"},"trusted":true},"execution_count":21,"outputs":[{"name":"stderr","text":"/opt/conda/lib/python3.10/pty.py:89: RuntimeWarning: os.fork() was called. os.fork() is incompatible with multithreaded code, and JAX is multithreaded, so this will likely lead to a deadlock.\n  pid, fd = os.forkpty()\n","output_type":"stream"},{"name":"stdout","text":"Collecting imblearn\n  Downloading imblearn-0.0-py2.py3-none-any.whl.metadata (355 bytes)\nRequirement already satisfied: imbalanced-learn in /opt/conda/lib/python3.10/site-packages (from imblearn) (0.12.3)\nRequirement already satisfied: numpy>=1.17.3 in /opt/conda/lib/python3.10/site-packages (from imbalanced-learn->imblearn) (1.26.4)\nRequirement already satisfied: scipy>=1.5.0 in /opt/conda/lib/python3.10/site-packages (from imbalanced-learn->imblearn) (1.14.1)\nRequirement already satisfied: scikit-learn>=1.0.2 in /opt/conda/lib/python3.10/site-packages (from imbalanced-learn->imblearn) (1.2.2)\nRequirement already satisfied: joblib>=1.1.1 in /opt/conda/lib/python3.10/site-packages (from imbalanced-learn->imblearn) (1.4.2)\nRequirement already satisfied: threadpoolctl>=2.0.0 in /opt/conda/lib/python3.10/site-packages (from imbalanced-learn->imblearn) (3.5.0)\nDownloading imblearn-0.0-py2.py3-none-any.whl (1.9 kB)\nInstalling collected packages: imblearn\nSuccessfully installed imblearn-0.0\noversampling using SVMSMOTE\n","output_type":"stream"},{"execution_count":21,"output_type":"execute_result","data":{"text/plain":"((46192, 20), (46192,), (46192, 20), (46192,))"},"metadata":{}}]},{"cell_type":"code","source":"smote_df = X_smote\nsmote_df['loan_status'] = y_smote\n\nsvm_smote_df = X_svm_smote\nsvm_smote_df['loan_status'] = y_svm_smote\n","metadata":{"id":"x65j6BfZ2pYL","execution":{"iopub.status.busy":"2024-10-25T19:46:36.254047Z","iopub.execute_input":"2024-10-25T19:46:36.255200Z","iopub.status.idle":"2024-10-25T19:46:36.261503Z","shell.execute_reply.started":"2024-10-25T19:46:36.255152Z","shell.execute_reply":"2024-10-25T19:46:36.260185Z"},"trusted":true},"execution_count":22,"outputs":[]},{"cell_type":"code","source":"# c = [col for col in smote_df.columns if col not in one_hot_encoded_cols]\n# box_plots_num_cols(smote_df, c)","metadata":{"id":"sU1TZD2M2pYL","execution":{"iopub.status.busy":"2024-10-25T19:46:36.262787Z","iopub.execute_input":"2024-10-25T19:46:36.263461Z","iopub.status.idle":"2024-10-25T19:46:36.292659Z","shell.execute_reply.started":"2024-10-25T19:46:36.263416Z","shell.execute_reply":"2024-10-25T19:46:36.291929Z"},"trusted":true},"execution_count":23,"outputs":[]},{"cell_type":"code","source":"# c2 = [col for col in svm_smote_df.columns if col not in one_hot_encoded_cols]\n# box_plots_num_cols(svm_smote_df, c2)","metadata":{"id":"gQQuhfqk2pYL","execution":{"iopub.status.busy":"2024-10-25T19:46:36.293645Z","iopub.execute_input":"2024-10-25T19:46:36.293958Z","iopub.status.idle":"2024-10-25T19:46:36.304144Z","shell.execute_reply.started":"2024-10-25T19:46:36.293927Z","shell.execute_reply":"2024-10-25T19:46:36.303214Z"},"trusted":true},"execution_count":24,"outputs":[]},{"cell_type":"code","source":"# smote_corr = smote_df.corr()\n# svm_smote_corr = svm_smote_df.corr()","metadata":{"id":"sQ-xZAX22pYL","execution":{"iopub.status.busy":"2024-10-25T19:46:36.305285Z","iopub.execute_input":"2024-10-25T19:46:36.305564Z","iopub.status.idle":"2024-10-25T19:46:36.314212Z","shell.execute_reply.started":"2024-10-25T19:46:36.305534Z","shell.execute_reply":"2024-10-25T19:46:36.313457Z"},"trusted":true},"execution_count":25,"outputs":[]},{"cell_type":"code","source":"import seaborn as sns\n\ndef heatmap_corr(corr):\n    plt.figure(figsize=(10, 8))\n    sns.heatmap(corr, annot=True, cmap='coolwarm', fmt=\".2f\", linewidths=0.5)\n    plt.title('Correlation Heatmap')\n    plt.show()","metadata":{"id":"0ZCuXkmt2pYL","execution":{"iopub.status.busy":"2024-10-25T19:46:36.315315Z","iopub.execute_input":"2024-10-25T19:46:36.316136Z","iopub.status.idle":"2024-10-25T19:46:36.926745Z","shell.execute_reply.started":"2024-10-25T19:46:36.316094Z","shell.execute_reply":"2024-10-25T19:46:36.925992Z"},"trusted":true},"execution_count":26,"outputs":[]},{"cell_type":"code","source":"# heatmap_corr(smote_corr)","metadata":{"id":"8ZJUeWU-2pYL","execution":{"iopub.status.busy":"2024-10-25T19:46:36.927835Z","iopub.execute_input":"2024-10-25T19:46:36.928299Z","iopub.status.idle":"2024-10-25T19:46:36.932555Z","shell.execute_reply.started":"2024-10-25T19:46:36.928265Z","shell.execute_reply":"2024-10-25T19:46:36.931471Z"},"trusted":true},"execution_count":27,"outputs":[]},{"cell_type":"code","source":"# heatmap_corr(svm_smote_corr)","metadata":{"id":"X8R0Xdsk2pYM","execution":{"iopub.status.busy":"2024-10-25T19:46:36.938700Z","iopub.execute_input":"2024-10-25T19:46:36.939128Z","iopub.status.idle":"2024-10-25T19:46:36.943465Z","shell.execute_reply.started":"2024-10-25T19:46:36.939094Z","shell.execute_reply":"2024-10-25T19:46:36.942550Z"},"trusted":true},"execution_count":28,"outputs":[]},{"cell_type":"code","source":"# high_smote_corr = smote_corr[(abs(smote_corr) > 0.7) & (abs(smote_corr) != 1.0)]\n# heatmap_corr(high_smote_corr)","metadata":{"id":"rrdxxXsu2pYM","execution":{"iopub.status.busy":"2024-10-25T19:46:36.944569Z","iopub.execute_input":"2024-10-25T19:46:36.944880Z","iopub.status.idle":"2024-10-25T19:46:36.954332Z","shell.execute_reply.started":"2024-10-25T19:46:36.944850Z","shell.execute_reply":"2024-10-25T19:46:36.953589Z"},"trusted":true},"execution_count":29,"outputs":[]},{"cell_type":"code","source":"# high_svm_smote_corr = svm_smote_corr[(abs(svm_smote_corr) > 0.7) & (abs(svm_smote_corr) != 1.0)]\n# heatmap_corr(high_svm_smote_corr)","metadata":{"id":"U0kFKuHp2pYM","execution":{"iopub.status.busy":"2024-10-25T19:46:36.955466Z","iopub.execute_input":"2024-10-25T19:46:36.955779Z","iopub.status.idle":"2024-10-25T19:46:36.965083Z","shell.execute_reply.started":"2024-10-25T19:46:36.955721Z","shell.execute_reply":"2024-10-25T19:46:36.964132Z"},"trusted":true},"execution_count":30,"outputs":[]},{"cell_type":"code","source":"print('dropping the column person home ownership rent')\ndf_final = svm_smote_df.drop(columns=[ 'person_home_ownership_RENT'])\ndf_final.info()","metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"QE4NvjnB2pYM","outputId":"4f2a850d-c619-4c0c-fa78-7b8fe3b518ef","execution":{"iopub.status.busy":"2024-10-25T19:46:36.966253Z","iopub.execute_input":"2024-10-25T19:46:36.966906Z","iopub.status.idle":"2024-10-25T19:46:36.989379Z","shell.execute_reply.started":"2024-10-25T19:46:36.966863Z","shell.execute_reply":"2024-10-25T19:46:36.988555Z"},"trusted":true},"execution_count":31,"outputs":[{"name":"stdout","text":"dropping the column person home ownership rent\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 46192 entries, 0 to 46191\nData columns (total 20 columns):\n #   Column                          Non-Null Count  Dtype  \n---  ------                          --------------  -----  \n 0   loan_grade                      46192 non-null  float64\n 1   person_home_ownership_MORTGAGE  46192 non-null  float64\n 2   person_home_ownership_OTHER     46192 non-null  float64\n 3   person_home_ownership_OWN       46192 non-null  float64\n 4   loan_intent_DEBTCONSOLIDATION   46192 non-null  float64\n 5   loan_intent_EDUCATION           46192 non-null  float64\n 6   loan_intent_HOMEIMPROVEMENT     46192 non-null  float64\n 7   loan_intent_MEDICAL             46192 non-null  float64\n 8   loan_intent_PERSONAL            46192 non-null  float64\n 9   loan_intent_VENTURE             46192 non-null  float64\n 10  cb_person_default_on_file_N     46192 non-null  float64\n 11  cb_person_default_on_file_Y     46192 non-null  float64\n 12  person_age                      46192 non-null  float64\n 13  person_income                   46192 non-null  float64\n 14  person_emp_length               46192 non-null  float64\n 15  loan_amnt                       46192 non-null  float64\n 16  loan_int_rate                   46192 non-null  float64\n 17  loan_percent_income             46192 non-null  float64\n 18  cb_person_cred_hist_length      46192 non-null  float64\n 19  loan_status                     46192 non-null  float64\ndtypes: float64(20)\nmemory usage: 7.0 MB\n","output_type":"stream"}]},{"cell_type":"code","source":"from sklearn.model_selection import StratifiedShuffleSplit\n\nprint('splitting the dataset into train and test')\n\nsss = StratifiedShuffleSplit(n_splits=1, random_state=32, test_size=0.1)\nfor tr, te in sss.split(X, y):\n    df_train = df_final.iloc[tr]\n    df_test  = df_final.iloc[te]\ntarget_col = 'loan_status'\nfeatures_cols = [col for col in df_train.columns if col != target_col]\ndf_train.shape, df_test.shape","metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"iese6I-52pYM","outputId":"166a9cbb-94cf-4208-b4dc-cf8ca94f6e2b","execution":{"iopub.status.busy":"2024-10-25T19:46:36.990366Z","iopub.execute_input":"2024-10-25T19:46:36.990675Z","iopub.status.idle":"2024-10-25T19:46:37.018702Z","shell.execute_reply.started":"2024-10-25T19:46:36.990640Z","shell.execute_reply":"2024-10-25T19:46:37.017893Z"},"trusted":true},"execution_count":32,"outputs":[{"name":"stdout","text":"splitting the dataset into train and test\n","output_type":"stream"},{"execution_count":32,"output_type":"execute_result","data":{"text/plain":"((22321, 20), (2481, 20))"},"metadata":{}}]},{"cell_type":"code","source":"import tensorflow as tf\nimport pandas as pd\nfrom sklearn.preprocessing import StandardScaler, PolynomialFeatures\nfrom sklearn.pipeline import Pipeline\n\ndef prepare_data_for_tpu(df:pd.DataFrame, features_cols:list[str], target_col:str, batch_size:int=32, poly_degree:int=2, poly:bool=False, valid_split:bool=False,valid_split_size:float=0.2):\n\n    df = df.copy()\n    features = df[features_cols]\n    target = df.loc[:, target_col]\n\n    pipe = Pipeline([\n        ('scaler', StandardScaler()),\n        ('poly', PolynomialFeatures(degree=poly_degree, include_bias=False, interaction_only=True)) if poly else None\n    ])\n    pipe.steps = [step for step in pipe.steps if step is not None]\n\n    features_final = pipe.fit_transform(features)\n    features_final_df = pd.DataFrame(features_final, columns=[f'feature_{i}' for i in range(features_final.shape[1])])\n\n\n    features_tensor = tf.convert_to_tensor(features_final_df.values.astype('float32'), dtype=tf.float32)\n    target_tensor = tf.convert_to_tensor(target.values.astype('int64'), dtype=tf.int64)\n\n    dataset = tf.data.Dataset.from_tensor_slices((features_tensor, target_tensor))\n\n    dataset_size = len(features)\n    val_size = int(valid_split_size * dataset_size)\n    if valid_split and (valid_split_size > 0.0):\n        valid_dataset = dataset.take(val_size).batch(batch_size).prefetch(tf.data.experimental.AUTOTUNE)\n        train_dataset = dataset.skip(val_size).shuffle(buffer_size=dataset_size-val_size).batch(batch_size).prefetch(tf.data.experimental.AUTOTUNE)\n\n        result = (train_dataset, valid_dataset)\n    else:\n        dataset = dataset.shuffle(buffer_size=dataset_size).batch(batch_size).prefetch(tf.data.experimental.AUTOTUNE)\n\n        result = (dataset, )\n    return result\n\ntrain_dataset, valid_dataset = prepare_data_for_tpu(df_train, features_cols=features_cols, target_col=target_col, poly=True, poly_degree=5, valid_split=True, valid_split_size=0.2)","metadata":{"id":"i9y4ryJC2pYM","execution":{"iopub.status.busy":"2024-10-25T19:50:51.882029Z","iopub.execute_input":"2024-10-25T19:50:51.882437Z","iopub.status.idle":"2024-10-25T19:51:05.838544Z","shell.execute_reply.started":"2024-10-25T19:50:51.882397Z","shell.execute_reply":"2024-10-25T19:51:05.837763Z"},"trusted":true},"execution_count":42,"outputs":[]},{"cell_type":"code","source":"import tensorflow as tf\nimport keras\nfrom keras import activations, layers, initializers, regularizers, optimizers, losses, metrics\n\nclass ann_layer_gen:\n    def __init__(self, input_shape, batch_norm:bool=False, drop_out:bool=False, regularize:bool=False,  initializers :bool=False,drop_out_rate:float=0.0) -> None:\n        self.input_shape = input_shape\n        self.batch_norm = batch_norm\n        self.drop_out = drop_out\n        self.regularize = regularize\n        self.initializers = initializers\n        self.drop_out_rate = drop_out_rate\n        self.model = keras.Sequential()\n        self.model.add(keras.Input(shape=(input_shape, )))\n\n    def __call__(self,  out_act_fun:activations, out_unit:int, units:int=100, n_hidden_layers:int=5,  hidden_act_fun:activations=activations.relu) -> keras.Sequential :\n        for n_layer in range(1, n_hidden_layers+1):\n            layer_params = {'units':units, 'activation':hidden_act_fun}\n\n            if self.regularize:\n                layer_params['kernel_regularizer'] = regularizers.L1()\n            if self.initializers:\n                layer_params['kernel_initializer'] = initializers.glorot_normal\n\n            self.model.add(layers.Dense(**layer_params))\n\n            if self.drop_out:\n                self.model.add(layers.Dropout(rate=self.drop_out_rate))\n\n            if self.batch_norm:\n                self.model.add(layers.BatchNormalization())\n\n            units = round(units / 2)\n        self.model.add(layers.Dense(out_unit, activation=out_act_fun))\n        return self.model\n\n    def compile(model, loss:losses.Loss, metrics:list=['accuracy'], optimizer:optimizers.Optimizer=optimizers.Adam, valid_split:float=0.2, learning_rate:float=0.01 ) -> keras.Sequential:\n        try:\n            model.compile(optimizer=optimizer(learning_rate=learning_rate), loss=loss, metrics=metrics)\n        except Exception as e:\n            print('Could not compile the model with given params.')\n        return model","metadata":{"id":"hTc4q5oS2pYM","execution":{"iopub.status.busy":"2024-10-25T19:51:12.841004Z","iopub.execute_input":"2024-10-25T19:51:12.841673Z","iopub.status.idle":"2024-10-25T19:51:12.854650Z","shell.execute_reply.started":"2024-10-25T19:51:12.841628Z","shell.execute_reply":"2024-10-25T19:51:12.853744Z"},"trusted":true},"execution_count":44,"outputs":[]},{"cell_type":"code","source":"!pip install optuna\nimport optuna\nfrom keras import optimizers, activations, losses\nimport tensorflow as tf\nfrom keras import backend as K\n\n\ninput_shape = train_dataset.element_spec[0].shape[1]  # Assuming the first element in the dataset is the feature tensor\n\n# Objective function for Optuna\ndef objective(trial: optuna.Trial):\n    epochs = trial.suggest_int('epochs', 10, 100, step=10)\n    units = trial.suggest_int('units', 100, 500, step=50)\n    n_hidden_layers = trial.suggest_int('n_hidden_layers', 3, 19, step=2)\n    batch_norm = trial.suggest_categorical('batch_norm', [True, False])\n    drop_out = trial.suggest_categorical('drop_out', [True, False])\n    regularize = trial.suggest_categorical('regularize', [True, False])\n    initializers = trial.suggest_categorical('initializers', [True, False])\n    drop_out_rate = trial.suggest_float('drop_out_rate', 0, 1)\n    learning_rate = trial.suggest_float('learning_rate', 1e-6, 1e-1, log=True)\n    optimizer_name = trial.suggest_categorical('optimizer', ['Adam', 'RMSprop', 'SGD', 'Nadam'])\n\n    # Create optimizer object based on the selected name\n    if optimizer_name == 'Adam':\n        optimizer = optimizers.Adam(learning_rate=learning_rate)\n    elif optimizer_name == 'RMSprop':\n        optimizer = optimizers.RMSprop(learning_rate=learning_rate)\n    elif optimizer_name == 'SGD':\n        optimizer = optimizers.SGD(learning_rate=learning_rate)\n    elif optimizer_name == 'Nadam':\n        optimizer = optimizers.Nadam(learning_rate=learning_rate)\n\n    # Initialization parameters\n    init_params = {\n        'batch_norm': batch_norm,\n        'drop_out': drop_out,\n        'drop_out_rate': drop_out_rate,\n        'regularize': regularize,\n        'initializers': initializers\n    }\n\n    ann_layer_generator = ann_layer_gen(input_shape=input_shape, **init_params)\n    ann_model = ann_layer_generator(out_act_fun=activations.sigmoid, out_unit=1, units=units, n_hidden_layers=n_hidden_layers)\n    ann_model.compile(optimizer=optimizer, loss=losses.binary_crossentropy, metrics=['accuracy'])\n\n\n\n    history = ann_model.fit(train_dataset, validation_data=valid_dataset, batch_size=32, epochs=epochs, shuffle=True, verbose=0)\n    \n    val_accuracy = history.history['val_accuracy'][-1]\n    train_accuracy = history.history['accuracy'][-1]\n    val_loss = history.history['val_loss'][-1]\n    train_loss = history.history['loss'][-1]\n    \n    K.clear_session()\n    return (train_loss, train_accuracy)\n","metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"GcvJ_1h72pYN","outputId":"5c8b208c-fd5c-4d8d-905e-4c9eb3f1ff51","execution":{"iopub.status.busy":"2024-10-25T19:52:52.259589Z","iopub.execute_input":"2024-10-25T19:52:52.259969Z","iopub.status.idle":"2024-10-25T19:52:57.874119Z","shell.execute_reply.started":"2024-10-25T19:52:52.259933Z","shell.execute_reply":"2024-10-25T19:52:57.872798Z"},"trusted":true},"execution_count":47,"outputs":[{"name":"stdout","text":"Requirement already satisfied: optuna in /opt/conda/lib/python3.10/site-packages (4.0.0)\nRequirement already satisfied: alembic>=1.5.0 in /opt/conda/lib/python3.10/site-packages (from optuna) (1.13.3)\nRequirement already satisfied: colorlog in /opt/conda/lib/python3.10/site-packages (from optuna) (6.8.2)\nRequirement already satisfied: numpy in /opt/conda/lib/python3.10/site-packages (from optuna) (1.26.4)\nRequirement already satisfied: packaging>=20.0 in /opt/conda/lib/python3.10/site-packages (from optuna) (21.3)\nRequirement already satisfied: sqlalchemy>=1.3.0 in /opt/conda/lib/python3.10/site-packages (from optuna) (2.0.30)\nRequirement already satisfied: tqdm in /opt/conda/lib/python3.10/site-packages (from optuna) (4.66.4)\nRequirement already satisfied: PyYAML in /opt/conda/lib/python3.10/site-packages (from optuna) (6.0.2)\nRequirement already satisfied: Mako in /opt/conda/lib/python3.10/site-packages (from alembic>=1.5.0->optuna) (1.3.5)\nRequirement already satisfied: typing-extensions>=4 in /opt/conda/lib/python3.10/site-packages (from alembic>=1.5.0->optuna) (4.12.2)\nRequirement already satisfied: pyparsing!=3.0.5,>=2.0.2 in /opt/conda/lib/python3.10/site-packages (from packaging>=20.0->optuna) (3.1.2)\nRequirement already satisfied: greenlet!=0.4.17 in /opt/conda/lib/python3.10/site-packages (from sqlalchemy>=1.3.0->optuna) (3.0.3)\nRequirement already satisfied: MarkupSafe>=0.9.2 in /opt/conda/lib/python3.10/site-packages (from Mako->alembic>=1.5.0->optuna) (2.1.5)\n","output_type":"stream"}]},{"cell_type":"code","source":"# !rm -rf loan_approval_ann_study.db\nloan_approval_ann_study = optuna.create_study(\n    storage='sqlite:///loan_approval_ann_study.db',\n    study_name='loan_approval_ann_study',\n    directions=['minimize', 'maximize'],\n    load_if_exists=True\n)\n\nloan_approval_ann_study.optimize(objective,  n_trials=2, show_progress_bar=True)","metadata":{"colab":{"base_uri":"https://localhost:8080/","height":251,"referenced_widgets":["c720aeb19f0340f2814f90060ca725a0","0251a40a64084074b0dcd481dc987ec1","27eda0234c0c41cca597039d6ba013f0","e485ad01203f4892bfca150001841277","c7d47a9e7dcc470c90258b0e4bdc861b","80bbcfd89fe5479293a041f412f627de","48659b8a38044461a7667c33dcc2533c","a9ff7cbc02fb4ccbb974a31262ae5ecc","54d688765c00479e98216630d7855cf2","d7d39aa9302a432b981e35f8a686eb2e","a783d51d1bbd489f8abbb4de55f15835"]},"id":"EUJ9C6aY2pYN","outputId":"beb5aee4-7818-45bc-80e4-cbebafadc0e7","execution":{"iopub.status.busy":"2024-10-25T19:53:09.073152Z","iopub.execute_input":"2024-10-25T19:53:09.073585Z"},"trusted":true},"execution_count":null,"outputs":[{"name":"stderr","text":"[I 2024-10-25 19:53:09,121] Using an existing study with name 'loan_approval_ann_study' instead of creating a new one.\n","output_type":"stream"},{"output_type":"display_data","data":{"text/plain":"  0%|          | 0/2 [00:00<?, ?it/s]","application/vnd.jupyter.widget-view+json":{"version_major":2,"version_minor":0,"model_id":"e128c8f6ae9d44119e06b9106ba9cb65"}},"metadata":{}}]},{"cell_type":"code","source":"from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder\nfrom sklearn.compose import ColumnTransformer\nfrom sklearn.pipeline import Pipeline\n\n\nprint('encoding the final test data set')\nord_enc_test = OrdinalEncoder()\none_hot_enc_test = OneHotEncoder(sparse_output=False)\n\ntest_cat_cols = test_df.select_dtypes('object').columns\nordinal_cols = ['loan_grade']\none_hot_cols = [col for col in test_cat_cols if col != 'loan_grade']\nremaining_cols = [col for col in test_df.columns if col not in list(test_cat_cols)]\n\nencoder_test = ColumnTransformer(\n            transformers=[\n                ('ordinal_encoder', ord_enc_test, ordinal_cols),\n                ('one_hot_encoder', one_hot_enc_test, one_hot_cols),\n                ('passthrough', 'passthrough', remaining_cols )\n            ]\n)\n\nencoded_data = encoder_test.fit_transform(test_df)\none_hot_enc_test.fit(test_df[one_hot_cols])\none_hot_encoded_cols = one_hot_enc_test.get_feature_names_out(one_hot_cols)\nall_cols = ordinal_cols + list(one_hot_encoded_cols) + remaining_cols\ntest_df_encoded = pd.DataFrame(encoded_data, columns=all_cols)\ntest_df_encoded.info()","metadata":{"colab":{"base_uri":"https://localhost:8080/"},"id":"iBXn-Au62pYN","outputId":"cc1f0839-eeb5-466d-c2f7-2c60c8319fca","execution":{"iopub.status.busy":"2024-10-25T19:46:45.824055Z","iopub.status.idle":"2024-10-25T19:46:45.824429Z","shell.execute_reply.started":"2024-10-25T19:46:45.824250Z","shell.execute_reply":"2024-10-25T19:46:45.824269Z"},"trusted":true},"execution_count":null,"outputs":[]},{"cell_type":"code","source":"import tensorflow as tf\nimport pandas as pd\nfrom sklearn.preprocessing import StandardScaler, PolynomialFeatures\nfrom sklearn.pipeline import Pipeline\n\ndef prepare_test_data_for_tpu(df: pd.DataFrame, features_cols: list[str], target_col: str, batch_size: int = 32, poly_degree: int = 2, poly: bool = False):\n\n    df = df.copy()\n    features = df[features_cols]\n    target = df[target_col]\n\n    # Define pipeline for scaling and optional polynomial features\n    pipe = Pipeline([\n        ('scaler', StandardScaler()),\n        ('poly', PolynomialFeatures(degree=poly_degree, include_bias=False, interaction_only=True)) if poly else None\n    ])\n    pipe.steps = [step for step in pipe.steps if step is not None]\n\n    # Transform features\n    features_final = pipe.fit_transform(features)\n    features_final_df = pd.DataFrame(features_final, columns=[f'feature_{i}' for i in range(features_final.shape[1])])\n\n    # Create tf.data.Dataset without shuffling, batching only\n    dataset = tf.data.Dataset.from_tensor_slices((dict(features_final_df), target))\n    dataset = dataset.batch(batch_size).prefetch(tf.data.experimental.AUTOTUNE)\n\n    return dataset\n","metadata":{"id":"FklppLUM2pYO","execution":{"iopub.status.busy":"2024-10-25T19:46:45.825534Z","iopub.status.idle":"2024-10-25T19:46:45.825911Z","shell.execute_reply.started":"2024-10-25T19:46:45.825718Z","shell.execute_reply":"2024-10-25T19:46:45.825750Z"},"trusted":true},"execution_count":null,"outputs":[]}]}
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "86beb6ea",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:08.999953Z",
+     "iopub.status.busy": "2024-10-25T21:03:08.999528Z",
+     "iopub.status.idle": "2024-10-25T21:03:09.004575Z",
+     "shell.execute_reply": "2024-10-25T21:03:09.003631Z"
+    },
+    "papermill": {
+     "duration": 0.023121,
+     "end_time": "2024-10-25T21:03:09.006753",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:08.983632",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# !pip install --upgrade pip\n",
+    "# !pip install ipywidgets jupyter"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "256fa8cb",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:09.036830Z",
+     "iopub.status.busy": "2024-10-25T21:03:09.036290Z",
+     "iopub.status.idle": "2024-10-25T21:03:32.068533Z",
+     "shell.execute_reply": "2024-10-25T21:03:32.067483Z"
+    },
+    "papermill": {
+     "duration": 23.049216,
+     "end_time": "2024-10-25T21:03:32.070704",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:09.021488",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Connecting to TPU \n",
+      "\n",
+      "Memory growth enabled for GPUs.\n",
+      "Mirrored Strategy initialized with GPUs.\n"
+     ]
+    }
+   ],
+   "source": [
+    "import tensorflow as tf\n",
+    "\n",
+    "print('Connecting to TPU \\n')\n",
+    "# List GPUs and set memory growth before initializing TensorFlow or Keras models\n",
+    "gpus = tf.config.list_physical_devices('GPU')\n",
+    "if gpus:\n",
+    "    try:\n",
+    "        for gpu in gpus:\n",
+    "            tf.config.experimental.set_memory_growth(gpu, True)\n",
+    "        print(\"Memory growth enabled for GPUs.\")\n",
+    "    except RuntimeError as e:\n",
+    "        print(f\"Error setting memory growth: {e}\")\n",
+    "else:\n",
+    "    print(\"No GPUs found.\")\n",
+    "if gpus:\n",
+    "    strategy = tf.distribute.MirroredStrategy()\n",
+    "    print(\"Mirrored Strategy initialized with GPUs.\")\n",
+    "else:\n",
+    "    strategy = tf.distribute.get_strategy()  # Default strategy if no GPUs available\n",
+    "    print(\"Using Default Strategy.\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "e09ed87a",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:32.101012Z",
+     "iopub.status.busy": "2024-10-25T21:03:32.100404Z",
+     "iopub.status.idle": "2024-10-25T21:03:32.104991Z",
+     "shell.execute_reply": "2024-10-25T21:03:32.104110Z"
+    },
+    "papermill": {
+     "duration": 0.021835,
+     "end_time": "2024-10-25T21:03:32.107026",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:32.085191",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# import tensorflow as tf\n",
+    "\n",
+    "# # List all physical devices, specifically looking for GPUs\n",
+    "# gpus = tf.config.list_physical_devices('GPU')\n",
+    "# print(f\"GPUs available: {gpus}\")\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "c86946a2",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:32.136732Z",
+     "iopub.status.busy": "2024-10-25T21:03:32.136066Z",
+     "iopub.status.idle": "2024-10-25T21:03:32.140439Z",
+     "shell.execute_reply": "2024-10-25T21:03:32.139533Z"
+    },
+    "id": "AGwgatwy4zqh",
+    "papermill": {
+     "duration": 0.021397,
+     "end_time": "2024-10-25T21:03:32.142429",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:32.121032",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# import os\n",
+    "\n",
+    "# # Create the directory explicitly with the absolute path\n",
+    "# os.makedirs(\"~/.kaggle\", exist_ok=True)\n",
+    "\n",
+    "# !cp \"/kaggle/input/kaggle-token/kaggle (1).json\" ~/kaggle.json\n",
+    "# # Copy the kaggle.json file from your Google Drive to the required location\n",
+    "# !cp ~/kaggle.json ~/.kaggle/\n",
+    "\n",
+    "# # Set the correct permissions for the Kaggle API token\n",
+    "# !chmod 600 ~/.kaggle/kaggle.json\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1eca5585",
+   "metadata": {
+    "papermill": {
+     "duration": 0.013303,
+     "end_time": "2024-10-25T21:03:32.169393",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:32.156090",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "ee188c5f",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:32.198804Z",
+     "iopub.status.busy": "2024-10-25T21:03:32.198102Z",
+     "iopub.status.idle": "2024-10-25T21:03:32.202425Z",
+     "shell.execute_reply": "2024-10-25T21:03:32.201461Z"
+    },
+    "id": "lnWQ8Xfp5RWI",
+    "outputId": "51ac6c76-76f4-4d42-a310-f2987df37d13",
+    "papermill": {
+     "duration": 0.021377,
+     "end_time": "2024-10-25T21:03:32.204638",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:32.183261",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# !pip install kaggle\n",
+    "# !kaggle competitions download -c playground-series-s4e10"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "49c87966",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:32.235574Z",
+     "iopub.status.busy": "2024-10-25T21:03:32.235229Z",
+     "iopub.status.idle": "2024-10-25T21:03:32.239028Z",
+     "shell.execute_reply": "2024-10-25T21:03:32.238195Z"
+    },
+    "id": "SStBLetO6Lzv",
+    "papermill": {
+     "duration": 0.021538,
+     "end_time": "2024-10-25T21:03:32.240852",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:32.219314",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# from zipfile import ZipFile\n",
+    "\n",
+    "# with ZipFile('/content/playground-series-s4e10.zip', 'r') as zip_ref:\n",
+    "#     zip_ref.extractall('/content')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "7949abd5",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:32.269599Z",
+     "iopub.status.busy": "2024-10-25T21:03:32.269225Z",
+     "iopub.status.idle": "2024-10-25T21:03:32.557632Z",
+     "shell.execute_reply": "2024-10-25T21:03:32.556731Z"
+    },
+    "id": "4-aOwIrp2pYI",
+    "outputId": "e6ef0214-f215-4ace-94ca-27dcaf0ca8f8",
+    "papermill": {
+     "duration": 0.305666,
+     "end_time": "2024-10-25T21:03:32.560309",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:32.254643",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "reading the csv files into pandas dataframes.\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "\n",
+    "print(f'reading the csv files into pandas dataframes.')\n",
+    "\n",
+    "try:\n",
+    "    train_df = pd.read_csv('/kaggle/input/playground-series-s4e10/train.csv')\n",
+    "    test_df = pd.read_csv('/kaggle/input/playground-series-s4e10/test.csv')\n",
+    "    sub_df = pd.read_csv('/kaggle/input/playground-series-s4e10/sample_submission.csv')\n",
+    "except Exception as e:\n",
+    "    print(f'could not load the csv files into pandas dataframes')\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "2cf3abce",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:32.592480Z",
+     "iopub.status.busy": "2024-10-25T21:03:32.591519Z",
+     "iopub.status.idle": "2024-10-25T21:03:32.596343Z",
+     "shell.execute_reply": "2024-10-25T21:03:32.595410Z"
+    },
+    "id": "msVqxn5m2pYI",
+    "papermill": {
+     "duration": 0.022454,
+     "end_time": "2024-10-25T21:03:32.598587",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:32.576133",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# train_df.info()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "c85d2769",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:32.629084Z",
+     "iopub.status.busy": "2024-10-25T21:03:32.628705Z",
+     "iopub.status.idle": "2024-10-25T21:03:32.633188Z",
+     "shell.execute_reply": "2024-10-25T21:03:32.632068Z"
+    },
+    "id": "8CVAOYiU2pYJ",
+    "papermill": {
+     "duration": 0.022377,
+     "end_time": "2024-10-25T21:03:32.635510",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:32.613133",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# test_df.info()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "6239674d",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:32.665854Z",
+     "iopub.status.busy": "2024-10-25T21:03:32.665492Z",
+     "iopub.status.idle": "2024-10-25T21:03:32.669747Z",
+     "shell.execute_reply": "2024-10-25T21:03:32.668732Z"
+    },
+    "id": "dhU-Nqzs2pYJ",
+    "papermill": {
+     "duration": 0.021633,
+     "end_time": "2024-10-25T21:03:32.671936",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:32.650303",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# train_df.isnull().any(), test_df.isnull().any()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "f6f8e254",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:32.701848Z",
+     "iopub.status.busy": "2024-10-25T21:03:32.701493Z",
+     "iopub.status.idle": "2024-10-25T21:03:32.710319Z",
+     "shell.execute_reply": "2024-10-25T21:03:32.709314Z"
+    },
+    "id": "A4GXB1u62pYJ",
+    "papermill": {
+     "duration": 0.026441,
+     "end_time": "2024-10-25T21:03:32.712590",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:32.686149",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "cat_cols = train_df.select_dtypes('object').columns\n",
+    "num_cols = []\n",
+    "for col in train_df.select_dtypes(exclude='object').columns:\n",
+    "    if col not in ('id', 'loan_status'):\n",
+    "        num_cols.append(col)\n",
+    "# num_cols, cat_cols"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "58ef12c5",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:32.741957Z",
+     "iopub.status.busy": "2024-10-25T21:03:32.741657Z",
+     "iopub.status.idle": "2024-10-25T21:03:32.745647Z",
+     "shell.execute_reply": "2024-10-25T21:03:32.744751Z"
+    },
+    "id": "8MTuOiD92pYJ",
+    "papermill": {
+     "duration": 0.020606,
+     "end_time": "2024-10-25T21:03:32.747474",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:32.726868",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# train_df['loan_status'].value_counts(normalize=True)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "6b9f64f2",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:32.776207Z",
+     "iopub.status.busy": "2024-10-25T21:03:32.775913Z",
+     "iopub.status.idle": "2024-10-25T21:03:32.783261Z",
+     "shell.execute_reply": "2024-10-25T21:03:32.782356Z"
+    },
+    "id": "59Vicvtb2pYJ",
+    "papermill": {
+     "duration": 0.024073,
+     "end_time": "2024-10-25T21:03:32.785296",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:32.761223",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "\n",
+    "def box_plots_num_cols(df, columns):\n",
+    "    df = df.copy()\n",
+    "    base_width = 10\n",
+    "    base_height = 5\n",
+    "    rows = len(columns)\n",
+    "    cols = 1\n",
+    "    fig_width = cols * base_width\n",
+    "    fig_height = rows * base_height\n",
+    "    fig, axes = plt.subplots(rows, cols, figsize=(fig_width, fig_height))\n",
+    "    axes = axes.flatten() if rows > 1 else [axes]\n",
+    "    for i, col in enumerate(columns):\n",
+    "        axes[i].boxplot(df[col])\n",
+    "        axes[i].set_title(col)\n",
+    "    for j in range(i+1, len(axes)):\n",
+    "        axes[j].axis('off')\n",
+    "    plt.tight_layout()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "5e2c5d92",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:32.814757Z",
+     "iopub.status.busy": "2024-10-25T21:03:32.814381Z",
+     "iopub.status.idle": "2024-10-25T21:03:32.818354Z",
+     "shell.execute_reply": "2024-10-25T21:03:32.817494Z"
+    },
+    "id": "5q3wrA282pYK",
+    "papermill": {
+     "duration": 0.021119,
+     "end_time": "2024-10-25T21:03:32.820289",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:32.799170",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# box_plots_num_cols(train_df, num_cols)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "5d1de976",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:32.849642Z",
+     "iopub.status.busy": "2024-10-25T21:03:32.849298Z",
+     "iopub.status.idle": "2024-10-25T21:03:34.068271Z",
+     "shell.execute_reply": "2024-10-25T21:03:34.067455Z"
+    },
+    "id": "ZtOn9zxs2pYK",
+    "papermill": {
+     "duration": 1.235964,
+     "end_time": "2024-10-25T21:03:34.070727",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:32.834763",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "from scipy import stats\n",
+    "import numpy as np\n",
+    "\n",
+    "def remove_outliers(df:pd.DataFrame(), cols, beta):\n",
+    "    df = df.copy()\n",
+    "    for col in cols:\n",
+    "#         print(f'removing {col} outliers:\\n')\n",
+    "        data = df[col]\n",
+    "        iqr = stats.iqr(data)\n",
+    "        q1 = np.percentile(data, 25)\n",
+    "        q3 = np.percentile(data, 75)\n",
+    "        outlier_low = q1 - beta * iqr\n",
+    "        outlier_high = q1 + beta * iqr\n",
+    "#         print(f'outlier_low:{outlier_low}, outlier_high: {outlier_high}')\n",
+    "        df = df[(data >= outlier_low) & (data <= outlier_high)]\n",
+    "    return df\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "a1ed63ed",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:34.103087Z",
+     "iopub.status.busy": "2024-10-25T21:03:34.102520Z",
+     "iopub.status.idle": "2024-10-25T21:03:34.181694Z",
+     "shell.execute_reply": "2024-10-25T21:03:34.180683Z"
+    },
+    "id": "CbzNHkWx2pYK",
+    "outputId": "d4f41e9f-20c6-45a8-d9a6-3b153ddb7ad9",
+    "papermill": {
+     "duration": 0.097113,
+     "end_time": "2024-10-25T21:03:34.184393",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:34.087280",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "removing outliers before oversampling\n",
+      "removed outliers\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "((24802, 13), (58645, 13))"
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "print(f'removing outliers before oversampling')\n",
+    "df_clean = remove_outliers(train_df, num_cols, 1.5)\n",
+    "# box_plots_num_cols(df_clean, num_cols)\n",
+    "print('removed outliers')\n",
+    "df_clean.shape, train_df.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "92ba20ad",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:34.215573Z",
+     "iopub.status.busy": "2024-10-25T21:03:34.215168Z",
+     "iopub.status.idle": "2024-10-25T21:03:34.221472Z",
+     "shell.execute_reply": "2024-10-25T21:03:34.220581Z"
+    },
+    "id": "fkP1sW402pYK",
+    "papermill": {
+     "duration": 0.023717,
+     "end_time": "2024-10-25T21:03:34.223618",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:34.199901",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "def hist_plot_cat_cols(df:pd.DataFrame(), cat_cols=cat_cols):\n",
+    "    df = df.copy()\n",
+    "    fig, axes_cat = plt.subplots(1, len(cat_cols), figsize=(20, 10))\n",
+    "    for i, col in enumerate(cat_cols):\n",
+    "        axes_cat[i].hist(df[col])\n",
+    "        axes_cat[i].set_title(col)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "id": "5a4c8797",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:34.254378Z",
+     "iopub.status.busy": "2024-10-25T21:03:34.254035Z",
+     "iopub.status.idle": "2024-10-25T21:03:34.258017Z",
+     "shell.execute_reply": "2024-10-25T21:03:34.257205Z"
+    },
+    "id": "XWZIcwpD2pYK",
+    "papermill": {
+     "duration": 0.021322,
+     "end_time": "2024-10-25T21:03:34.259883",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:34.238561",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# hist_plot_cat_cols(train_df)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "id": "847016de",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:34.290154Z",
+     "iopub.status.busy": "2024-10-25T21:03:34.289817Z",
+     "iopub.status.idle": "2024-10-25T21:03:34.293875Z",
+     "shell.execute_reply": "2024-10-25T21:03:34.292992Z"
+    },
+    "id": "6Daiqx6X2pYL",
+    "papermill": {
+     "duration": 0.022035,
+     "end_time": "2024-10-25T21:03:34.295936",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:34.273901",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# hist_plot_cat_cols(df_clean)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "id": "2dcf7212",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:34.325897Z",
+     "iopub.status.busy": "2024-10-25T21:03:34.325523Z",
+     "iopub.status.idle": "2024-10-25T21:03:34.677268Z",
+     "shell.execute_reply": "2024-10-25T21:03:34.676195Z"
+    },
+    "id": "iz0XxUy12pYL",
+    "outputId": "a04b5901-3a48-4ba2-d72e-b9cef5e045fe",
+    "papermill": {
+     "duration": 0.369696,
+     "end_time": "2024-10-25T21:03:34.679678",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:34.309982",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "encoding the categorical features\n",
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "RangeIndex: 24802 entries, 0 to 24801\n",
+      "Data columns (total 21 columns):\n",
+      " #   Column                          Non-Null Count  Dtype  \n",
+      "---  ------                          --------------  -----  \n",
+      " 0   loan_grade                      24802 non-null  float64\n",
+      " 1   person_home_ownership_MORTGAGE  24802 non-null  float64\n",
+      " 2   person_home_ownership_OTHER     24802 non-null  float64\n",
+      " 3   person_home_ownership_OWN       24802 non-null  float64\n",
+      " 4   person_home_ownership_RENT      24802 non-null  float64\n",
+      " 5   loan_intent_DEBTCONSOLIDATION   24802 non-null  float64\n",
+      " 6   loan_intent_EDUCATION           24802 non-null  float64\n",
+      " 7   loan_intent_HOMEIMPROVEMENT     24802 non-null  float64\n",
+      " 8   loan_intent_MEDICAL             24802 non-null  float64\n",
+      " 9   loan_intent_PERSONAL            24802 non-null  float64\n",
+      " 10  loan_intent_VENTURE             24802 non-null  float64\n",
+      " 11  cb_person_default_on_file_N     24802 non-null  float64\n",
+      " 12  cb_person_default_on_file_Y     24802 non-null  float64\n",
+      " 13  person_age                      24802 non-null  float64\n",
+      " 14  person_income                   24802 non-null  float64\n",
+      " 15  person_emp_length               24802 non-null  float64\n",
+      " 16  loan_amnt                       24802 non-null  float64\n",
+      " 17  loan_int_rate                   24802 non-null  float64\n",
+      " 18  loan_percent_income             24802 non-null  float64\n",
+      " 19  cb_person_cred_hist_length      24802 non-null  float64\n",
+      " 20  loan_status                     24802 non-null  float64\n",
+      "dtypes: float64(21)\n",
+      "memory usage: 4.0 MB\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder\n",
+    "from sklearn.compose import ColumnTransformer\n",
+    "from sklearn.pipeline import Pipeline\n",
+    "\n",
+    "print('encoding the categorical features')\n",
+    "df_clean = df_clean.drop(columns=['id'])\n",
+    "\n",
+    "ord_enc = OrdinalEncoder()\n",
+    "one_hot_enc = OneHotEncoder(sparse_output=False)\n",
+    "\n",
+    "ordinal_cols = ['loan_grade']\n",
+    "one_hot_cols = [col for col in cat_cols if col != 'loan_grade']\n",
+    "remaining_cols = [col for col in df_clean.columns if col not in cat_cols]\n",
+    "\n",
+    "encoder = ColumnTransformer(\n",
+    "            transformers=[\n",
+    "                ('ordinal_encoder', ord_enc, ordinal_cols),\n",
+    "                ('one_hot_encoder', one_hot_enc, one_hot_cols),\n",
+    "                ('passthrough', 'passthrough', remaining_cols )\n",
+    "            ]\n",
+    ")\n",
+    "\n",
+    "encoded_data = encoder.fit_transform(df_clean)\n",
+    "one_hot_enc.fit(df_clean[one_hot_cols])\n",
+    "one_hot_encoded_cols = one_hot_enc.get_feature_names_out(one_hot_cols)\n",
+    "all_cols = ordinal_cols + list(one_hot_encoded_cols) + remaining_cols\n",
+    "df_encoded = pd.DataFrame(encoded_data, columns=all_cols)\n",
+    "df_encoded.info()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "id": "addd0110",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:34.710124Z",
+     "iopub.status.busy": "2024-10-25T21:03:34.709766Z",
+     "iopub.status.idle": "2024-10-25T21:03:55.114135Z",
+     "shell.execute_reply": "2024-10-25T21:03:55.112980Z"
+    },
+    "id": "6bnWn1Nk2pYL",
+    "outputId": "19936ed2-b00d-4dd5-8be8-12669aa48076",
+    "papermill": {
+     "duration": 20.422573,
+     "end_time": "2024-10-25T21:03:55.116748",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:34.694175",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "/opt/conda/lib/python3.10/pty.py:89: RuntimeWarning: os.fork() was called. os.fork() is incompatible with multithreaded code, and JAX is multithreaded, so this will likely lead to a deadlock.\n",
+      "  pid, fd = os.forkpty()\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Collecting imblearn\r\n",
+      "  Downloading imblearn-0.0-py2.py3-none-any.whl.metadata (355 bytes)\r\n",
+      "Requirement already satisfied: imbalanced-learn in /opt/conda/lib/python3.10/site-packages (from imblearn) (0.12.3)\r\n",
+      "Requirement already satisfied: numpy>=1.17.3 in /opt/conda/lib/python3.10/site-packages (from imbalanced-learn->imblearn) (1.26.4)\r\n",
+      "Requirement already satisfied: scipy>=1.5.0 in /opt/conda/lib/python3.10/site-packages (from imbalanced-learn->imblearn) (1.14.1)\r\n",
+      "Requirement already satisfied: scikit-learn>=1.0.2 in /opt/conda/lib/python3.10/site-packages (from imbalanced-learn->imblearn) (1.2.2)\r\n",
+      "Requirement already satisfied: joblib>=1.1.1 in /opt/conda/lib/python3.10/site-packages (from imbalanced-learn->imblearn) (1.4.2)\r\n",
+      "Requirement already satisfied: threadpoolctl>=2.0.0 in /opt/conda/lib/python3.10/site-packages (from imbalanced-learn->imblearn) (3.5.0)\r\n",
+      "Downloading imblearn-0.0-py2.py3-none-any.whl (1.9 kB)\r\n",
+      "Installing collected packages: imblearn\r\n",
+      "Successfully installed imblearn-0.0\r\n",
+      "oversampling using SVMSMOTE\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "((46192, 20), (46192,), (46192, 20), (46192,))"
+      ]
+     },
+     "execution_count": 21,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "!pip install imblearn\n",
+    "from imblearn.over_sampling import SMOTE, SVMSMOTE\n",
+    "\n",
+    "print(f'oversampling using SVMSMOTE')\n",
+    "df_enc_copy = df_encoded.copy()\n",
+    "\n",
+    "smote = SMOTE(random_state=32,  k_neighbors=10)\n",
+    "svm_smote = SVMSMOTE(random_state=32, k_neighbors=10,m_neighbors=10)\n",
+    "\n",
+    "X = df_enc_copy.drop(columns=['loan_status'])\n",
+    "y = df_enc_copy.loc[:, 'loan_status']\n",
+    "\n",
+    "X_smote, y_smote = smote.fit_resample(X, y)\n",
+    "X_svm_smote, y_svm_smote = svm_smote.fit_resample(X, y)\n",
+    "X_smote.shape, y_smote.shape, X_svm_smote.shape, y_svm_smote.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "id": "a0fa8472",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:55.149838Z",
+     "iopub.status.busy": "2024-10-25T21:03:55.149220Z",
+     "iopub.status.idle": "2024-10-25T21:03:55.155776Z",
+     "shell.execute_reply": "2024-10-25T21:03:55.154960Z"
+    },
+    "id": "x65j6BfZ2pYL",
+    "papermill": {
+     "duration": 0.025287,
+     "end_time": "2024-10-25T21:03:55.157666",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:55.132379",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "smote_df = X_smote\n",
+    "smote_df['loan_status'] = y_smote\n",
+    "\n",
+    "svm_smote_df = X_svm_smote\n",
+    "svm_smote_df['loan_status'] = y_svm_smote\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "id": "28dec892",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:55.189325Z",
+     "iopub.status.busy": "2024-10-25T21:03:55.188973Z",
+     "iopub.status.idle": "2024-10-25T21:03:55.193002Z",
+     "shell.execute_reply": "2024-10-25T21:03:55.192192Z"
+    },
+    "id": "sU1TZD2M2pYL",
+    "papermill": {
+     "duration": 0.022286,
+     "end_time": "2024-10-25T21:03:55.195019",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:55.172733",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# c = [col for col in smote_df.columns if col not in one_hot_encoded_cols]\n",
+    "# box_plots_num_cols(smote_df, c)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "id": "1d0950fc",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:55.227431Z",
+     "iopub.status.busy": "2024-10-25T21:03:55.227050Z",
+     "iopub.status.idle": "2024-10-25T21:03:55.231117Z",
+     "shell.execute_reply": "2024-10-25T21:03:55.230275Z"
+    },
+    "id": "gQQuhfqk2pYL",
+    "papermill": {
+     "duration": 0.023037,
+     "end_time": "2024-10-25T21:03:55.233026",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:55.209989",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# c2 = [col for col in svm_smote_df.columns if col not in one_hot_encoded_cols]\n",
+    "# box_plots_num_cols(svm_smote_df, c2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "id": "a1cc2a0b",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:55.264874Z",
+     "iopub.status.busy": "2024-10-25T21:03:55.264515Z",
+     "iopub.status.idle": "2024-10-25T21:03:55.268598Z",
+     "shell.execute_reply": "2024-10-25T21:03:55.267699Z"
+    },
+    "id": "sQ-xZAX22pYL",
+    "papermill": {
+     "duration": 0.022381,
+     "end_time": "2024-10-25T21:03:55.270507",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:55.248126",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# smote_corr = smote_df.corr()\n",
+    "# svm_smote_corr = svm_smote_df.corr()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "id": "e5111723",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:55.302441Z",
+     "iopub.status.busy": "2024-10-25T21:03:55.302098Z",
+     "iopub.status.idle": "2024-10-25T21:03:55.848033Z",
+     "shell.execute_reply": "2024-10-25T21:03:55.847205Z"
+    },
+    "id": "0ZCuXkmt2pYL",
+    "papermill": {
+     "duration": 0.564952,
+     "end_time": "2024-10-25T21:03:55.850358",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:55.285406",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "import seaborn as sns\n",
+    "\n",
+    "def heatmap_corr(corr):\n",
+    "    plt.figure(figsize=(10, 8))\n",
+    "    sns.heatmap(corr, annot=True, cmap='coolwarm', fmt=\".2f\", linewidths=0.5)\n",
+    "    plt.title('Correlation Heatmap')\n",
+    "    plt.show()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "id": "0d9785db",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:55.882548Z",
+     "iopub.status.busy": "2024-10-25T21:03:55.881986Z",
+     "iopub.status.idle": "2024-10-25T21:03:55.886216Z",
+     "shell.execute_reply": "2024-10-25T21:03:55.885324Z"
+    },
+    "id": "8ZJUeWU-2pYL",
+    "papermill": {
+     "duration": 0.022661,
+     "end_time": "2024-10-25T21:03:55.888237",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:55.865576",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# heatmap_corr(smote_corr)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "id": "3f394e97",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:55.920691Z",
+     "iopub.status.busy": "2024-10-25T21:03:55.919826Z",
+     "iopub.status.idle": "2024-10-25T21:03:55.924083Z",
+     "shell.execute_reply": "2024-10-25T21:03:55.923138Z"
+    },
+    "id": "X8R0Xdsk2pYM",
+    "papermill": {
+     "duration": 0.022878,
+     "end_time": "2024-10-25T21:03:55.926165",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:55.903287",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# heatmap_corr(svm_smote_corr)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "id": "6f7bb6c9",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:55.957708Z",
+     "iopub.status.busy": "2024-10-25T21:03:55.956902Z",
+     "iopub.status.idle": "2024-10-25T21:03:55.960911Z",
+     "shell.execute_reply": "2024-10-25T21:03:55.960145Z"
+    },
+    "id": "rrdxxXsu2pYM",
+    "papermill": {
+     "duration": 0.02198,
+     "end_time": "2024-10-25T21:03:55.962874",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:55.940894",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# high_smote_corr = smote_corr[(abs(smote_corr) > 0.7) & (abs(smote_corr) != 1.0)]\n",
+    "# heatmap_corr(high_smote_corr)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "id": "6e09e4a1",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:55.994845Z",
+     "iopub.status.busy": "2024-10-25T21:03:55.993993Z",
+     "iopub.status.idle": "2024-10-25T21:03:55.998055Z",
+     "shell.execute_reply": "2024-10-25T21:03:55.997198Z"
+    },
+    "id": "U0kFKuHp2pYM",
+    "papermill": {
+     "duration": 0.022213,
+     "end_time": "2024-10-25T21:03:56.000073",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:55.977860",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# high_svm_smote_corr = svm_smote_corr[(abs(svm_smote_corr) > 0.7) & (abs(svm_smote_corr) != 1.0)]\n",
+    "# heatmap_corr(high_svm_smote_corr)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "id": "e00953d6",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:56.032878Z",
+     "iopub.status.busy": "2024-10-25T21:03:56.032074Z",
+     "iopub.status.idle": "2024-10-25T21:03:56.051874Z",
+     "shell.execute_reply": "2024-10-25T21:03:56.050800Z"
+    },
+    "id": "QE4NvjnB2pYM",
+    "outputId": "4f2a850d-c619-4c0c-fa78-7b8fe3b518ef",
+    "papermill": {
+     "duration": 0.038967,
+     "end_time": "2024-10-25T21:03:56.054190",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:56.015223",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "dropping the column person home ownership rent\n",
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "RangeIndex: 46192 entries, 0 to 46191\n",
+      "Data columns (total 20 columns):\n",
+      " #   Column                          Non-Null Count  Dtype  \n",
+      "---  ------                          --------------  -----  \n",
+      " 0   loan_grade                      46192 non-null  float64\n",
+      " 1   person_home_ownership_MORTGAGE  46192 non-null  float64\n",
+      " 2   person_home_ownership_OTHER     46192 non-null  float64\n",
+      " 3   person_home_ownership_OWN       46192 non-null  float64\n",
+      " 4   loan_intent_DEBTCONSOLIDATION   46192 non-null  float64\n",
+      " 5   loan_intent_EDUCATION           46192 non-null  float64\n",
+      " 6   loan_intent_HOMEIMPROVEMENT     46192 non-null  float64\n",
+      " 7   loan_intent_MEDICAL             46192 non-null  float64\n",
+      " 8   loan_intent_PERSONAL            46192 non-null  float64\n",
+      " 9   loan_intent_VENTURE             46192 non-null  float64\n",
+      " 10  cb_person_default_on_file_N     46192 non-null  float64\n",
+      " 11  cb_person_default_on_file_Y     46192 non-null  float64\n",
+      " 12  person_age                      46192 non-null  float64\n",
+      " 13  person_income                   46192 non-null  float64\n",
+      " 14  person_emp_length               46192 non-null  float64\n",
+      " 15  loan_amnt                       46192 non-null  float64\n",
+      " 16  loan_int_rate                   46192 non-null  float64\n",
+      " 17  loan_percent_income             46192 non-null  float64\n",
+      " 18  cb_person_cred_hist_length      46192 non-null  float64\n",
+      " 19  loan_status                     46192 non-null  float64\n",
+      "dtypes: float64(20)\n",
+      "memory usage: 7.0 MB\n"
+     ]
+    }
+   ],
+   "source": [
+    "print('dropping the column person home ownership rent')\n",
+    "df_final = svm_smote_df.drop(columns=[ 'person_home_ownership_RENT'])\n",
+    "df_final.info()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "id": "84294344",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:56.087870Z",
+     "iopub.status.busy": "2024-10-25T21:03:56.087163Z",
+     "iopub.status.idle": "2024-10-25T21:03:56.115584Z",
+     "shell.execute_reply": "2024-10-25T21:03:56.114627Z"
+    },
+    "id": "iese6I-52pYM",
+    "outputId": "166a9cbb-94cf-4208-b4dc-cf8ca94f6e2b",
+    "papermill": {
+     "duration": 0.04709,
+     "end_time": "2024-10-25T21:03:56.117708",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:56.070618",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "splitting the dataset into train and test\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "((22321, 20), (2481, 20))"
+      ]
+     },
+     "execution_count": 32,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from sklearn.model_selection import StratifiedShuffleSplit\n",
+    "\n",
+    "print('splitting the dataset into train and test')\n",
+    "\n",
+    "sss = StratifiedShuffleSplit(n_splits=1, random_state=32, test_size=0.1)\n",
+    "for tr, te in sss.split(X, y):\n",
+    "    df_train = df_final.iloc[tr]\n",
+    "    df_test  = df_final.iloc[te]\n",
+    "target_col = 'loan_status'\n",
+    "features_cols = [col for col in df_train.columns if col != target_col]\n",
+    "df_train.shape, df_test.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "id": "4ef7fa2b",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:03:56.150163Z",
+     "iopub.status.busy": "2024-10-25T21:03:56.149797Z",
+     "iopub.status.idle": "2024-10-25T21:04:01.821589Z",
+     "shell.execute_reply": "2024-10-25T21:04:01.820713Z"
+    },
+    "id": "i9y4ryJC2pYM",
+    "papermill": {
+     "duration": 5.691,
+     "end_time": "2024-10-25T21:04:01.824099",
+     "exception": false,
+     "start_time": "2024-10-25T21:03:56.133099",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "preparing the datasets for tpu and splitting them into train and valid datasets: \n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "import tensorflow as tf\n",
+    "import pandas as pd\n",
+    "from sklearn.preprocessing import StandardScaler, PolynomialFeatures\n",
+    "from sklearn.pipeline import Pipeline\n",
+    "\n",
+    "def prepare_data_for_tpu(df:pd.DataFrame, features_cols:list[str], target_col:str, batch_size:int=32, poly_degree:int=2, poly:bool=False, valid_split:bool=False,valid_split_size:float=0.2):\n",
+    "\n",
+    "    df = df.copy()\n",
+    "    features = df[features_cols]\n",
+    "    target = df.loc[:, target_col]\n",
+    "\n",
+    "    pipe = Pipeline([\n",
+    "        ('scaler', StandardScaler()),\n",
+    "        ('poly', PolynomialFeatures(degree=poly_degree, include_bias=False, interaction_only=True)) if poly else None\n",
+    "    ])\n",
+    "    pipe.steps = [step for step in pipe.steps if step is not None]\n",
+    "\n",
+    "    features_final = pipe.fit_transform(features)\n",
+    "    features_final_df = pd.DataFrame(features_final, columns=[f'feature_{i}' for i in range(features_final.shape[1])])\n",
+    "\n",
+    "\n",
+    "    features_tensor = tf.convert_to_tensor(features_final_df.values.astype('float32'), dtype=tf.float32)\n",
+    "    target_tensor = tf.convert_to_tensor(target.values.astype('int64'), dtype=tf.int64)\n",
+    "\n",
+    "    dataset = tf.data.Dataset.from_tensor_slices((features_tensor, target_tensor))\n",
+    "\n",
+    "    dataset_size = len(features)\n",
+    "    val_size = int(valid_split_size * dataset_size)\n",
+    "    if valid_split and (valid_split_size > 0.0):\n",
+    "        valid_dataset = dataset.take(val_size).batch(batch_size).prefetch(tf.data.experimental.AUTOTUNE)\n",
+    "        train_dataset = dataset.skip(val_size).shuffle(buffer_size=dataset_size-val_size).batch(batch_size).prefetch(tf.data.experimental.AUTOTUNE)\n",
+    "\n",
+    "        result = (train_dataset, valid_dataset)\n",
+    "    else:\n",
+    "        dataset = dataset.shuffle(buffer_size=dataset_size).batch(batch_size).prefetch(tf.data.experimental.AUTOTUNE)\n",
+    "\n",
+    "        result = (dataset, )\n",
+    "    return result\n",
+    "\n",
+    "print('preparing the datasets for tpu and splitting them into train and valid datasets: \\n')\n",
+    "try:\n",
+    "    train_dataset, valid_dataset = prepare_data_for_tpu(df_train, features_cols=features_cols, target_col=target_col, poly=True, poly_degree=5, valid_split=True, valid_split_size=0.2)\n",
+    "except Exception as e:\n",
+    "    print('Could not prepare the datasets.')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "id": "bd6193c0",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:04:01.857065Z",
+     "iopub.status.busy": "2024-10-25T21:04:01.856284Z",
+     "iopub.status.idle": "2024-10-25T21:04:01.862324Z",
+     "shell.execute_reply": "2024-10-25T21:04:01.861447Z"
+    },
+    "id": "hTc4q5oS2pYM",
+    "papermill": {
+     "duration": 0.02452,
+     "end_time": "2024-10-25T21:04:01.864340",
+     "exception": false,
+     "start_time": "2024-10-25T21:04:01.839820",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# import tensorflow as tf\n",
+    "# import keras\n",
+    "# from keras import activations, layers, initializers, regularizers, optimizers, losses, metrics\n",
+    "\n",
+    "# with strategy.scope():\n",
+    "#     class ann_layer_gen:\n",
+    "#         def __init__(self, input_shape, batch_norm:bool=False, drop_out:bool=False, regularize:bool=False,  initializers :bool=False,drop_out_rate:float=0.0) -> None:\n",
+    "#             self.input_shape = input_shape\n",
+    "#             self.batch_norm = batch_norm\n",
+    "#             self.drop_out = drop_out\n",
+    "#             self.regularize = regularize\n",
+    "#             self.initializers = initializers\n",
+    "#             self.drop_out_rate = drop_out_rate\n",
+    "#             self.model = keras.Sequential()\n",
+    "#             self.model.add(keras.Input(shape=(input_shape, )))\n",
+    "\n",
+    "#         def __call__(self,  out_act_fun:activations, out_unit:int, units:int=100, n_hidden_layers:int=5,  hidden_act_fun:activations=activations.relu) -> keras.Sequential :\n",
+    "#             for n_layer in range(1, n_hidden_layers+1):\n",
+    "#                 layer_params = {'units':units, 'activation':hidden_act_fun}\n",
+    "\n",
+    "#                 if self.regularize:\n",
+    "#                     layer_params['kernel_regularizer'] = regularizers.L1()\n",
+    "#                 if self.initializers:\n",
+    "#                     layer_params['kernel_initializer'] = initializers.glorot_normal\n",
+    "\n",
+    "#                 self.model.add(layers.Dense(**layer_params))\n",
+    "\n",
+    "#                 if self.drop_out:\n",
+    "#                     self.model.add(layers.Dropout(rate=self.drop_out_rate))\n",
+    "\n",
+    "#                 if self.batch_norm:\n",
+    "#                     self.model.add(layers.BatchNormalization())\n",
+    "\n",
+    "#                 units = round(units / 2)\n",
+    "#             self.model.add(layers.Dense(out_unit, activation=out_act_fun))\n",
+    "#             return self.model\n",
+    "\n",
+    "#         def compile(model, loss:losses.Loss, metrics:list=['accuracy'], optimizer:optimizers.Optimizer=optimizers.Adam, valid_split:float=0.2, learning_rate:float=0.01 ) -> keras.Sequential:\n",
+    "#             try:\n",
+    "#                 model.compile(optimizer=optimizer(learning_rate=learning_rate), loss=loss, metrics=metrics)\n",
+    "#             except Exception as e:\n",
+    "#                 print('Could not compile the model with given params.')\n",
+    "#             return model"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "id": "3c3f0102",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:04:01.897062Z",
+     "iopub.status.busy": "2024-10-25T21:04:01.896732Z",
+     "iopub.status.idle": "2024-10-25T21:04:02.181960Z",
+     "shell.execute_reply": "2024-10-25T21:04:02.181064Z"
+    },
+    "id": "GcvJ_1h72pYN",
+    "outputId": "5c8b208c-fd5c-4d8d-905e-4c9eb3f1ff51",
+    "papermill": {
+     "duration": 0.30435,
+     "end_time": "2024-10-25T21:04:02.184408",
+     "exception": false,
+     "start_time": "2024-10-25T21:04:01.880058",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "import tensorflow as tf\n",
+    "import keras\n",
+    "from keras import activations, layers, initializers, regularizers, optimizers, losses\n",
+    "import optuna\n",
+    "from keras import backend as K\n",
+    "\n",
+    "input_shape = train_dataset.element_spec[0].shape[1]  # Assuming first element is the feature tensor\n",
+    "\n",
+    "# Objective function for Optuna\n",
+    "def objective(trial: optuna.Trial):\n",
+    "    # Define hyperparameters\n",
+    "    epochs = trial.suggest_int('epochs', 10, 100, step=10)\n",
+    "    units = trial.suggest_int('units', 100, 500, step=50)\n",
+    "    n_hidden_layers = trial.suggest_int('n_hidden_layers', 3, 19, step=2)\n",
+    "    batch_norm = trial.suggest_categorical('batch_norm', [True, False])\n",
+    "    drop_out = trial.suggest_categorical('drop_out', [True, False])\n",
+    "    regularize = trial.suggest_categorical('regularize', [True, False])\n",
+    "    initializers = trial.suggest_categorical('initializers', [True, False])\n",
+    "    drop_out_rate = trial.suggest_float('drop_out_rate', 0, 1)\n",
+    "    learning_rate = trial.suggest_float('learning_rate', 1e-6, 1e-1, log=True)\n",
+    "    optimizer_name = trial.suggest_categorical('optimizer', ['Adam', 'RMSprop', 'SGD', 'Nadam'])\n",
+    "    \n",
+    "    # Create optimizer object based on the selected name\n",
+    "    if optimizer_name == 'Adam':\n",
+    "        optimizer = optimizers.Adam(learning_rate=learning_rate)\n",
+    "    elif optimizer_name == 'RMSprop':\n",
+    "        optimizer = optimizers.RMSprop(learning_rate=learning_rate)\n",
+    "    elif optimizer_name == 'SGD':\n",
+    "        optimizer = optimizers.SGD(learning_rate=learning_rate)\n",
+    "    elif optimizer_name == 'Nadam':\n",
+    "        optimizer = optimizers.Nadam(learning_rate=learning_rate)\n",
+    "\n",
+    "\n",
+    "    # Building the model within strategy scope\n",
+    "    with strategy.scope():\n",
+    "        # Model building function\n",
+    "        def build_model(input_shape, units, n_hidden_layers, batch_norm, drop_out, regularize, initializers, drop_out_rate):\n",
+    "            model = keras.Sequential()\n",
+    "            model.add(keras.Input(shape=(input_shape,)))\n",
+    "\n",
+    "            for _ in range(n_hidden_layers):\n",
+    "                layer_params = {'units': units, 'activation': activations.relu}\n",
+    "\n",
+    "                if regularize:\n",
+    "                    layer_params['kernel_regularizer'] = regularizers.L1()\n",
+    "                if initializers:\n",
+    "                    layer_params['kernel_initializer'] = keras.initializers.glorot_normal()\n",
+    "\n",
+    "                model.add(layers.Dense(**layer_params))\n",
+    "\n",
+    "                if drop_out:\n",
+    "                    model.add(layers.Dropout(rate=drop_out_rate))\n",
+    "                if batch_norm:\n",
+    "                    model.add(layers.BatchNormalization())\n",
+    "                \n",
+    "                units = max(2, round(units / 2))  # Gradual reduction in units\n",
+    "\n",
+    "            # Output layer\n",
+    "            model.add(layers.Dense(1, activation=activations.sigmoid))\n",
+    "            return model\n",
+    "\n",
+    "        # Model compilation function\n",
+    "        def compile_model(model, optimizer):\n",
+    "            model.compile(optimizer=optimizer, loss=losses.binary_crossentropy, metrics=['accuracy'])\n",
+    "            return model\n",
+    "\n",
+    "        # Model training function\n",
+    "        def train_model(model, train_dataset, valid_dataset, epochs):\n",
+    "            history = model.fit(\n",
+    "                train_dataset,\n",
+    "                validation_data=valid_dataset,\n",
+    "                batch_size=32,\n",
+    "                epochs=epochs,\n",
+    "                shuffle=True,\n",
+    "                verbose=0\n",
+    "            )\n",
+    "            return history\n",
+    "\n",
+    "        # Build, compile, and train the model\n",
+    "        model = build_model(input_shape, units, n_hidden_layers, batch_norm, drop_out, regularize, initializers, drop_out_rate)\n",
+    "        model = compile_model(model, optimizer)\n",
+    "        history = train_model(model, train_dataset, valid_dataset, epochs)\n",
+    "\n",
+    "    # Retrieve metrics\n",
+    "    val_accuracy = history.history['val_accuracy'][-1]\n",
+    "    train_accuracy = history.history['accuracy'][-1]\n",
+    "    val_loss = history.history['val_loss'][-1]\n",
+    "    train_loss = history.history['loss'][-1]\n",
+    "\n",
+    "    K.clear_session()\n",
+    "    return train_loss, train_accuracy\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "id": "a8999269",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:04:02.217142Z",
+     "iopub.status.busy": "2024-10-25T21:04:02.216797Z",
+     "iopub.status.idle": "2024-10-25T21:04:08.719445Z",
+     "shell.execute_reply": "2024-10-25T21:04:08.718468Z"
+    },
+    "id": "EUJ9C6aY2pYN",
+    "outputId": "beb5aee4-7818-45bc-80e4-cbebafadc0e7",
+    "papermill": {
+     "duration": 6.521657,
+     "end_time": "2024-10-25T21:04:08.721919",
+     "exception": false,
+     "start_time": "2024-10-25T21:04:02.200262",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "removing the previous study db file if exist\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "/opt/conda/lib/python3.10/pty.py:89: RuntimeWarning: os.fork() was called. os.fork() is incompatible with multithreaded code, and JAX is multithreaded, so this will likely lead to a deadlock.\n",
+      "  pid, fd = os.forkpty()\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "creating and optimizing the study\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "[I 2024-10-25 21:04:05,134] A new study created in RDB with name: loan_approval_ann_study\n"
+     ]
+    },
+    {
+     "data": {
+      "application/vnd.jupyter.widget-view+json": {
+       "model_id": "dc6327cfa4dd493b9deb6584c226493d",
+       "version_major": 2,
+       "version_minor": 0
+      },
+      "text/plain": [
+       "  0%|          | 0/100 [00:00<?, ?it/s]"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[W 2024-10-25 21:04:08,710] Trial 0 failed with parameters: {'epochs': 60, 'units': 450, 'n_hidden_layers': 3, 'batch_norm': True, 'drop_out': True, 'regularize': True, 'initializers': False, 'drop_out_rate': 0.08739415035643738, 'learning_rate': 0.004799273774429663, 'optimizer': 'Adam'} because of the following error: RuntimeError('in user code:\\n\\n    File \"/opt/conda/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py\", line 104, in one_step_on_data  **\\n        return self.train_step(data)\\n    File \"/opt/conda/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py\", line 69, in train_step\\n        self.optimizer.apply_gradients(zip(gradients, trainable_weights))\\n    File \"/opt/conda/lib/python3.10/site-packages/keras/src/optimizers/base_optimizer.py\", line 282, in apply_gradients\\n        self.apply(grads, trainable_variables)\\n    File \"/opt/conda/lib/python3.10/site-packages/keras/src/optimizers/base_optimizer.py\", line 321, in apply\\n        self.build(trainable_variables)\\n    File \"/opt/conda/lib/python3.10/site-packages/keras/src/optimizers/adam.py\", line 97, in build\\n        self.add_variable_from_reference(\\n    File \"/opt/conda/lib/python3.10/site-packages/keras/src/backend/tensorflow/optimizer.py\", line 33, in add_variable_from_reference\\n        with self._distribution_strategy.extended.colocate_vars_with(\\n\\n    RuntimeError: Mixing different tf.distribute.Strategy objects: <tensorflow.python.distribute.mirrored_strategy.MirroredStrategy object at 0x7bc7bb101b70> is not <tensorflow.python.distribute.distribute_lib._DefaultDistributionStrategy object at 0x7bc673e8a920>\\n').\n",
+      "Traceback (most recent call last):\n",
+      "  File \"/opt/conda/lib/python3.10/site-packages/optuna/study/_optimize.py\", line 197, in _run_trial\n",
+      "    value_or_values = func(trial)\n",
+      "  File \"/tmp/ipykernel_23/1124424829.py\", line 82, in objective\n",
+      "    history = train_model(model, train_dataset, valid_dataset, epochs)\n",
+      "  File \"/tmp/ipykernel_23/1124424829.py\", line 69, in train_model\n",
+      "    history = model.fit(\n",
+      "  File \"/opt/conda/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py\", line 122, in error_handler\n",
+      "    raise e.with_traceback(filtered_tb) from None\n",
+      "  File \"/tmp/__autograph_generated_file1dit2y9m.py\", line 14, in tf__wrapped_fn\n",
+      "    retval_ = ag__.converted_call(ag__.ld(call_for_each_replica), (ag__.ld(strategy), ag__.ld(fn).python_function, ag__.ld(args), ag__.ld(kwargs)), None, fscope)\n",
+      "RuntimeError: in user code:\n",
+      "\n",
+      "    File \"/opt/conda/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py\", line 104, in one_step_on_data  **\n",
+      "        return self.train_step(data)\n",
+      "    File \"/opt/conda/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py\", line 69, in train_step\n",
+      "        self.optimizer.apply_gradients(zip(gradients, trainable_weights))\n",
+      "    File \"/opt/conda/lib/python3.10/site-packages/keras/src/optimizers/base_optimizer.py\", line 282, in apply_gradients\n",
+      "        self.apply(grads, trainable_variables)\n",
+      "    File \"/opt/conda/lib/python3.10/site-packages/keras/src/optimizers/base_optimizer.py\", line 321, in apply\n",
+      "        self.build(trainable_variables)\n",
+      "    File \"/opt/conda/lib/python3.10/site-packages/keras/src/optimizers/adam.py\", line 97, in build\n",
+      "        self.add_variable_from_reference(\n",
+      "    File \"/opt/conda/lib/python3.10/site-packages/keras/src/backend/tensorflow/optimizer.py\", line 33, in add_variable_from_reference\n",
+      "        with self._distribution_strategy.extended.colocate_vars_with(\n",
+      "\n",
+      "    RuntimeError: Mixing different tf.distribute.Strategy objects: <tensorflow.python.distribute.mirrored_strategy.MirroredStrategy object at 0x7bc7bb101b70> is not <tensorflow.python.distribute.distribute_lib._DefaultDistributionStrategy object at 0x7bc673e8a920>\n",
+      "\n",
+      "[W 2024-10-25 21:04:08,715] Trial 0 failed with value None.\n",
+      "could not create the study\n",
+      "created the srudy with no of trials = 100\n"
+     ]
+    }
+   ],
+   "source": [
+    "print('removing the previous study db file if exist')\n",
+    "try:\n",
+    "    !rm -rf loan_approval_ann_study.db\n",
+    "except Exception as e:\n",
+    "    print('could not remove the db file')\n",
+    "n_trials=100\n",
+    "print('creating and optimizing the study')\n",
+    "try:\n",
+    "    loan_approval_ann_study = optuna.create_study(\n",
+    "    storage='sqlite:///loan_approval_ann_study.db',\n",
+    "    study_name='loan_approval_ann_study',\n",
+    "    directions=['minimize', 'minimize'],\n",
+    "    load_if_exists=True\n",
+    "    )\n",
+    "\n",
+    "    loan_approval_ann_study.optimize(objective,  n_trials=n_trials, show_progress_bar=True)\n",
+    "except Exception as e:\n",
+    "    print(f'could not create the study')\n",
+    "print(f'created the srudy with no of trials = {n_trials}')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3165fb28",
+   "metadata": {
+    "papermill": {
+     "duration": 0.015971,
+     "end_time": "2024-10-25T21:04:08.754639",
+     "exception": false,
+     "start_time": "2024-10-25T21:04:08.738668",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 37,
+   "id": "8cc8f2f8",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:04:08.788845Z",
+     "iopub.status.busy": "2024-10-25T21:04:08.788487Z",
+     "iopub.status.idle": "2024-10-25T21:04:08.793628Z",
+     "shell.execute_reply": "2024-10-25T21:04:08.792690Z"
+    },
+    "id": "iBXn-Au62pYN",
+    "outputId": "cc1f0839-eeb5-466d-c2f7-2c60c8319fca",
+    "papermill": {
+     "duration": 0.024468,
+     "end_time": "2024-10-25T21:04:08.795614",
+     "exception": false,
+     "start_time": "2024-10-25T21:04:08.771146",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder\n",
+    "# from sklearn.compose import ColumnTransformer\n",
+    "# from sklearn.pipeline import Pipeline\n",
+    "\n",
+    "\n",
+    "# print('encoding the final test data set')\n",
+    "# ord_enc_test = OrdinalEncoder()\n",
+    "# one_hot_enc_test = OneHotEncoder(sparse_output=False)\n",
+    "\n",
+    "# test_cat_cols = test_df.select_dtypes('object').columns\n",
+    "# ordinal_cols = ['loan_grade']\n",
+    "# one_hot_cols = [col for col in test_cat_cols if col != 'loan_grade']\n",
+    "# remaining_cols = [col for col in test_df.columns if col not in list(test_cat_cols)]\n",
+    "\n",
+    "# encoder_test = ColumnTransformer(\n",
+    "#             transformers=[\n",
+    "#                 ('ordinal_encoder', ord_enc_test, ordinal_cols),\n",
+    "#                 ('one_hot_encoder', one_hot_enc_test, one_hot_cols),\n",
+    "#                 ('passthrough', 'passthrough', remaining_cols )\n",
+    "#             ]\n",
+    "# )\n",
+    "\n",
+    "# encoded_data = encoder_test.fit_transform(test_df)\n",
+    "# one_hot_enc_test.fit(test_df[one_hot_cols])\n",
+    "# one_hot_encoded_cols = one_hot_enc_test.get_feature_names_out(one_hot_cols)\n",
+    "# all_cols = ordinal_cols + list(one_hot_encoded_cols) + remaining_cols\n",
+    "# test_df_encoded = pd.DataFrame(encoded_data, columns=all_cols)\n",
+    "# test_df_encoded.info()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "id": "16e1a7b9",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-25T21:04:08.829978Z",
+     "iopub.status.busy": "2024-10-25T21:04:08.829661Z",
+     "iopub.status.idle": "2024-10-25T21:04:08.834569Z",
+     "shell.execute_reply": "2024-10-25T21:04:08.833700Z"
+    },
+    "id": "FklppLUM2pYO",
+    "papermill": {
+     "duration": 0.02409,
+     "end_time": "2024-10-25T21:04:08.836570",
+     "exception": false,
+     "start_time": "2024-10-25T21:04:08.812480",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# import tensorflow as tf\n",
+    "# import pandas as pd\n",
+    "# from sklearn.preprocessing import StandardScaler, PolynomialFeatures\n",
+    "# from sklearn.pipeline import Pipeline\n",
+    "\n",
+    "# def prepare_test_data_for_tpu(df: pd.DataFrame, features_cols: list[str], target_col: str, batch_size: int = 32, poly_degree: int = 2, poly: bool = False):\n",
+    "\n",
+    "#     df = df.copy()\n",
+    "#     features = df[features_cols]\n",
+    "#     target = df[target_col]\n",
+    "\n",
+    "#     # Define pipeline for scaling and optional polynomial features\n",
+    "#     pipe = Pipeline([\n",
+    "#         ('scaler', StandardScaler()),\n",
+    "#         ('poly', PolynomialFeatures(degree=poly_degree, include_bias=False, interaction_only=True)) if poly else None\n",
+    "#     ])\n",
+    "#     pipe.steps = [step for step in pipe.steps if step is not None]\n",
+    "\n",
+    "#     # Transform features\n",
+    "#     features_final = pipe.fit_transform(features)\n",
+    "#     features_final_df = pd.DataFrame(features_final, columns=[f'feature_{i}' for i in range(features_final.shape[1])])\n",
+    "\n",
+    "#     # Create tf.data.Dataset without shuffling, batching only\n",
+    "#     dataset = tf.data.Dataset.from_tensor_slices((dict(features_final_df), target))\n",
+    "#     dataset = dataset.batch(batch_size).prefetch(tf.data.experimental.AUTOTUNE)\n",
+    "\n",
+    "#     return dataset\n"
+   ]
+  }
+ ],
+ "metadata": {
+  "accelerator": "TPU",
+  "colab": {
+   "gpuType": "V28",
+   "include_colab_link": true,
+   "provenance": []
+  },
+  "kaggle": {
+   "accelerator": "nvidiaTeslaT4",
+   "dataSources": [
+    {
+     "databundleVersionId": 9709193,
+     "sourceId": 84894,
+     "sourceType": "competition"
+    },
+    {
+     "datasetId": 5936521,
+     "sourceId": 9706567,
+     "sourceType": "datasetVersion"
+    },
+    {
+     "datasetId": 5948628,
+     "sourceId": 9722405,
+     "sourceType": "datasetVersion"
+    }
+   ],
+   "dockerImageVersionId": 30787,
+   "isGpuEnabled": true,
+   "isInternetEnabled": true,
+   "language": "python",
+   "sourceType": "notebook"
+  },
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.14"
+  },
+  "papermill": {
+   "default_parameters": {},
+   "duration": 67.367763,
+   "end_time": "2024-10-25T21:04:12.232705",
+   "environment_variables": {},
+   "exception": null,
+   "input_path": "__notebook__.ipynb",
+   "output_path": "__notebook__.ipynb",
+   "parameters": {},
+   "start_time": "2024-10-25T21:03:04.864942",
+   "version": "2.6.0"
+  },
+  "widgets": {
+   "application/vnd.jupyter.widget-state+json": {
+    "state": {
+     "007a4d2a51b746cb8fcc576b9849e3b1": {
+      "model_module": "@jupyter-widgets/controls",
+      "model_module_version": "1.5.0",
+      "model_name": "DescriptionStyleModel",
+      "state": {
+       "_model_module": "@jupyter-widgets/controls",
+       "_model_module_version": "1.5.0",
+       "_model_name": "DescriptionStyleModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/base",
+       "_view_module_version": "1.2.0",
+       "_view_name": "StyleView",
+       "description_width": ""
+      }
+     },
+     "646f60ddbc654678be6705e0b6601c77": {
+      "model_module": "@jupyter-widgets/controls",
+      "model_module_version": "1.5.0",
+      "model_name": "DescriptionStyleModel",
+      "state": {
+       "_model_module": "@jupyter-widgets/controls",
+       "_model_module_version": "1.5.0",
+       "_model_name": "DescriptionStyleModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/base",
+       "_view_module_version": "1.2.0",
+       "_view_name": "StyleView",
+       "description_width": ""
+      }
+     },
+     "6f7e3b05143a4cd1a56d6c53ea5245fe": {
+      "model_module": "@jupyter-widgets/base",
+      "model_module_version": "1.2.0",
+      "model_name": "LayoutModel",
+      "state": {
+       "_model_module": "@jupyter-widgets/base",
+       "_model_module_version": "1.2.0",
+       "_model_name": "LayoutModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/base",
+       "_view_module_version": "1.2.0",
+       "_view_name": "LayoutView",
+       "align_content": null,
+       "align_items": null,
+       "align_self": null,
+       "border": null,
+       "bottom": null,
+       "display": null,
+       "flex": null,
+       "flex_flow": null,
+       "grid_area": null,
+       "grid_auto_columns": null,
+       "grid_auto_flow": null,
+       "grid_auto_rows": null,
+       "grid_column": null,
+       "grid_gap": null,
+       "grid_row": null,
+       "grid_template_areas": null,
+       "grid_template_columns": null,
+       "grid_template_rows": null,
+       "height": null,
+       "justify_content": null,
+       "justify_items": null,
+       "left": null,
+       "margin": null,
+       "max_height": null,
+       "max_width": null,
+       "min_height": null,
+       "min_width": null,
+       "object_fit": null,
+       "object_position": null,
+       "order": null,
+       "overflow": null,
+       "overflow_x": null,
+       "overflow_y": null,
+       "padding": null,
+       "right": null,
+       "top": null,
+       "visibility": null,
+       "width": null
+      }
+     },
+     "a23e48862fdb4d04888e852d8c9164f8": {
+      "model_module": "@jupyter-widgets/controls",
+      "model_module_version": "1.5.0",
+      "model_name": "HTMLModel",
+      "state": {
+       "_dom_classes": [],
+       "_model_module": "@jupyter-widgets/controls",
+       "_model_module_version": "1.5.0",
+       "_model_name": "HTMLModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/controls",
+       "_view_module_version": "1.5.0",
+       "_view_name": "HTMLView",
+       "description": "",
+       "description_tooltip": null,
+       "layout": "IPY_MODEL_afcc320ad72f4da0847df647f46a581d",
+       "placeholder": "​",
+       "style": "IPY_MODEL_646f60ddbc654678be6705e0b6601c77",
+       "value": "  0%"
+      }
+     },
+     "afcc320ad72f4da0847df647f46a581d": {
+      "model_module": "@jupyter-widgets/base",
+      "model_module_version": "1.2.0",
+      "model_name": "LayoutModel",
+      "state": {
+       "_model_module": "@jupyter-widgets/base",
+       "_model_module_version": "1.2.0",
+       "_model_name": "LayoutModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/base",
+       "_view_module_version": "1.2.0",
+       "_view_name": "LayoutView",
+       "align_content": null,
+       "align_items": null,
+       "align_self": null,
+       "border": null,
+       "bottom": null,
+       "display": null,
+       "flex": null,
+       "flex_flow": null,
+       "grid_area": null,
+       "grid_auto_columns": null,
+       "grid_auto_flow": null,
+       "grid_auto_rows": null,
+       "grid_column": null,
+       "grid_gap": null,
+       "grid_row": null,
+       "grid_template_areas": null,
+       "grid_template_columns": null,
+       "grid_template_rows": null,
+       "height": null,
+       "justify_content": null,
+       "justify_items": null,
+       "left": null,
+       "margin": null,
+       "max_height": null,
+       "max_width": null,
+       "min_height": null,
+       "min_width": null,
+       "object_fit": null,
+       "object_position": null,
+       "order": null,
+       "overflow": null,
+       "overflow_x": null,
+       "overflow_y": null,
+       "padding": null,
+       "right": null,
+       "top": null,
+       "visibility": null,
+       "width": null
+      }
+     },
+     "b0c17f46cef247eb941d6d35c80a02eb": {
+      "model_module": "@jupyter-widgets/controls",
+      "model_module_version": "1.5.0",
+      "model_name": "HTMLModel",
+      "state": {
+       "_dom_classes": [],
+       "_model_module": "@jupyter-widgets/controls",
+       "_model_module_version": "1.5.0",
+       "_model_name": "HTMLModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/controls",
+       "_view_module_version": "1.5.0",
+       "_view_name": "HTMLView",
+       "description": "",
+       "description_tooltip": null,
+       "layout": "IPY_MODEL_6f7e3b05143a4cd1a56d6c53ea5245fe",
+       "placeholder": "​",
+       "style": "IPY_MODEL_007a4d2a51b746cb8fcc576b9849e3b1",
+       "value": " 0/100 [00:03&lt;?, ?it/s]"
+      }
+     },
+     "d2d13cf514b8425e968b11198a0d9df2": {
+      "model_module": "@jupyter-widgets/controls",
+      "model_module_version": "1.5.0",
+      "model_name": "FloatProgressModel",
+      "state": {
+       "_dom_classes": [],
+       "_model_module": "@jupyter-widgets/controls",
+       "_model_module_version": "1.5.0",
+       "_model_name": "FloatProgressModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/controls",
+       "_view_module_version": "1.5.0",
+       "_view_name": "ProgressView",
+       "bar_style": "danger",
+       "description": "",
+       "description_tooltip": null,
+       "layout": "IPY_MODEL_fb8e8e5ddf194d6cab34d0841baab14a",
+       "max": 100.0,
+       "min": 0.0,
+       "orientation": "horizontal",
+       "style": "IPY_MODEL_e363a77a53da46fbba70fe429686f22f",
+       "value": 0.0
+      }
+     },
+     "dc6327cfa4dd493b9deb6584c226493d": {
+      "model_module": "@jupyter-widgets/controls",
+      "model_module_version": "1.5.0",
+      "model_name": "HBoxModel",
+      "state": {
+       "_dom_classes": [],
+       "_model_module": "@jupyter-widgets/controls",
+       "_model_module_version": "1.5.0",
+       "_model_name": "HBoxModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/controls",
+       "_view_module_version": "1.5.0",
+       "_view_name": "HBoxView",
+       "box_style": "",
+       "children": [
+        "IPY_MODEL_a23e48862fdb4d04888e852d8c9164f8",
+        "IPY_MODEL_d2d13cf514b8425e968b11198a0d9df2",
+        "IPY_MODEL_b0c17f46cef247eb941d6d35c80a02eb"
+       ],
+       "layout": "IPY_MODEL_dfac5f4804264ab0b234a8267fd2fa1a"
+      }
+     },
+     "dfac5f4804264ab0b234a8267fd2fa1a": {
+      "model_module": "@jupyter-widgets/base",
+      "model_module_version": "1.2.0",
+      "model_name": "LayoutModel",
+      "state": {
+       "_model_module": "@jupyter-widgets/base",
+       "_model_module_version": "1.2.0",
+       "_model_name": "LayoutModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/base",
+       "_view_module_version": "1.2.0",
+       "_view_name": "LayoutView",
+       "align_content": null,
+       "align_items": null,
+       "align_self": null,
+       "border": null,
+       "bottom": null,
+       "display": null,
+       "flex": null,
+       "flex_flow": null,
+       "grid_area": null,
+       "grid_auto_columns": null,
+       "grid_auto_flow": null,
+       "grid_auto_rows": null,
+       "grid_column": null,
+       "grid_gap": null,
+       "grid_row": null,
+       "grid_template_areas": null,
+       "grid_template_columns": null,
+       "grid_template_rows": null,
+       "height": null,
+       "justify_content": null,
+       "justify_items": null,
+       "left": null,
+       "margin": null,
+       "max_height": null,
+       "max_width": null,
+       "min_height": null,
+       "min_width": null,
+       "object_fit": null,
+       "object_position": null,
+       "order": null,
+       "overflow": null,
+       "overflow_x": null,
+       "overflow_y": null,
+       "padding": null,
+       "right": null,
+       "top": null,
+       "visibility": null,
+       "width": null
+      }
+     },
+     "e363a77a53da46fbba70fe429686f22f": {
+      "model_module": "@jupyter-widgets/controls",
+      "model_module_version": "1.5.0",
+      "model_name": "ProgressStyleModel",
+      "state": {
+       "_model_module": "@jupyter-widgets/controls",
+       "_model_module_version": "1.5.0",
+       "_model_name": "ProgressStyleModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/base",
+       "_view_module_version": "1.2.0",
+       "_view_name": "StyleView",
+       "bar_color": null,
+       "description_width": ""
+      }
+     },
+     "fb8e8e5ddf194d6cab34d0841baab14a": {
+      "model_module": "@jupyter-widgets/base",
+      "model_module_version": "1.2.0",
+      "model_name": "LayoutModel",
+      "state": {
+       "_model_module": "@jupyter-widgets/base",
+       "_model_module_version": "1.2.0",
+       "_model_name": "LayoutModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/base",
+       "_view_module_version": "1.2.0",
+       "_view_name": "LayoutView",
+       "align_content": null,
+       "align_items": null,
+       "align_self": null,
+       "border": null,
+       "bottom": null,
+       "display": null,
+       "flex": null,
+       "flex_flow": null,
+       "grid_area": null,
+       "grid_auto_columns": null,
+       "grid_auto_flow": null,
+       "grid_auto_rows": null,
+       "grid_column": null,
+       "grid_gap": null,
+       "grid_row": null,
+       "grid_template_areas": null,
+       "grid_template_columns": null,
+       "grid_template_rows": null,
+       "height": null,
+       "justify_content": null,
+       "justify_items": null,
+       "left": null,
+       "margin": null,
+       "max_height": null,
+       "max_width": null,
+       "min_height": null,
+       "min_width": null,
+       "object_fit": null,
+       "object_position": null,
+       "order": null,
+       "overflow": null,
+       "overflow_x": null,
+       "overflow_y": null,
+       "padding": null,
+       "right": null,
+       "top": null,
+       "visibility": null,
+       "width": null
+      }
+     }
+    },
+    "version_major": 2,
+    "version_minor": 0
+   }
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
