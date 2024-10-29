@@ -3,45 +3,19 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "66999561",
+   "id": "a413891c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:25.070617Z",
-     "iopub.status.busy": "2024-10-25T21:07:25.069668Z",
-     "iopub.status.idle": "2024-10-25T21:07:25.074169Z",
-     "shell.execute_reply": "2024-10-25T21:07:25.073464Z"
+     "iopub.execute_input": "2024-10-29T09:20:32.522188Z",
+     "iopub.status.busy": "2024-10-29T09:20:32.521798Z",
+     "iopub.status.idle": "2024-10-29T09:20:32.533139Z",
+     "shell.execute_reply": "2024-10-29T09:20:32.531919Z"
     },
     "papermill": {
-     "duration": 0.0219,
-     "end_time": "2024-10-25T21:07:25.076051",
+     "duration": 0.034459,
+     "end_time": "2024-10-29T09:20:32.535144",
      "exception": false,
-     "start_time": "2024-10-25T21:07:25.054151",
-     "status": "completed"
-    },
-    "tags": []
-   },
-   "outputs": [],
-   "source": [
-    "# !pip install --upgrade pip\n",
-    "# !pip install ipywidgets jupyter"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 2,
-   "id": "0ce8688e",
-   "metadata": {
-    "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:25.105173Z",
-     "iopub.status.busy": "2024-10-25T21:07:25.104872Z",
-     "iopub.status.idle": "2024-10-25T21:07:40.546988Z",
-     "shell.execute_reply": "2024-10-25T21:07:40.545946Z"
-    },
-    "papermill": {
-     "duration": 15.458029,
-     "end_time": "2024-10-25T21:07:40.548982",
-     "exception": false,
-     "start_time": "2024-10-25T21:07:25.090953",
+     "start_time": "2024-10-29T09:20:32.500685",
      "status": "completed"
     },
     "tags": []
@@ -51,52 +25,154 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "Connecting to TPU \n",
-      "\n",
-      "Memory growth enabled for GPUs.\n",
-      "Mirrored Strategy initialized with GPUs.\n"
+      "importing the neccessary libraries with output captured\n"
      ]
     }
    ],
    "source": [
+    "print('importing the neccessary libraries with output captured')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "fbb24e50",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T09:20:32.573199Z",
+     "iopub.status.busy": "2024-10-29T09:20:32.572877Z",
+     "iopub.status.idle": "2024-10-29T09:21:10.807683Z",
+     "shell.execute_reply": "2024-10-29T09:21:10.806672Z"
+    },
+    "papermill": {
+     "duration": 38.256695,
+     "end_time": "2024-10-29T09:21:10.810147",
+     "exception": false,
+     "start_time": "2024-10-29T09:20:32.553452",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "%%capture\n",
+    "!pip install optuna\n",
+    "!pip install imblearn\n",
+    "import pandas as pd\n",
+    "from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder\n",
+    "from sklearn.compose import ColumnTransformer\n",
+    "from sklearn.pipeline import Pipeline\n",
+    "import matplotlib.pyplot as plt\n",
+    "from scipy import stats\n",
+    "import numpy as np\n",
+    "import seaborn as sns\n",
+    "from imblearn.over_sampling import SMOTE, SVMSMOTE\n",
+    "from sklearn.model_selection import StratifiedShuffleSplit\n",
     "import tensorflow as tf\n",
-    "\n",
-    "print('Connecting to TPU \\n')\n",
-    "# List GPUs and set memory growth before initializing TensorFlow or Keras models\n",
-    "gpus = tf.config.list_physical_devices('GPU')\n",
-    "if gpus:\n",
-    "    try:\n",
-    "        for gpu in gpus:\n",
-    "            tf.config.experimental.set_memory_growth(gpu, True)\n",
-    "        print(\"Memory growth enabled for GPUs.\")\n",
-    "    except RuntimeError as e:\n",
-    "        print(f\"Error setting memory growth: {e}\")\n",
-    "else:\n",
-    "    print(\"No GPUs found.\")\n",
-    "if gpus:\n",
-    "    strategy = tf.distribute.MirroredStrategy()\n",
-    "    print(\"Mirrored Strategy initialized with GPUs.\")\n",
-    "else:\n",
-    "    strategy = tf.distribute.get_strategy()  # Default strategy if no GPUs available\n",
-    "    print(\"Using Default Strategy.\")"
+    "import pandas as pd\n",
+    "from sklearn.preprocessing import StandardScaler, PolynomialFeatures\n",
+    "from sklearn.pipeline import Pipeline\n",
+    "import os"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "beec84a9",
+   "id": "26b2cf00",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:40.577505Z",
-     "iopub.status.busy": "2024-10-25T21:07:40.576950Z",
-     "iopub.status.idle": "2024-10-25T21:07:40.581312Z",
-     "shell.execute_reply": "2024-10-25T21:07:40.580466Z"
+     "iopub.execute_input": "2024-10-29T09:21:10.848417Z",
+     "iopub.status.busy": "2024-10-29T09:21:10.847785Z",
+     "iopub.status.idle": "2024-10-29T09:21:10.852689Z",
+     "shell.execute_reply": "2024-10-29T09:21:10.851790Z"
     },
     "papermill": {
-     "duration": 0.020709,
-     "end_time": "2024-10-25T21:07:40.583312",
+     "duration": 0.026478,
+     "end_time": "2024-10-29T09:21:10.854650",
      "exception": false,
-     "start_time": "2024-10-25T21:07:40.562603",
+     "start_time": "2024-10-29T09:21:10.828172",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# import tensorflow as tf\n",
+    "\n",
+    "# print('Connecting to GPU \\n')\n",
+    "# # List GPUs and set memory growth before initializing TensorFlow or Keras models\n",
+    "# gpus = tf.config.list_physical_devices('GPU')\n",
+    "# if gpus:\n",
+    "#     try:\n",
+    "#         for gpu in gpus:\n",
+    "#             tf.config.experimental.set_memory_growth(gpu, True)\n",
+    "#         print(\"Memory growth enabled for GPUs.\")\n",
+    "#     except RuntimeError as e:\n",
+    "#         print(f\"Error setting memory growth: {e}\")\n",
+    "# else:\n",
+    "#     print(\"No GPUs found.\")\n",
+    "\n",
+    "# if gpus:\n",
+    "#     strategy = tf.distribute.MirroredStrategy()\n",
+    "#     print(\"Mirrored Strategy initialized with GPUs.\")\n",
+    "# else:\n",
+    "#     strategy = tf.distribute.get_strategy()  # Default strategy if no GPUs available\n",
+    "#     print(\"Using Default Strategy.\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "cad967b9",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T09:21:10.891159Z",
+     "iopub.status.busy": "2024-10-29T09:21:10.890353Z",
+     "iopub.status.idle": "2024-10-29T09:21:10.894584Z",
+     "shell.execute_reply": "2024-10-29T09:21:10.893831Z"
+    },
+    "papermill": {
+     "duration": 0.02438,
+     "end_time": "2024-10-29T09:21:10.896390",
+     "exception": false,
+     "start_time": "2024-10-29T09:21:10.872010",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# import os\n",
+    "# import tensorflow as tf\n",
+    "\n",
+    "# # Initialize the TPU\n",
+    "# resolver = tf.distribute.cluster_resolver.TPUClusterResolver()\n",
+    "# tf.config.experimental_connect_to_cluster(resolver)\n",
+    "# tf.tpu.experimental.initialize_tpu_system(resolver)\n",
+    "# print(\"All TPU devices:\", tf.config.list_logical_devices('TPU'))\n",
+    "\n",
+    "\n",
+    "# # Configure TensorFlow to use the TPU\n",
+    "# os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'\n",
+    "# tf.config.optimizer.set_jit(True)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "a00d8c76",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T09:21:10.932039Z",
+     "iopub.status.busy": "2024-10-29T09:21:10.931753Z",
+     "iopub.status.idle": "2024-10-29T09:21:10.935421Z",
+     "shell.execute_reply": "2024-10-29T09:21:10.934644Z"
+    },
+    "papermill": {
+     "duration": 0.02364,
+     "end_time": "2024-10-29T09:21:10.937314",
+     "exception": false,
+     "start_time": "2024-10-29T09:21:10.913674",
      "status": "completed"
     },
     "tags": []
@@ -112,21 +188,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 4,
-   "id": "f3759ec5",
+   "execution_count": 6,
+   "id": "ae01b078",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:40.610933Z",
-     "iopub.status.busy": "2024-10-25T21:07:40.610661Z",
-     "iopub.status.idle": "2024-10-25T21:07:40.614604Z",
-     "shell.execute_reply": "2024-10-25T21:07:40.613737Z"
+     "iopub.execute_input": "2024-10-29T09:21:10.973205Z",
+     "iopub.status.busy": "2024-10-29T09:21:10.972928Z",
+     "iopub.status.idle": "2024-10-29T09:21:10.976804Z",
+     "shell.execute_reply": "2024-10-29T09:21:10.976008Z"
     },
     "id": "AGwgatwy4zqh",
     "papermill": {
-     "duration": 0.01975,
-     "end_time": "2024-10-25T21:07:40.616509",
+     "duration": 0.023833,
+     "end_time": "2024-10-29T09:21:10.978616",
      "exception": false,
-     "start_time": "2024-10-25T21:07:40.596759",
+     "start_time": "2024-10-29T09:21:10.954783",
      "status": "completed"
     },
     "tags": []
@@ -149,13 +225,13 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "3c0cc912",
+   "id": "800e4ba7",
    "metadata": {
     "papermill": {
-     "duration": 0.012866,
-     "end_time": "2024-10-25T21:07:40.642386",
+     "duration": 0.017132,
+     "end_time": "2024-10-29T09:21:11.013081",
      "exception": false,
-     "start_time": "2024-10-25T21:07:40.629520",
+     "start_time": "2024-10-29T09:21:10.995949",
      "status": "completed"
     },
     "tags": []
@@ -165,22 +241,22 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 5,
-   "id": "e2434d2f",
+   "execution_count": 7,
+   "id": "9e1bf262",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:40.669759Z",
-     "iopub.status.busy": "2024-10-25T21:07:40.669482Z",
-     "iopub.status.idle": "2024-10-25T21:07:40.673061Z",
-     "shell.execute_reply": "2024-10-25T21:07:40.672261Z"
+     "iopub.execute_input": "2024-10-29T09:21:11.048902Z",
+     "iopub.status.busy": "2024-10-29T09:21:11.048601Z",
+     "iopub.status.idle": "2024-10-29T09:21:11.052111Z",
+     "shell.execute_reply": "2024-10-29T09:21:11.051333Z"
     },
     "id": "lnWQ8Xfp5RWI",
     "outputId": "51ac6c76-76f4-4d42-a310-f2987df37d13",
     "papermill": {
-     "duration": 0.019478,
-     "end_time": "2024-10-25T21:07:40.675010",
+     "duration": 0.023547,
+     "end_time": "2024-10-29T09:21:11.053964",
      "exception": false,
-     "start_time": "2024-10-25T21:07:40.655532",
+     "start_time": "2024-10-29T09:21:11.030417",
      "status": "completed"
     },
     "tags": []
@@ -193,21 +269,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 6,
-   "id": "939591b3",
+   "execution_count": 8,
+   "id": "1e0e132f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:40.703742Z",
-     "iopub.status.busy": "2024-10-25T21:07:40.703451Z",
-     "iopub.status.idle": "2024-10-25T21:07:40.707080Z",
-     "shell.execute_reply": "2024-10-25T21:07:40.706271Z"
+     "iopub.execute_input": "2024-10-29T09:21:11.089633Z",
+     "iopub.status.busy": "2024-10-29T09:21:11.089340Z",
+     "iopub.status.idle": "2024-10-29T09:21:11.093821Z",
+     "shell.execute_reply": "2024-10-29T09:21:11.093131Z"
     },
     "id": "SStBLetO6Lzv",
     "papermill": {
-     "duration": 0.020816,
-     "end_time": "2024-10-25T21:07:40.708906",
+     "duration": 0.024365,
+     "end_time": "2024-10-29T09:21:11.095598",
      "exception": false,
-     "start_time": "2024-10-25T21:07:40.688090",
+     "start_time": "2024-10-29T09:21:11.071233",
      "status": "completed"
     },
     "tags": []
@@ -222,22 +298,22 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 7,
-   "id": "0b4a238e",
+   "execution_count": 9,
+   "id": "d4d06da7",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:40.736270Z",
-     "iopub.status.busy": "2024-10-25T21:07:40.735975Z",
-     "iopub.status.idle": "2024-10-25T21:07:40.970657Z",
-     "shell.execute_reply": "2024-10-25T21:07:40.969759Z"
+     "iopub.execute_input": "2024-10-29T09:21:11.131816Z",
+     "iopub.status.busy": "2024-10-29T09:21:11.131479Z",
+     "iopub.status.idle": "2024-10-29T09:21:11.400123Z",
+     "shell.execute_reply": "2024-10-29T09:21:11.399147Z"
     },
     "id": "4-aOwIrp2pYI",
     "outputId": "e6ef0214-f215-4ace-94ca-27dcaf0ca8f8",
     "papermill": {
-     "duration": 0.250737,
-     "end_time": "2024-10-25T21:07:40.973023",
+     "duration": 0.289764,
+     "end_time": "2024-10-29T09:21:11.402556",
      "exception": false,
-     "start_time": "2024-10-25T21:07:40.722286",
+     "start_time": "2024-10-29T09:21:11.112792",
      "status": "completed"
     },
     "tags": []
@@ -252,7 +328,6 @@
     }
    ],
    "source": [
-    "import pandas as pd\n",
     "\n",
     "print(f'reading the csv files into pandas dataframes.')\n",
     "\n",
@@ -266,21 +341,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 8,
-   "id": "46964605",
+   "execution_count": 10,
+   "id": "f05672c5",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:41.001544Z",
-     "iopub.status.busy": "2024-10-25T21:07:41.001173Z",
-     "iopub.status.idle": "2024-10-25T21:07:41.005072Z",
-     "shell.execute_reply": "2024-10-25T21:07:41.004256Z"
+     "iopub.execute_input": "2024-10-29T09:21:11.439968Z",
+     "iopub.status.busy": "2024-10-29T09:21:11.439628Z",
+     "iopub.status.idle": "2024-10-29T09:21:11.443745Z",
+     "shell.execute_reply": "2024-10-29T09:21:11.442872Z"
     },
     "id": "msVqxn5m2pYI",
     "papermill": {
-     "duration": 0.02012,
-     "end_time": "2024-10-25T21:07:41.007090",
+     "duration": 0.024638,
+     "end_time": "2024-10-29T09:21:11.445602",
      "exception": false,
-     "start_time": "2024-10-25T21:07:40.986970",
+     "start_time": "2024-10-29T09:21:11.420964",
      "status": "completed"
     },
     "tags": []
@@ -292,21 +367,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 9,
-   "id": "0d95dbc2",
+   "execution_count": 11,
+   "id": "49337af9",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:41.034307Z",
-     "iopub.status.busy": "2024-10-25T21:07:41.034000Z",
-     "iopub.status.idle": "2024-10-25T21:07:41.037862Z",
-     "shell.execute_reply": "2024-10-25T21:07:41.036967Z"
+     "iopub.execute_input": "2024-10-29T09:21:11.481647Z",
+     "iopub.status.busy": "2024-10-29T09:21:11.481316Z",
+     "iopub.status.idle": "2024-10-29T09:21:11.485183Z",
+     "shell.execute_reply": "2024-10-29T09:21:11.484424Z"
     },
     "id": "8CVAOYiU2pYJ",
     "papermill": {
-     "duration": 0.019532,
-     "end_time": "2024-10-25T21:07:41.039668",
+     "duration": 0.024058,
+     "end_time": "2024-10-29T09:21:11.487077",
      "exception": false,
-     "start_time": "2024-10-25T21:07:41.020136",
+     "start_time": "2024-10-29T09:21:11.463019",
      "status": "completed"
     },
     "tags": []
@@ -318,21 +393,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 10,
-   "id": "c9d72886",
+   "execution_count": 12,
+   "id": "5fdc46c1",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:41.067248Z",
-     "iopub.status.busy": "2024-10-25T21:07:41.066953Z",
-     "iopub.status.idle": "2024-10-25T21:07:41.070726Z",
-     "shell.execute_reply": "2024-10-25T21:07:41.069886Z"
+     "iopub.execute_input": "2024-10-29T09:21:11.523008Z",
+     "iopub.status.busy": "2024-10-29T09:21:11.522707Z",
+     "iopub.status.idle": "2024-10-29T09:21:11.526519Z",
+     "shell.execute_reply": "2024-10-29T09:21:11.525683Z"
     },
     "id": "dhU-Nqzs2pYJ",
     "papermill": {
-     "duration": 0.019471,
-     "end_time": "2024-10-25T21:07:41.072500",
+     "duration": 0.023856,
+     "end_time": "2024-10-29T09:21:11.528362",
      "exception": false,
-     "start_time": "2024-10-25T21:07:41.053029",
+     "start_time": "2024-10-29T09:21:11.504506",
      "status": "completed"
     },
     "tags": []
@@ -344,21 +419,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 11,
-   "id": "21bb3ab5",
+   "execution_count": 13,
+   "id": "f915858b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:41.099938Z",
-     "iopub.status.busy": "2024-10-25T21:07:41.099635Z",
-     "iopub.status.idle": "2024-10-25T21:07:41.107936Z",
-     "shell.execute_reply": "2024-10-25T21:07:41.106964Z"
+     "iopub.execute_input": "2024-10-29T09:21:11.564183Z",
+     "iopub.status.busy": "2024-10-29T09:21:11.563891Z",
+     "iopub.status.idle": "2024-10-29T09:21:11.571631Z",
+     "shell.execute_reply": "2024-10-29T09:21:11.570868Z"
     },
     "id": "A4GXB1u62pYJ",
     "papermill": {
-     "duration": 0.024168,
-     "end_time": "2024-10-25T21:07:41.109967",
+     "duration": 0.027886,
+     "end_time": "2024-10-29T09:21:11.573517",
      "exception": false,
-     "start_time": "2024-10-25T21:07:41.085799",
+     "start_time": "2024-10-29T09:21:11.545631",
      "status": "completed"
     },
     "tags": []
@@ -375,21 +450,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 12,
-   "id": "3e0d5274",
+   "execution_count": 14,
+   "id": "9b4ae3c8",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:41.138098Z",
-     "iopub.status.busy": "2024-10-25T21:07:41.137802Z",
-     "iopub.status.idle": "2024-10-25T21:07:41.141671Z",
-     "shell.execute_reply": "2024-10-25T21:07:41.140782Z"
+     "iopub.execute_input": "2024-10-29T09:21:11.609469Z",
+     "iopub.status.busy": "2024-10-29T09:21:11.609148Z",
+     "iopub.status.idle": "2024-10-29T09:21:11.612914Z",
+     "shell.execute_reply": "2024-10-29T09:21:11.612133Z"
     },
     "id": "8MTuOiD92pYJ",
     "papermill": {
-     "duration": 0.020096,
-     "end_time": "2024-10-25T21:07:41.143554",
+     "duration": 0.023952,
+     "end_time": "2024-10-29T09:21:11.614895",
      "exception": false,
-     "start_time": "2024-10-25T21:07:41.123458",
+     "start_time": "2024-10-29T09:21:11.590943",
      "status": "completed"
     },
     "tags": []
@@ -401,28 +476,27 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 13,
-   "id": "b09cddc9",
+   "execution_count": 15,
+   "id": "c64a016b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:41.172250Z",
-     "iopub.status.busy": "2024-10-25T21:07:41.171922Z",
-     "iopub.status.idle": "2024-10-25T21:07:41.178989Z",
-     "shell.execute_reply": "2024-10-25T21:07:41.178086Z"
+     "iopub.execute_input": "2024-10-29T09:21:11.650712Z",
+     "iopub.status.busy": "2024-10-29T09:21:11.650407Z",
+     "iopub.status.idle": "2024-10-29T09:21:11.657090Z",
+     "shell.execute_reply": "2024-10-29T09:21:11.656303Z"
     },
     "id": "59Vicvtb2pYJ",
     "papermill": {
-     "duration": 0.023747,
-     "end_time": "2024-10-25T21:07:41.181087",
+     "duration": 0.026779,
+     "end_time": "2024-10-29T09:21:11.658945",
      "exception": false,
-     "start_time": "2024-10-25T21:07:41.157340",
+     "start_time": "2024-10-29T09:21:11.632166",
      "status": "completed"
     },
     "tags": []
    },
    "outputs": [],
    "source": [
-    "import matplotlib.pyplot as plt\n",
     "\n",
     "def box_plots_num_cols(df, columns):\n",
     "    df = df.copy()\n",
@@ -444,21 +518,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 14,
-   "id": "b7dbe948",
+   "execution_count": 16,
+   "id": "70e9518c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:41.209907Z",
-     "iopub.status.busy": "2024-10-25T21:07:41.209619Z",
-     "iopub.status.idle": "2024-10-25T21:07:41.213587Z",
-     "shell.execute_reply": "2024-10-25T21:07:41.212662Z"
+     "iopub.execute_input": "2024-10-29T09:21:11.694643Z",
+     "iopub.status.busy": "2024-10-29T09:21:11.694329Z",
+     "iopub.status.idle": "2024-10-29T09:21:11.698054Z",
+     "shell.execute_reply": "2024-10-29T09:21:11.697278Z"
     },
     "id": "5q3wrA282pYK",
     "papermill": {
-     "duration": 0.020504,
-     "end_time": "2024-10-25T21:07:41.215491",
+     "duration": 0.02378,
+     "end_time": "2024-10-29T09:21:11.700003",
      "exception": false,
-     "start_time": "2024-10-25T21:07:41.194987",
+     "start_time": "2024-10-29T09:21:11.676223",
      "status": "completed"
     },
     "tags": []
@@ -470,29 +544,28 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 15,
-   "id": "ffbaacfa",
+   "execution_count": 17,
+   "id": "27843a8d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:41.244104Z",
-     "iopub.status.busy": "2024-10-25T21:07:41.243836Z",
-     "iopub.status.idle": "2024-10-25T21:07:42.016105Z",
-     "shell.execute_reply": "2024-10-25T21:07:42.015343Z"
+     "iopub.execute_input": "2024-10-29T09:21:11.736467Z",
+     "iopub.status.busy": "2024-10-29T09:21:11.735762Z",
+     "iopub.status.idle": "2024-10-29T09:21:11.743076Z",
+     "shell.execute_reply": "2024-10-29T09:21:11.742206Z"
     },
     "id": "ZtOn9zxs2pYK",
     "papermill": {
-     "duration": 0.789176,
-     "end_time": "2024-10-25T21:07:42.018416",
+     "duration": 0.027512,
+     "end_time": "2024-10-29T09:21:11.744929",
      "exception": false,
-     "start_time": "2024-10-25T21:07:41.229240",
+     "start_time": "2024-10-29T09:21:11.717417",
      "status": "completed"
     },
     "tags": []
    },
    "outputs": [],
    "source": [
-    "from scipy import stats\n",
-    "import numpy as np\n",
+    "\n",
     "\n",
     "def remove_outliers(df:pd.DataFrame(), cols, beta):\n",
     "    df = df.copy()\n",
@@ -511,22 +584,22 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 16,
-   "id": "d6ae482d",
+   "execution_count": 18,
+   "id": "18cf40a7",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:42.047193Z",
-     "iopub.status.busy": "2024-10-25T21:07:42.046712Z",
-     "iopub.status.idle": "2024-10-25T21:07:42.119496Z",
-     "shell.execute_reply": "2024-10-25T21:07:42.118532Z"
+     "iopub.execute_input": "2024-10-29T09:21:11.780646Z",
+     "iopub.status.busy": "2024-10-29T09:21:11.780341Z",
+     "iopub.status.idle": "2024-10-29T09:21:11.842931Z",
+     "shell.execute_reply": "2024-10-29T09:21:11.841738Z"
     },
     "id": "CbzNHkWx2pYK",
     "outputId": "d4f41e9f-20c6-45a8-d9a6-3b153ddb7ad9",
     "papermill": {
-     "duration": 0.089405,
-     "end_time": "2024-10-25T21:07:42.121818",
+     "duration": 0.094765,
+     "end_time": "2024-10-29T09:21:11.856883",
      "exception": false,
-     "start_time": "2024-10-25T21:07:42.032413",
+     "start_time": "2024-10-29T09:21:11.762118",
      "status": "completed"
     },
     "tags": []
@@ -546,7 +619,7 @@
        "((24802, 13), (58645, 13))"
       ]
      },
-     "execution_count": 16,
+     "execution_count": 18,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -561,21 +634,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 17,
-   "id": "6905d656",
+   "execution_count": 19,
+   "id": "2a50bb5a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:42.150497Z",
-     "iopub.status.busy": "2024-10-25T21:07:42.150141Z",
-     "iopub.status.idle": "2024-10-25T21:07:42.156058Z",
-     "shell.execute_reply": "2024-10-25T21:07:42.155339Z"
+     "iopub.execute_input": "2024-10-29T09:21:11.895869Z",
+     "iopub.status.busy": "2024-10-29T09:21:11.895545Z",
+     "iopub.status.idle": "2024-10-29T09:21:11.901394Z",
+     "shell.execute_reply": "2024-10-29T09:21:11.900601Z"
     },
     "id": "fkP1sW402pYK",
     "papermill": {
-     "duration": 0.02241,
-     "end_time": "2024-10-25T21:07:42.157938",
+     "duration": 0.026547,
+     "end_time": "2024-10-29T09:21:11.903210",
      "exception": false,
-     "start_time": "2024-10-25T21:07:42.135528",
+     "start_time": "2024-10-29T09:21:11.876663",
      "status": "completed"
     },
     "tags": []
@@ -592,21 +665,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 18,
-   "id": "39de9b5a",
+   "execution_count": 20,
+   "id": "3d2e7d16",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:42.185816Z",
-     "iopub.status.busy": "2024-10-25T21:07:42.185531Z",
-     "iopub.status.idle": "2024-10-25T21:07:42.189158Z",
-     "shell.execute_reply": "2024-10-25T21:07:42.188460Z"
+     "iopub.execute_input": "2024-10-29T09:21:11.939286Z",
+     "iopub.status.busy": "2024-10-29T09:21:11.938964Z",
+     "iopub.status.idle": "2024-10-29T09:21:11.942686Z",
+     "shell.execute_reply": "2024-10-29T09:21:11.941961Z"
     },
     "id": "XWZIcwpD2pYK",
     "papermill": {
-     "duration": 0.01963,
-     "end_time": "2024-10-25T21:07:42.190959",
+     "duration": 0.023853,
+     "end_time": "2024-10-29T09:21:11.944573",
      "exception": false,
-     "start_time": "2024-10-25T21:07:42.171329",
+     "start_time": "2024-10-29T09:21:11.920720",
      "status": "completed"
     },
     "tags": []
@@ -618,21 +691,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 19,
-   "id": "2b870760",
+   "execution_count": 21,
+   "id": "5d310354",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:42.218816Z",
-     "iopub.status.busy": "2024-10-25T21:07:42.218540Z",
-     "iopub.status.idle": "2024-10-25T21:07:42.222146Z",
-     "shell.execute_reply": "2024-10-25T21:07:42.221316Z"
+     "iopub.execute_input": "2024-10-29T09:21:11.980839Z",
+     "iopub.status.busy": "2024-10-29T09:21:11.980533Z",
+     "iopub.status.idle": "2024-10-29T09:21:11.984162Z",
+     "shell.execute_reply": "2024-10-29T09:21:11.983330Z"
     },
     "id": "6Daiqx6X2pYL",
     "papermill": {
-     "duration": 0.01962,
-     "end_time": "2024-10-25T21:07:42.224088",
+     "duration": 0.023669,
+     "end_time": "2024-10-29T09:21:11.985961",
      "exception": false,
-     "start_time": "2024-10-25T21:07:42.204468",
+     "start_time": "2024-10-29T09:21:11.962292",
      "status": "completed"
     },
     "tags": []
@@ -644,22 +717,22 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 20,
-   "id": "067f0508",
+   "execution_count": 22,
+   "id": "fde514f1",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:42.251722Z",
-     "iopub.status.busy": "2024-10-25T21:07:42.251411Z",
-     "iopub.status.idle": "2024-10-25T21:07:42.485430Z",
-     "shell.execute_reply": "2024-10-25T21:07:42.484032Z"
+     "iopub.execute_input": "2024-10-29T09:21:12.022129Z",
+     "iopub.status.busy": "2024-10-29T09:21:12.021841Z",
+     "iopub.status.idle": "2024-10-29T09:21:12.076111Z",
+     "shell.execute_reply": "2024-10-29T09:21:12.075326Z"
     },
     "id": "iz0XxUy12pYL",
     "outputId": "a04b5901-3a48-4ba2-d72e-b9cef5e045fe",
     "papermill": {
-     "duration": 0.250031,
-     "end_time": "2024-10-25T21:07:42.487537",
+     "duration": 0.074683,
+     "end_time": "2024-10-29T09:21:12.078217",
      "exception": false,
-     "start_time": "2024-10-25T21:07:42.237506",
+     "start_time": "2024-10-29T09:21:12.003534",
      "status": "completed"
     },
     "tags": []
@@ -669,42 +742,12 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "encoding the categorical features\n",
-      "<class 'pandas.core.frame.DataFrame'>\n",
-      "RangeIndex: 24802 entries, 0 to 24801\n",
-      "Data columns (total 21 columns):\n",
-      " #   Column                          Non-Null Count  Dtype  \n",
-      "---  ------                          --------------  -----  \n",
-      " 0   loan_grade                      24802 non-null  float64\n",
-      " 1   person_home_ownership_MORTGAGE  24802 non-null  float64\n",
-      " 2   person_home_ownership_OTHER     24802 non-null  float64\n",
-      " 3   person_home_ownership_OWN       24802 non-null  float64\n",
-      " 4   person_home_ownership_RENT      24802 non-null  float64\n",
-      " 5   loan_intent_DEBTCONSOLIDATION   24802 non-null  float64\n",
-      " 6   loan_intent_EDUCATION           24802 non-null  float64\n",
-      " 7   loan_intent_HOMEIMPROVEMENT     24802 non-null  float64\n",
-      " 8   loan_intent_MEDICAL             24802 non-null  float64\n",
-      " 9   loan_intent_PERSONAL            24802 non-null  float64\n",
-      " 10  loan_intent_VENTURE             24802 non-null  float64\n",
-      " 11  cb_person_default_on_file_N     24802 non-null  float64\n",
-      " 12  cb_person_default_on_file_Y     24802 non-null  float64\n",
-      " 13  person_age                      24802 non-null  float64\n",
-      " 14  person_income                   24802 non-null  float64\n",
-      " 15  person_emp_length               24802 non-null  float64\n",
-      " 16  loan_amnt                       24802 non-null  float64\n",
-      " 17  loan_int_rate                   24802 non-null  float64\n",
-      " 18  loan_percent_income             24802 non-null  float64\n",
-      " 19  cb_person_cred_hist_length      24802 non-null  float64\n",
-      " 20  loan_status                     24802 non-null  float64\n",
-      "dtypes: float64(21)\n",
-      "memory usage: 4.0 MB\n"
+      "encoding the categorical features\n"
      ]
     }
    ],
    "source": [
-    "from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder\n",
-    "from sklearn.compose import ColumnTransformer\n",
-    "from sklearn.pipeline import Pipeline\n",
+    "\n",
     "\n",
     "print('encoding the categorical features')\n",
     "df_clean = df_clean.drop(columns=['id'])\n",
@@ -729,55 +772,36 @@
     "one_hot_encoded_cols = one_hot_enc.get_feature_names_out(one_hot_cols)\n",
     "all_cols = ordinal_cols + list(one_hot_encoded_cols) + remaining_cols\n",
     "df_encoded = pd.DataFrame(encoded_data, columns=all_cols)\n",
-    "df_encoded.info()"
+    "# df_encoded.info()"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 21,
-   "id": "1c04c8af",
+   "execution_count": 23,
+   "id": "768dde8b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:07:42.516727Z",
-     "iopub.status.busy": "2024-10-25T21:07:42.516334Z",
-     "iopub.status.idle": "2024-10-25T21:08:00.448262Z",
-     "shell.execute_reply": "2024-10-25T21:08:00.447284Z"
+     "iopub.execute_input": "2024-10-29T09:21:12.115184Z",
+     "iopub.status.busy": "2024-10-29T09:21:12.114684Z",
+     "iopub.status.idle": "2024-10-29T09:21:15.886908Z",
+     "shell.execute_reply": "2024-10-29T09:21:15.885934Z"
     },
     "id": "6bnWn1Nk2pYL",
     "outputId": "19936ed2-b00d-4dd5-8be8-12669aa48076",
     "papermill": {
-     "duration": 17.948401,
-     "end_time": "2024-10-25T21:08:00.450238",
+     "duration": 3.792969,
+     "end_time": "2024-10-29T09:21:15.889080",
      "exception": false,
-     "start_time": "2024-10-25T21:07:42.501837",
+     "start_time": "2024-10-29T09:21:12.096111",
      "status": "completed"
     },
     "tags": []
    },
    "outputs": [
     {
-     "name": "stderr",
-     "output_type": "stream",
-     "text": [
-      "/opt/conda/lib/python3.10/pty.py:89: RuntimeWarning: os.fork() was called. os.fork() is incompatible with multithreaded code, and JAX is multithreaded, so this will likely lead to a deadlock.\n",
-      "  pid, fd = os.forkpty()\n"
-     ]
-    },
-    {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "Collecting imblearn\r\n",
-      "  Downloading imblearn-0.0-py2.py3-none-any.whl.metadata (355 bytes)\r\n",
-      "Requirement already satisfied: imbalanced-learn in /opt/conda/lib/python3.10/site-packages (from imblearn) (0.12.3)\r\n",
-      "Requirement already satisfied: numpy>=1.17.3 in /opt/conda/lib/python3.10/site-packages (from imbalanced-learn->imblearn) (1.26.4)\r\n",
-      "Requirement already satisfied: scipy>=1.5.0 in /opt/conda/lib/python3.10/site-packages (from imbalanced-learn->imblearn) (1.14.1)\r\n",
-      "Requirement already satisfied: scikit-learn>=1.0.2 in /opt/conda/lib/python3.10/site-packages (from imbalanced-learn->imblearn) (1.2.2)\r\n",
-      "Requirement already satisfied: joblib>=1.1.1 in /opt/conda/lib/python3.10/site-packages (from imbalanced-learn->imblearn) (1.4.2)\r\n",
-      "Requirement already satisfied: threadpoolctl>=2.0.0 in /opt/conda/lib/python3.10/site-packages (from imbalanced-learn->imblearn) (3.5.0)\r\n",
-      "Downloading imblearn-0.0-py2.py3-none-any.whl (1.9 kB)\r\n",
-      "Installing collected packages: imblearn\r\n",
-      "Successfully installed imblearn-0.0\r\n",
       "oversampling using SVMSMOTE\n"
      ]
     },
@@ -787,14 +811,12 @@
        "((46192, 20), (46192,), (46192, 20), (46192,))"
       ]
      },
-     "execution_count": 21,
+     "execution_count": 23,
      "metadata": {},
      "output_type": "execute_result"
     }
    ],
    "source": [
-    "!pip install imblearn\n",
-    "from imblearn.over_sampling import SMOTE, SVMSMOTE\n",
     "\n",
     "print(f'oversampling using SVMSMOTE')\n",
     "df_enc_copy = df_encoded.copy()\n",
@@ -812,21 +834,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 22,
-   "id": "b08f6dbe",
+   "execution_count": 24,
+   "id": "3fb73aa2",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:00.480818Z",
-     "iopub.status.busy": "2024-10-25T21:08:00.479993Z",
-     "iopub.status.idle": "2024-10-25T21:08:00.486123Z",
-     "shell.execute_reply": "2024-10-25T21:08:00.485266Z"
+     "iopub.execute_input": "2024-10-29T09:21:15.928030Z",
+     "iopub.status.busy": "2024-10-29T09:21:15.927245Z",
+     "iopub.status.idle": "2024-10-29T09:21:15.933339Z",
+     "shell.execute_reply": "2024-10-29T09:21:15.932656Z"
     },
     "id": "x65j6BfZ2pYL",
     "papermill": {
-     "duration": 0.023395,
-     "end_time": "2024-10-25T21:08:00.488063",
+     "duration": 0.027058,
+     "end_time": "2024-10-29T09:21:15.935111",
      "exception": false,
-     "start_time": "2024-10-25T21:08:00.464668",
+     "start_time": "2024-10-29T09:21:15.908053",
      "status": "completed"
     },
     "tags": []
@@ -842,21 +864,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 23,
-   "id": "ca2778b4",
+   "execution_count": 25,
+   "id": "036cd544",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:00.517848Z",
-     "iopub.status.busy": "2024-10-25T21:08:00.517552Z",
-     "iopub.status.idle": "2024-10-25T21:08:00.521187Z",
-     "shell.execute_reply": "2024-10-25T21:08:00.520474Z"
+     "iopub.execute_input": "2024-10-29T09:21:15.972466Z",
+     "iopub.status.busy": "2024-10-29T09:21:15.971956Z",
+     "iopub.status.idle": "2024-10-29T09:21:15.975705Z",
+     "shell.execute_reply": "2024-10-29T09:21:15.974949Z"
     },
     "id": "sU1TZD2M2pYL",
     "papermill": {
-     "duration": 0.020608,
-     "end_time": "2024-10-25T21:08:00.523130",
+     "duration": 0.024508,
+     "end_time": "2024-10-29T09:21:15.977508",
      "exception": false,
-     "start_time": "2024-10-25T21:08:00.502522",
+     "start_time": "2024-10-29T09:21:15.953000",
      "status": "completed"
     },
     "tags": []
@@ -869,21 +891,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 24,
-   "id": "bcd925f7",
+   "execution_count": 26,
+   "id": "ddb18aa2",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:00.552350Z",
-     "iopub.status.busy": "2024-10-25T21:08:00.552034Z",
-     "iopub.status.idle": "2024-10-25T21:08:00.555579Z",
-     "shell.execute_reply": "2024-10-25T21:08:00.554766Z"
+     "iopub.execute_input": "2024-10-29T09:21:16.014469Z",
+     "iopub.status.busy": "2024-10-29T09:21:16.013871Z",
+     "iopub.status.idle": "2024-10-29T09:21:16.018053Z",
+     "shell.execute_reply": "2024-10-29T09:21:16.017195Z"
     },
     "id": "gQQuhfqk2pYL",
     "papermill": {
-     "duration": 0.020267,
-     "end_time": "2024-10-25T21:08:00.557437",
+     "duration": 0.024624,
+     "end_time": "2024-10-29T09:21:16.019905",
      "exception": false,
-     "start_time": "2024-10-25T21:08:00.537170",
+     "start_time": "2024-10-29T09:21:15.995281",
      "status": "completed"
     },
     "tags": []
@@ -896,21 +918,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 25,
-   "id": "44b00321",
+   "execution_count": 27,
+   "id": "27556e2f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:00.587224Z",
-     "iopub.status.busy": "2024-10-25T21:08:00.586884Z",
-     "iopub.status.idle": "2024-10-25T21:08:00.590608Z",
-     "shell.execute_reply": "2024-10-25T21:08:00.589755Z"
+     "iopub.execute_input": "2024-10-29T09:21:16.056740Z",
+     "iopub.status.busy": "2024-10-29T09:21:16.056431Z",
+     "iopub.status.idle": "2024-10-29T09:21:16.060041Z",
+     "shell.execute_reply": "2024-10-29T09:21:16.059303Z"
     },
     "id": "sQ-xZAX22pYL",
     "papermill": {
-     "duration": 0.021004,
-     "end_time": "2024-10-25T21:08:00.592614",
+     "duration": 0.02416,
+     "end_time": "2024-10-29T09:21:16.061873",
      "exception": false,
-     "start_time": "2024-10-25T21:08:00.571610",
+     "start_time": "2024-10-29T09:21:16.037713",
      "status": "completed"
     },
     "tags": []
@@ -923,28 +945,27 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 26,
-   "id": "6d9ffc1b",
+   "execution_count": 28,
+   "id": "2fc9a868",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:00.621747Z",
-     "iopub.status.busy": "2024-10-25T21:08:00.621483Z",
-     "iopub.status.idle": "2024-10-25T21:08:01.044644Z",
-     "shell.execute_reply": "2024-10-25T21:08:01.043692Z"
+     "iopub.execute_input": "2024-10-29T09:21:16.101524Z",
+     "iopub.status.busy": "2024-10-29T09:21:16.101070Z",
+     "iopub.status.idle": "2024-10-29T09:21:16.107108Z",
+     "shell.execute_reply": "2024-10-29T09:21:16.106197Z"
     },
     "id": "0ZCuXkmt2pYL",
     "papermill": {
-     "duration": 0.440238,
-     "end_time": "2024-10-25T21:08:01.046873",
+     "duration": 0.028693,
+     "end_time": "2024-10-29T09:21:16.109046",
      "exception": false,
-     "start_time": "2024-10-25T21:08:00.606635",
+     "start_time": "2024-10-29T09:21:16.080353",
      "status": "completed"
     },
     "tags": []
    },
    "outputs": [],
    "source": [
-    "import seaborn as sns\n",
     "\n",
     "def heatmap_corr(corr):\n",
     "    plt.figure(figsize=(10, 8))\n",
@@ -955,21 +976,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 27,
-   "id": "60c48325",
+   "execution_count": 29,
+   "id": "29fdb3b2",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:01.077884Z",
-     "iopub.status.busy": "2024-10-25T21:08:01.077086Z",
-     "iopub.status.idle": "2024-10-25T21:08:01.081346Z",
-     "shell.execute_reply": "2024-10-25T21:08:01.080450Z"
+     "iopub.execute_input": "2024-10-29T09:21:16.154001Z",
+     "iopub.status.busy": "2024-10-29T09:21:16.153156Z",
+     "iopub.status.idle": "2024-10-29T09:21:16.157573Z",
+     "shell.execute_reply": "2024-10-29T09:21:16.156593Z"
     },
     "id": "8ZJUeWU-2pYL",
     "papermill": {
-     "duration": 0.021546,
-     "end_time": "2024-10-25T21:08:01.083212",
+     "duration": 0.029117,
+     "end_time": "2024-10-29T09:21:16.159995",
      "exception": false,
-     "start_time": "2024-10-25T21:08:01.061666",
+     "start_time": "2024-10-29T09:21:16.130878",
      "status": "completed"
     },
     "tags": []
@@ -981,21 +1002,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 28,
-   "id": "d068a747",
+   "execution_count": 30,
+   "id": "55068892",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:01.112654Z",
-     "iopub.status.busy": "2024-10-25T21:08:01.112349Z",
-     "iopub.status.idle": "2024-10-25T21:08:01.116091Z",
-     "shell.execute_reply": "2024-10-25T21:08:01.115252Z"
+     "iopub.execute_input": "2024-10-29T09:21:16.201698Z",
+     "iopub.status.busy": "2024-10-29T09:21:16.201401Z",
+     "iopub.status.idle": "2024-10-29T09:21:16.205381Z",
+     "shell.execute_reply": "2024-10-29T09:21:16.204471Z"
     },
     "id": "X8R0Xdsk2pYM",
     "papermill": {
-     "duration": 0.020536,
-     "end_time": "2024-10-25T21:08:01.118038",
+     "duration": 0.02692,
+     "end_time": "2024-10-29T09:21:16.207322",
      "exception": false,
-     "start_time": "2024-10-25T21:08:01.097502",
+     "start_time": "2024-10-29T09:21:16.180402",
      "status": "completed"
     },
     "tags": []
@@ -1007,21 +1028,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 29,
-   "id": "b8a8d481",
+   "execution_count": 31,
+   "id": "5d7096ca",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:01.147180Z",
-     "iopub.status.busy": "2024-10-25T21:08:01.146882Z",
-     "iopub.status.idle": "2024-10-25T21:08:01.150527Z",
-     "shell.execute_reply": "2024-10-25T21:08:01.149679Z"
+     "iopub.execute_input": "2024-10-29T09:21:16.244426Z",
+     "iopub.status.busy": "2024-10-29T09:21:16.244030Z",
+     "iopub.status.idle": "2024-10-29T09:21:16.247742Z",
+     "shell.execute_reply": "2024-10-29T09:21:16.246828Z"
     },
     "id": "rrdxxXsu2pYM",
     "papermill": {
-     "duration": 0.020279,
-     "end_time": "2024-10-25T21:08:01.152449",
+     "duration": 0.024519,
+     "end_time": "2024-10-29T09:21:16.249632",
      "exception": false,
-     "start_time": "2024-10-25T21:08:01.132170",
+     "start_time": "2024-10-29T09:21:16.225113",
      "status": "completed"
     },
     "tags": []
@@ -1034,21 +1055,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 30,
-   "id": "6cab3717",
+   "execution_count": 32,
+   "id": "dc55f64d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:01.181652Z",
-     "iopub.status.busy": "2024-10-25T21:08:01.181377Z",
-     "iopub.status.idle": "2024-10-25T21:08:01.184899Z",
-     "shell.execute_reply": "2024-10-25T21:08:01.184073Z"
+     "iopub.execute_input": "2024-10-29T09:21:16.286229Z",
+     "iopub.status.busy": "2024-10-29T09:21:16.285940Z",
+     "iopub.status.idle": "2024-10-29T09:21:16.289797Z",
+     "shell.execute_reply": "2024-10-29T09:21:16.288951Z"
     },
     "id": "U0kFKuHp2pYM",
     "papermill": {
-     "duration": 0.020304,
-     "end_time": "2024-10-25T21:08:01.186714",
+     "duration": 0.024257,
+     "end_time": "2024-10-29T09:21:16.291613",
      "exception": false,
-     "start_time": "2024-10-25T21:08:01.166410",
+     "start_time": "2024-10-29T09:21:16.267356",
      "status": "completed"
     },
     "tags": []
@@ -1061,22 +1082,22 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 31,
-   "id": "35527106",
+   "execution_count": 33,
+   "id": "d3607e4a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:01.215705Z",
-     "iopub.status.busy": "2024-10-25T21:08:01.215401Z",
-     "iopub.status.idle": "2024-10-25T21:08:01.232959Z",
-     "shell.execute_reply": "2024-10-25T21:08:01.232000Z"
+     "iopub.execute_input": "2024-10-29T09:21:16.328360Z",
+     "iopub.status.busy": "2024-10-29T09:21:16.328030Z",
+     "iopub.status.idle": "2024-10-29T09:21:16.355569Z",
+     "shell.execute_reply": "2024-10-29T09:21:16.354518Z"
     },
     "id": "QE4NvjnB2pYM",
     "outputId": "4f2a850d-c619-4c0c-fa78-7b8fe3b518ef",
     "papermill": {
-     "duration": 0.034452,
-     "end_time": "2024-10-25T21:08:01.235109",
+     "duration": 0.048222,
+     "end_time": "2024-10-29T09:21:16.357576",
      "exception": false,
-     "start_time": "2024-10-25T21:08:01.200657",
+     "start_time": "2024-10-29T09:21:16.309354",
      "status": "completed"
     },
     "tags": []
@@ -1125,22 +1146,22 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 32,
-   "id": "55a80270",
+   "execution_count": 34,
+   "id": "eaa726d1",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:01.265490Z",
-     "iopub.status.busy": "2024-10-25T21:08:01.264891Z",
-     "iopub.status.idle": "2024-10-25T21:08:01.290373Z",
-     "shell.execute_reply": "2024-10-25T21:08:01.289536Z"
+     "iopub.execute_input": "2024-10-29T09:21:16.394474Z",
+     "iopub.status.busy": "2024-10-29T09:21:16.394170Z",
+     "iopub.status.idle": "2024-10-29T09:21:16.417277Z",
+     "shell.execute_reply": "2024-10-29T09:21:16.416376Z"
     },
     "id": "iese6I-52pYM",
     "outputId": "166a9cbb-94cf-4208-b4dc-cf8ca94f6e2b",
     "papermill": {
-     "duration": 0.042429,
-     "end_time": "2024-10-25T21:08:01.292356",
+     "duration": 0.04377,
+     "end_time": "2024-10-29T09:21:16.419367",
      "exception": false,
-     "start_time": "2024-10-25T21:08:01.249927",
+     "start_time": "2024-10-29T09:21:16.375597",
      "status": "completed"
     },
     "tags": []
@@ -1159,13 +1180,12 @@
        "((22321, 20), (2481, 20))"
       ]
      },
-     "execution_count": 32,
+     "execution_count": 34,
      "metadata": {},
      "output_type": "execute_result"
     }
    ],
    "source": [
-    "from sklearn.model_selection import StratifiedShuffleSplit\n",
     "\n",
     "print('splitting the dataset into train and test')\n",
     "\n",
@@ -1180,21 +1200,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 33,
-   "id": "af82a5f9",
+   "execution_count": 35,
+   "id": "95f912a5",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:01.323990Z",
-     "iopub.status.busy": "2024-10-25T21:08:01.323702Z",
-     "iopub.status.idle": "2024-10-25T21:08:06.806193Z",
-     "shell.execute_reply": "2024-10-25T21:08:06.805398Z"
+     "iopub.execute_input": "2024-10-29T09:21:16.457877Z",
+     "iopub.status.busy": "2024-10-29T09:21:16.457574Z",
+     "iopub.status.idle": "2024-10-29T09:21:17.587041Z",
+     "shell.execute_reply": "2024-10-29T09:21:17.586008Z"
     },
     "id": "i9y4ryJC2pYM",
     "papermill": {
-     "duration": 5.500358,
-     "end_time": "2024-10-25T21:08:06.808502",
+     "duration": 1.15082,
+     "end_time": "2024-10-29T09:21:17.589435",
      "exception": false,
-     "start_time": "2024-10-25T21:08:01.308144",
+     "start_time": "2024-10-29T09:21:16.438615",
      "status": "completed"
     },
     "tags": []
@@ -1210,10 +1230,7 @@
     }
    ],
    "source": [
-    "import tensorflow as tf\n",
-    "import pandas as pd\n",
-    "from sklearn.preprocessing import StandardScaler, PolynomialFeatures\n",
-    "from sklearn.pipeline import Pipeline\n",
+    "\n",
     "\n",
     "def prepare_data_for_tpu(df:pd.DataFrame, features_cols:list[str], target_col:str, batch_size:int=32, poly_degree:int=2, poly:bool=False, valid_split:bool=False,valid_split_size:float=0.2):\n",
     "\n",
@@ -1251,97 +1268,125 @@
     "\n",
     "print('preparing the datasets for tpu and splitting them into train and valid datasets: \\n')\n",
     "try:\n",
-    "    train_dataset, valid_dataset = prepare_data_for_tpu(df_train, features_cols=features_cols, target_col=target_col, poly=True, poly_degree=5, valid_split=True, valid_split_size=0.2)\n",
+    "    train_dataset, valid_dataset = prepare_data_for_tpu(df_train, batch_size=32, features_cols=features_cols, target_col=target_col, poly=True, poly_degree=3, valid_split=True, valid_split_size=0.2)\n",
     "except Exception as e:\n",
     "    print('Could not prepare the datasets.')"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 34,
-   "id": "ec421917",
+   "execution_count": 36,
+   "id": "0d42678a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:06.840209Z",
-     "iopub.status.busy": "2024-10-25T21:08:06.839872Z",
-     "iopub.status.idle": "2024-10-25T21:08:06.845337Z",
-     "shell.execute_reply": "2024-10-25T21:08:06.844482Z"
+     "iopub.execute_input": "2024-10-29T09:21:17.628326Z",
+     "iopub.status.busy": "2024-10-29T09:21:17.627739Z",
+     "iopub.status.idle": "2024-10-29T09:21:17.639308Z",
+     "shell.execute_reply": "2024-10-29T09:21:17.638421Z"
     },
-    "id": "hTc4q5oS2pYM",
     "papermill": {
-     "duration": 0.023225,
-     "end_time": "2024-10-25T21:08:06.847286",
+     "duration": 0.032945,
+     "end_time": "2024-10-29T09:21:17.641251",
      "exception": false,
-     "start_time": "2024-10-25T21:08:06.824061",
+     "start_time": "2024-10-29T09:21:17.608306",
      "status": "completed"
     },
     "tags": []
    },
    "outputs": [],
    "source": [
-    "# import tensorflow as tf\n",
-    "# import keras\n",
-    "# from keras import activations, layers, initializers, regularizers, optimizers, losses, metrics\n",
+    "def build_model(input_shape, units, n_hidden_layers, batch_norm, drop_out, regularize, initializers, drop_out_rate):\n",
+    "    model = keras.Sequential()\n",
+    "    model.add(keras.Input(shape=(input_shape,)))\n",
     "\n",
-    "# with strategy.scope():\n",
-    "#     class ann_layer_gen:\n",
-    "#         def __init__(self, input_shape, batch_norm:bool=False, drop_out:bool=False, regularize:bool=False,  initializers :bool=False,drop_out_rate:float=0.0) -> None:\n",
-    "#             self.input_shape = input_shape\n",
-    "#             self.batch_norm = batch_norm\n",
-    "#             self.drop_out = drop_out\n",
-    "#             self.regularize = regularize\n",
-    "#             self.initializers = initializers\n",
-    "#             self.drop_out_rate = drop_out_rate\n",
-    "#             self.model = keras.Sequential()\n",
-    "#             self.model.add(keras.Input(shape=(input_shape, )))\n",
+    "    for _ in range(n_hidden_layers):\n",
+    "        layer_params = {'units': units, 'activation': activations.relu}\n",
     "\n",
-    "#         def __call__(self,  out_act_fun:activations, out_unit:int, units:int=100, n_hidden_layers:int=5,  hidden_act_fun:activations=activations.relu) -> keras.Sequential :\n",
-    "#             for n_layer in range(1, n_hidden_layers+1):\n",
-    "#                 layer_params = {'units':units, 'activation':hidden_act_fun}\n",
+    "        if regularize:\n",
+    "            layer_params['kernel_regularizer'] = regularizers.L1L2()\n",
+    "        if initializers:\n",
+    "            layer_params['kernel_initializer'] = keras.initializers.glorot_normal()\n",
     "\n",
-    "#                 if self.regularize:\n",
-    "#                     layer_params['kernel_regularizer'] = regularizers.L1()\n",
-    "#                 if self.initializers:\n",
-    "#                     layer_params['kernel_initializer'] = initializers.glorot_normal\n",
+    "        model.add(layers.Dense(**layer_params))\n",
     "\n",
-    "#                 self.model.add(layers.Dense(**layer_params))\n",
+    "        if drop_out:\n",
+    "            model.add(layers.Dropout(rate=drop_out_rate))\n",
+    "        if batch_norm:\n",
+    "            model.add(layers.BatchNormalization())\n",
     "\n",
-    "#                 if self.drop_out:\n",
-    "#                     self.model.add(layers.Dropout(rate=self.drop_out_rate))\n",
+    "        units = max(2, round(units / 4))  # Gradual reduction in units\n",
     "\n",
-    "#                 if self.batch_norm:\n",
-    "#                     self.model.add(layers.BatchNormalization())\n",
+    "    # Output layer\n",
+    "    model.add(layers.Dense(1, activation=activations.sigmoid))\n",
+    "    return model\n",
     "\n",
-    "#                 units = round(units / 2)\n",
-    "#             self.model.add(layers.Dense(out_unit, activation=out_act_fun))\n",
-    "#             return self.model\n",
+    "def compile_model(model, optimizer_name:str='Adam', learning_rate:float=0.001):\n",
+    "    if optimizer_name == 'Adam':\n",
+    "        optimizer = optimizers.Adam(learning_rate=learning_rate)\n",
+    "    elif optimizer_name == 'RMSprop':\n",
+    "        optimizer = optimizers.RMSprop(learning_rate=learning_rate)\n",
+    "    elif optimizer_name == 'SGD':\n",
+    "        optimizer = optimizers.SGD(learning_rate=learning_rate)\n",
+    "    elif optimizer_name == 'Nadam':\n",
+    "        optimizer = optimizers.Nadam(learning_rate=learning_rate)\n",
+    "    model.compile(optimizer=optimizer, loss=keras.losses.binary_crossentropy, metrics=['accuracy'])\n",
+    "    return model\n",
     "\n",
-    "#         def compile(model, loss:losses.Loss, metrics:list=['accuracy'], optimizer:optimizers.Optimizer=optimizers.Adam, valid_split:float=0.2, learning_rate:float=0.01 ) -> keras.Sequential:\n",
-    "#             try:\n",
-    "#                 model.compile(optimizer=optimizer(learning_rate=learning_rate), loss=loss, metrics=metrics)\n",
-    "#             except Exception as e:\n",
-    "#                 print('Could not compile the model with given params.')\n",
-    "#             return model"
+    "def train_model(model, train_dataset, valid_dataset, epochs, batch_size):\n",
+    "    history = model.fit(\n",
+    "        train_dataset,\n",
+    "        validation_data=valid_dataset,\n",
+    "        batch_size=batch_size,\n",
+    "        epochs=epochs,\n",
+    "        shuffle=True,\n",
+    "        verbose=0\n",
+    "    )\n",
+    "    return history.history['val_loss'][-1], history.history['val_accuracy'][-1]\n"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 35,
-   "id": "0c231401",
+   "execution_count": 37,
+   "id": "1574b98c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:06.877979Z",
-     "iopub.status.busy": "2024-10-25T21:08:06.877299Z",
-     "iopub.status.idle": "2024-10-25T21:08:07.024381Z",
-     "shell.execute_reply": "2024-10-25T21:08:07.023359Z"
+     "iopub.execute_input": "2024-10-29T09:21:17.678688Z",
+     "iopub.status.busy": "2024-10-29T09:21:17.678390Z",
+     "iopub.status.idle": "2024-10-29T09:21:17.682106Z",
+     "shell.execute_reply": "2024-10-29T09:21:17.681230Z"
+    },
+    "papermill": {
+     "duration": 0.024926,
+     "end_time": "2024-10-29T09:21:17.684295",
+     "exception": false,
+     "start_time": "2024-10-29T09:21:17.659369",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# best_params"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "id": "c35f94a9",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T09:21:17.722406Z",
+     "iopub.status.busy": "2024-10-29T09:21:17.722082Z",
+     "iopub.status.idle": "2024-10-29T09:21:17.848487Z",
+     "shell.execute_reply": "2024-10-29T09:21:17.847616Z"
     },
     "id": "GcvJ_1h72pYN",
     "outputId": "5c8b208c-fd5c-4d8d-905e-4c9eb3f1ff51",
     "papermill": {
-     "duration": 0.164687,
-     "end_time": "2024-10-25T21:08:07.026670",
+     "duration": 0.148111,
+     "end_time": "2024-10-29T09:21:17.850614",
      "exception": false,
-     "start_time": "2024-10-25T21:08:06.861983",
+     "start_time": "2024-10-29T09:21:17.702503",
      "status": "completed"
     },
     "tags": []
@@ -1359,106 +1404,93 @@
     "# Objective function for Optuna\n",
     "def objective(trial: optuna.Trial):\n",
     "    # Define hyperparameters\n",
-    "    epochs = trial.suggest_int('epochs', 10, 100, step=10)\n",
-    "    units = trial.suggest_int('units', 100, 500, step=50)\n",
-    "    n_hidden_layers = trial.suggest_int('n_hidden_layers', 3, 19, step=2)\n",
+    "    epochs = trial.suggest_int('epochs', 26, 45 )\n",
+    "    units = trial.suggest_int('units', 100, 170, step=5)\n",
+    "    n_hidden_layers = trial.suggest_int('n_hidden_layers', 2, 6)\n",
     "    batch_norm = trial.suggest_categorical('batch_norm', [True, False])\n",
     "    drop_out = trial.suggest_categorical('drop_out', [True, False])\n",
     "    regularize = trial.suggest_categorical('regularize', [True, False])\n",
     "    initializers = trial.suggest_categorical('initializers', [True, False])\n",
-    "    drop_out_rate = trial.suggest_float('drop_out_rate', 0, 1)\n",
+    "    drop_out_rate = trial.suggest_float('drop_out_rate', 0, 0.8)\n",
     "    learning_rate = trial.suggest_float('learning_rate', 1e-6, 1e-1, log=True)\n",
     "    optimizer_name = trial.suggest_categorical('optimizer', ['Adam', 'RMSprop', 'SGD', 'Nadam'])\n",
-    "    \n",
+    "\n",
     "    # Create optimizer object based on the selected name\n",
-    "    if optimizer_name == 'Adam':\n",
-    "        optimizer = optimizers.Adam(learning_rate=learning_rate)\n",
-    "    elif optimizer_name == 'RMSprop':\n",
-    "        optimizer = optimizers.RMSprop(learning_rate=learning_rate)\n",
-    "    elif optimizer_name == 'SGD':\n",
-    "        optimizer = optimizers.SGD(learning_rate=learning_rate)\n",
-    "    elif optimizer_name == 'Nadam':\n",
-    "        optimizer = optimizers.Nadam(learning_rate=learning_rate)\n",
+    "   \n",
     "\n",
+    "    batch_size = 32\n",
     "\n",
-    "    # Building the model within strategy scope\n",
-    "    with strategy.scope():\n",
-    "        # Model building function\n",
-    "        def build_model(input_shape, units, n_hidden_layers, batch_norm, drop_out, regularize, initializers, drop_out_rate):\n",
-    "            model = keras.Sequential()\n",
-    "            model.add(keras.Input(shape=(input_shape,)))\n",
+    "    # Build, compile, and train the model\n",
+    "    model = build_model(input_shape, units, n_hidden_layers, batch_norm, drop_out, regularize, initializers, drop_out_rate)\n",
+    "    model = compile_model(model, optimizer_name)\n",
+    "    val_loss, val_accuracy = train_model(model, train_dataset, valid_dataset, epochs, batch_size)\n",
     "\n",
-    "            for _ in range(n_hidden_layers):\n",
-    "                layer_params = {'units': units, 'activation': activations.relu}\n",
-    "\n",
-    "                if regularize:\n",
-    "                    layer_params['kernel_regularizer'] = regularizers.L1()\n",
-    "                if initializers:\n",
-    "                    layer_params['kernel_initializer'] = keras.initializers.glorot_normal()\n",
-    "\n",
-    "                model.add(layers.Dense(**layer_params))\n",
-    "\n",
-    "                if drop_out:\n",
-    "                    model.add(layers.Dropout(rate=drop_out_rate))\n",
-    "                if batch_norm:\n",
-    "                    model.add(layers.BatchNormalization())\n",
-    "                \n",
-    "                units = max(2, round(units / 2))  # Gradual reduction in units\n",
-    "\n",
-    "            # Output layer\n",
-    "            model.add(layers.Dense(1, activation=activations.sigmoid))\n",
-    "            return model\n",
-    "\n",
-    "        # Model compilation function\n",
-    "        def compile_model(model, optimizer):\n",
-    "            model.compile(optimizer=optimizer, loss=losses.binary_crossentropy, metrics=['accuracy'])\n",
-    "            return model\n",
-    "\n",
-    "        # Model training function\n",
-    "        def train_model(model, train_dataset, valid_dataset, epochs):\n",
-    "            history = model.fit(\n",
-    "                train_dataset,\n",
-    "                validation_data=valid_dataset,\n",
-    "                batch_size=32,\n",
-    "                epochs=epochs,\n",
-    "                shuffle=True,\n",
-    "                verbose=0\n",
-    "            )\n",
-    "            return history\n",
-    "\n",
-    "        # Build, compile, and train the model\n",
-    "        model = build_model(input_shape, units, n_hidden_layers, batch_norm, drop_out, regularize, initializers, drop_out_rate)\n",
-    "        model = compile_model(model, optimizer)\n",
-    "        history = train_model(model, train_dataset, valid_dataset, epochs)\n",
-    "\n",
-    "    # Retrieve metrics\n",
-    "    val_accuracy = history.history['val_accuracy'][-1]\n",
-    "    train_accuracy = history.history['accuracy'][-1]\n",
-    "    val_loss = history.history['val_loss'][-1]\n",
-    "    train_loss = history.history['loss'][-1]\n",
-    "\n",
-    "    K.clear_session()\n",
-    "    return train_loss, train_accuracy\n"
+    "    return val_loss, val_accuracy\n"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 36,
-   "id": "ae231195",
+   "execution_count": 39,
+   "id": "a5a18478",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:07.056987Z",
-     "iopub.status.busy": "2024-10-25T21:08:07.056676Z",
-     "iopub.status.idle": "2024-10-25T21:08:14.669341Z",
-     "shell.execute_reply": "2024-10-25T21:08:14.668372Z"
+     "iopub.execute_input": "2024-10-29T09:21:17.890159Z",
+     "iopub.status.busy": "2024-10-29T09:21:17.889864Z",
+     "iopub.status.idle": "2024-10-29T09:21:17.896608Z",
+     "shell.execute_reply": "2024-10-29T09:21:17.895713Z"
     },
-    "id": "EUJ9C6aY2pYN",
-    "outputId": "beb5aee4-7818-45bc-80e4-cbebafadc0e7",
     "papermill": {
-     "duration": 7.630209,
-     "end_time": "2024-10-25T21:08:14.671582",
+     "duration": 0.028026,
+     "end_time": "2024-10-29T09:21:17.898558",
      "exception": false,
-     "start_time": "2024-10-25T21:08:07.041373",
+     "start_time": "2024-10-29T09:21:17.870532",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "\n",
+    "class EarlyStoppingCallbackMinimize:\n",
+    "    def __init__(self, patience:int=50) -> None:\n",
+    "        self.patience = patience\n",
+    "        self.best_value = None\n",
+    "    \n",
+    "    def __call__(self, study:optuna.study.Study, trial:optuna.trial.FrozenTrial) -> None:\n",
+    "#         print('callback is called')\n",
+    "        current_value = trial.values[0]\n",
+    "\n",
+    "        if self.best_value is None:\n",
+    "            self.best_value = current_value\n",
+    "        elif current_value < self.best_value:\n",
+    "            self.best_value = current_value\n",
+    "            self.patience = self.patience\n",
+    "        else:\n",
+    "            self.patience -= 1\n",
+    "            if self.patience == 0:\n",
+    "                print('stopping the study')\n",
+    "                study.stop()\n",
+    "        \n",
+    "        \n",
+    "        "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "id": "bad6b5d5",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T09:21:17.935922Z",
+     "iopub.status.busy": "2024-10-29T09:21:17.935653Z",
+     "iopub.status.idle": "2024-10-29T09:21:18.950711Z",
+     "shell.execute_reply": "2024-10-29T09:21:18.949555Z"
+    },
+    "papermill": {
+     "duration": 1.036448,
+     "end_time": "2024-10-29T09:21:18.953075",
+     "exception": false,
+     "start_time": "2024-10-29T09:21:17.916627",
      "status": "completed"
     },
     "tags": []
@@ -1468,7 +1500,7 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "removing the previous study db file if exist\n"
+      "copying the study file from /kaggle/input/ to /kaggle/working/\n"
      ]
     },
     {
@@ -1478,221 +1510,1187 @@
       "/opt/conda/lib/python3.10/pty.py:89: RuntimeWarning: os.fork() was called. os.fork() is incompatible with multithreaded code, and JAX is multithreaded, so this will likely lead to a deadlock.\n",
       "  pid, fd = os.forkpty()\n"
      ]
+    }
+   ],
+   "source": [
+    "print('copying the study file from /kaggle/input/ to /kaggle/working/')\n",
+    "!cp /kaggle/input/loan-approval-optuna-study-db-file/loan_approval_ann_study.db /kaggle/working/"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "id": "22df5583",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T09:21:18.992406Z",
+     "iopub.status.busy": "2024-10-29T09:21:18.991768Z",
+     "iopub.status.idle": "2024-10-29T10:32:11.179777Z",
+     "shell.execute_reply": "2024-10-29T10:32:11.178912Z"
     },
+    "id": "EUJ9C6aY2pYN",
+    "outputId": "beb5aee4-7818-45bc-80e4-cbebafadc0e7",
+    "papermill": {
+     "duration": 4252.230723,
+     "end_time": "2024-10-29T10:32:11.202776",
+     "exception": false,
+     "start_time": "2024-10-29T09:21:18.972053",
+     "status": "completed"
+    },
+    "scrolled": true,
+    "tags": []
+   },
+   "outputs": [
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "creating and optimizing the study with no of trials = 100\n"
-     ]
-    },
-    {
-     "name": "stderr",
-     "output_type": "stream",
-     "text": [
-      "[I 2024-10-25 21:08:09,645] A new study created in RDB with name: loan_approval_ann_study\n"
+      "found the previous study at /kaggle/working/loan_approval_ann_study.db\n",
+      "resuming the study\n",
+      "created the study with name: loan_approval_ann_study\n"
      ]
     },
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "df27768319f6478fbd1410e7a32b95b2",
+       "model_id": "24334fd5d0f54fd2b5072b998d013258",
        "version_major": 2,
        "version_minor": 0
       },
       "text/plain": [
-       "  0%|          | 0/100 [00:00<?, ?it/s]"
+       "  0%|          | 0/500 [00:00<?, ?it/s]"
       ]
      },
      "metadata": {},
      "output_type": "display_data"
     },
     {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "WARNING: All log messages before absl::InitializeLog() is called are written to STDERR\n",
+      "I0000 00:00:1730193691.690042      81 service.cc:145] XLA service 0x7c59c0feac00 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:\n",
+      "I0000 00:00:1730193691.690108      81 service.cc:153]   StreamExecutor device (0): Tesla P100-PCIE-16GB, Compute Capability 6.0\n",
+      "I0000 00:00:1730193705.211895      79 device_compiler.h:188] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.\n"
+     ]
+    },
+    {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "[W 2024-10-25 21:08:14,662] Trial 0 failed with parameters: {'epochs': 60, 'units': 350, 'n_hidden_layers': 15, 'batch_norm': True, 'drop_out': False, 'regularize': True, 'initializers': True, 'drop_out_rate': 0.6379349745223628, 'learning_rate': 3.077163606905604e-05, 'optimizer': 'RMSprop'} because of the following error: RuntimeError('in user code:\\n\\n    File \"/opt/conda/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py\", line 104, in one_step_on_data  **\\n        return self.train_step(data)\\n    File \"/opt/conda/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py\", line 69, in train_step\\n        self.optimizer.apply_gradients(zip(gradients, trainable_weights))\\n    File \"/opt/conda/lib/python3.10/site-packages/keras/src/optimizers/base_optimizer.py\", line 282, in apply_gradients\\n        self.apply(grads, trainable_variables)\\n    File \"/opt/conda/lib/python3.10/site-packages/keras/src/optimizers/base_optimizer.py\", line 321, in apply\\n        self.build(trainable_variables)\\n    File \"/opt/conda/lib/python3.10/site-packages/keras/src/optimizers/rmsprop.py\", line 100, in build\\n        self.add_variable_from_reference(var, \"velocity\")\\n    File \"/opt/conda/lib/python3.10/site-packages/keras/src/backend/tensorflow/optimizer.py\", line 33, in add_variable_from_reference\\n        with self._distribution_strategy.extended.colocate_vars_with(\\n\\n    RuntimeError: Mixing different tf.distribute.Strategy objects: <tensorflow.python.distribute.mirrored_strategy.MirroredStrategy object at 0x79ad9879db70> is not <tensorflow.python.distribute.distribute_lib._DefaultDistributionStrategy object at 0x79ac458fb550>\\n').\n",
-      "Traceback (most recent call last):\n",
-      "  File \"/opt/conda/lib/python3.10/site-packages/optuna/study/_optimize.py\", line 197, in _run_trial\n",
-      "    value_or_values = func(trial)\n",
-      "  File \"/tmp/ipykernel_24/1124424829.py\", line 82, in objective\n",
-      "    history = train_model(model, train_dataset, valid_dataset, epochs)\n",
-      "  File \"/tmp/ipykernel_24/1124424829.py\", line 69, in train_model\n",
-      "    history = model.fit(\n",
-      "  File \"/opt/conda/lib/python3.10/site-packages/keras/src/utils/traceback_utils.py\", line 122, in error_handler\n",
-      "    raise e.with_traceback(filtered_tb) from None\n",
-      "  File \"/tmp/__autograph_generated_filen12psbjw.py\", line 14, in tf__wrapped_fn\n",
-      "    retval_ = ag__.converted_call(ag__.ld(call_for_each_replica), (ag__.ld(strategy), ag__.ld(fn).python_function, ag__.ld(args), ag__.ld(kwargs)), None, fscope)\n",
-      "RuntimeError: in user code:\n",
-      "\n",
-      "    File \"/opt/conda/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py\", line 104, in one_step_on_data  **\n",
-      "        return self.train_step(data)\n",
-      "    File \"/opt/conda/lib/python3.10/site-packages/keras/src/backend/tensorflow/trainer.py\", line 69, in train_step\n",
-      "        self.optimizer.apply_gradients(zip(gradients, trainable_weights))\n",
-      "    File \"/opt/conda/lib/python3.10/site-packages/keras/src/optimizers/base_optimizer.py\", line 282, in apply_gradients\n",
-      "        self.apply(grads, trainable_variables)\n",
-      "    File \"/opt/conda/lib/python3.10/site-packages/keras/src/optimizers/base_optimizer.py\", line 321, in apply\n",
-      "        self.build(trainable_variables)\n",
-      "    File \"/opt/conda/lib/python3.10/site-packages/keras/src/optimizers/rmsprop.py\", line 100, in build\n",
-      "        self.add_variable_from_reference(var, \"velocity\")\n",
-      "    File \"/opt/conda/lib/python3.10/site-packages/keras/src/backend/tensorflow/optimizer.py\", line 33, in add_variable_from_reference\n",
-      "        with self._distribution_strategy.extended.colocate_vars_with(\n",
-      "\n",
-      "    RuntimeError: Mixing different tf.distribute.Strategy objects: <tensorflow.python.distribute.mirrored_strategy.MirroredStrategy object at 0x79ad9879db70> is not <tensorflow.python.distribute.distribute_lib._DefaultDistributionStrategy object at 0x79ac458fb550>\n",
-      "\n",
-      "[W 2024-10-25 21:08:14,665] Trial 0 failed with value None.\n",
-      "could not create the study\n",
-      "created the srudy with no of trials = 100\n"
+      "[I 2024-10-29 09:24:07,510] Trial 112 finished with values: [0.23479291796684265, 0.9370519518852234] and parameters: {'epochs': 43, 'units': 165, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.7169667156926073, 'learning_rate': 0.001856567031486851, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:24:07,668] Trial 111 finished with values: [0.22134356200695038, 0.9500448107719421] and parameters: {'epochs': 43, 'units': 165, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.010934359789832353, 'learning_rate': 0.0030007608958390226, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:24:09,614] Trial 109 finished with values: [0.24000611901283264, 0.9455645084381104] and parameters: {'epochs': 43, 'units': 165, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.012289005622056471, 'learning_rate': 0.001383711158032511, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:24:17,094] Trial 110 finished with values: [0.25841307640075684, 0.9439964294433594] and parameters: {'epochs': 43, 'units': 165, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.00047926690732402744, 'learning_rate': 0.002012667304754319, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:26:28,645] Trial 115 finished with values: [0.2736951410770416, 0.9426523447036743] and parameters: {'epochs': 41, 'units': 165, 'n_hidden_layers': 3, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.002955760093245295, 'learning_rate': 0.04490869077445771, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:26:33,849] Trial 116 finished with values: [0.259060263633728, 0.9487007260322571] and parameters: {'epochs': 41, 'units': 115, 'n_hidden_layers': 3, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.012823664751175735, 'learning_rate': 0.037270706738955925, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:26:43,454] Trial 114 finished with values: [0.2060258388519287, 0.9491487741470337] and parameters: {'epochs': 41, 'units': 165, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.008990309205859942, 'learning_rate': 0.02536752449458569, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:26:46,566] Trial 113 finished with values: [0.19234472513198853, 0.9516128897666931] and parameters: {'epochs': 43, 'units': 165, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.004956806839441254, 'learning_rate': 0.08735685755686073, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:29:03,684] Trial 118 finished with values: [0.19643311202526093, 0.9513888955116272] and parameters: {'epochs': 41, 'units': 145, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.07287851940137938, 'learning_rate': 0.000293305065501244, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:29:06,778] Trial 117 finished with values: [0.24088899791240692, 0.9451164603233337] and parameters: {'epochs': 41, 'units': 145, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.018996224684933782, 'learning_rate': 0.00028425747357019304, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:29:20,008] Trial 119 finished with values: [0.23507320880889893, 0.9370519518852234] and parameters: {'epochs': 41, 'units': 105, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.7778787455817423, 'learning_rate': 0.0003219776957185143, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:29:26,801] Trial 120 finished with values: [0.23513519763946533, 0.9370519518852234] and parameters: {'epochs': 41, 'units': 155, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.7923127083039361, 'learning_rate': 0.0003033369620677105, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:31:50,477] Trial 123 finished with values: [0.2402030974626541, 0.9498208165168762] and parameters: {'epochs': 44, 'units': 155, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.06648749772211116, 'learning_rate': 0.0072858303155981016, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:31:54,969] Trial 122 finished with values: [0.20168878138065338, 0.9513888955116272] and parameters: {'epochs': 44, 'units': 155, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.06815528766611886, 'learning_rate': 0.0002939134649292641, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:31:57,880] Trial 124 finished with values: [0.2046857327222824, 0.9518369436264038] and parameters: {'epochs': 44, 'units': 125, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.06072604245746961, 'learning_rate': 0.00014250856880299945, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:32:01,026] Trial 121 finished with values: [0.1902029812335968, 0.9500448107719421] and parameters: {'epochs': 44, 'units': 155, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.09212384952788422, 'learning_rate': 0.0002398904266422607, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:34:04,186] Trial 126 finished with values: [0.24963712692260742, 0.9507168531417847] and parameters: {'epochs': 43, 'units': 100, 'n_hidden_layers': 3, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.07119041337463117, 'learning_rate': 0.00043273787510524986, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:34:09,337] Trial 125 finished with values: [0.24731916189193726, 0.9491487741470337] and parameters: {'epochs': 44, 'units': 125, 'n_hidden_layers': 3, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.07039323283443004, 'learning_rate': 0.09654202193477694, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:34:27,544] Trial 128 finished with values: [0.19754721224308014, 0.9491487741470337] and parameters: {'epochs': 44, 'units': 135, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.0732173668543266, 'learning_rate': 0.0004277640390477972, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:34:34,204] Trial 127 finished with values: [0.23104262351989746, 0.9502688050270081] and parameters: {'epochs': 43, 'units': 135, 'n_hidden_layers': 3, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.06564738628585258, 'learning_rate': 0.0001498338704343077, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:36:21,053] Trial 131 finished with values: [0.22349819540977478, 0.9471325874328613] and parameters: {'epochs': 34, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.08577292167909115, 'learning_rate': 0.0002366043937184897, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:36:33,988] Trial 130 finished with values: [0.24444030225276947, 0.9504928588867188] and parameters: {'epochs': 44, 'units': 115, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.055731553318432506, 'learning_rate': 0.0001480440246922734, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:36:44,426] Trial 129 finished with values: [0.19206677377223969, 0.9520609378814697] and parameters: {'epochs': 44, 'units': 135, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.08790233143600894, 'learning_rate': 0.00023441188991834186, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:36:53,376] Trial 132 finished with values: [0.19405797123908997, 0.9493727684020996] and parameters: {'epochs': 40, 'units': 135, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.04413988547829003, 'learning_rate': 7.640205713512721e-05, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:38:18,755] Trial 133 finished with values: [0.26550954580307007, 0.9491487741470337] and parameters: {'epochs': 40, 'units': 115, 'n_hidden_layers': 2, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.04920727896417285, 'learning_rate': 7.778095268835052e-05, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:38:35,518] Trial 134 finished with values: [0.29142412543296814, 0.9453405141830444] and parameters: {'epochs': 42, 'units': 135, 'n_hidden_layers': 2, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.023171407355554396, 'learning_rate': 8.167362822331857e-05, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:38:48,119] Trial 135 finished with values: [0.2777622938156128, 0.9480286836624146] and parameters: {'epochs': 40, 'units': 155, 'n_hidden_layers': 2, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.02757155330753409, 'learning_rate': 8.679330775967329e-05, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:38:53,211] Trial 136 finished with values: [0.22165092825889587, 0.9518369436264038] and parameters: {'epochs': 40, 'units': 145, 'n_hidden_layers': 2, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.22793779627711863, 'learning_rate': 8.665923163596792e-05, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:40:58,400] Trial 137 finished with values: [0.20178262889385223, 0.9518369436264038] and parameters: {'epochs': 44, 'units': 125, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.0282304077955392, 'learning_rate': 0.00023153175829722798, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:41:20,505] Trial 138 finished with values: [0.18908263742923737, 0.9493727684020996] and parameters: {'epochs': 45, 'units': 145, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.14673243133144934, 'learning_rate': 0.0002495529958589845, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:41:36,655] Trial 140 finished with values: [0.2340424507856369, 0.9370519518852234] and parameters: {'epochs': 44, 'units': 145, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': True, 'initializers': True, 'drop_out_rate': 0.7276860655341979, 'learning_rate': 0.0002272385590317841, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:41:45,692] Trial 139 finished with values: [0.19029882550239563, 0.9520609378814697] and parameters: {'epochs': 45, 'units': 165, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': True, 'initializers': True, 'drop_out_rate': 0.0489406679736546, 'learning_rate': 0.00022384287887676257, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:43:19,432] Trial 141 finished with values: [0.20444048941135406, 0.9480286836624146] and parameters: {'epochs': 43, 'units': 145, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': True, 'initializers': True, 'drop_out_rate': 0.048133458420141065, 'learning_rate': 0.00021937466682364065, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:44:08,191] Trial 144 finished with values: [0.19855187833309174, 0.9495967626571655] and parameters: {'epochs': 43, 'units': 125, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.08437997491939668, 'learning_rate': 0.0004202750898312107, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:44:18,727] Trial 142 finished with values: [0.2347290962934494, 0.9370519518852234] and parameters: {'epochs': 43, 'units': 125, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': True, 'initializers': True, 'drop_out_rate': 0.724012378659197, 'learning_rate': 0.0002169813495818362, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:44:24,175] Trial 143 finished with values: [0.2083428055047989, 0.9511649012565613] and parameters: {'epochs': 43, 'units': 125, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': True, 'initializers': True, 'drop_out_rate': 0.05066896188233478, 'learning_rate': 0.0004033579919809233, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:45:46,482] Trial 145 finished with values: [0.2076840102672577, 0.9520609378814697] and parameters: {'epochs': 43, 'units': 125, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.07687953038298981, 'learning_rate': 0.0004191377756827905, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:46:24,023] Trial 147 finished with values: [0.24787987768650055, 0.9513888955116272] and parameters: {'epochs': 42, 'units': 165, 'n_hidden_layers': 3, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.03963297660584234, 'learning_rate': 0.00012988465299369184, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:46:44,524] Trial 146 finished with values: [0.2348531037569046, 0.9370519518852234] and parameters: {'epochs': 42, 'units': 165, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.7562666702268005, 'learning_rate': 0.00013774990734666484, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:46:45,670] Trial 148 finished with values: [0.27188965678215027, 0.9451164603233337] and parameters: {'epochs': 42, 'units': 165, 'n_hidden_layers': 3, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.02840087026069149, 'learning_rate': 0.00013723885801035312, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:48:10,517] Trial 149 finished with values: [0.2804357409477234, 0.9475806355476379] and parameters: {'epochs': 42, 'units': 165, 'n_hidden_layers': 3, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.0339885082813515, 'learning_rate': 0.009838637057519337, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:48:47,384] Trial 150 finished with values: [0.20051930844783783, 0.9522849321365356] and parameters: {'epochs': 42, 'units': 105, 'n_hidden_layers': 3, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.22946100644965917, 'learning_rate': 0.011578628009153876, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:48:59,903] Trial 152 finished with values: [0.20166794955730438, 0.9518369436264038] and parameters: {'epochs': 35, 'units': 160, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.08730983698715514, 'learning_rate': 0.01052183782172973, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:49:42,570] Trial 151 finished with values: [0.21246007084846497, 0.9370519518852234] and parameters: {'epochs': 44, 'units': 160, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.608802160494021, 'learning_rate': 0.014205052338930817, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:50:50,015] Trial 154 finished with values: [0.1835760921239853, 0.9469085931777954] and parameters: {'epochs': 34, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.2330621367068651, 'learning_rate': 0.010043548284612075, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:51:05,493] Trial 153 finished with values: [0.19904504716396332, 0.9538530707359314] and parameters: {'epochs': 44, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.09403147989618182, 'learning_rate': 0.005532408528428981, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:51:16,025] Trial 155 finished with values: [0.23681052029132843, 0.9509408473968506] and parameters: {'epochs': 35, 'units': 160, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.09267119332190304, 'learning_rate': 4.709663176554432e-05, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:51:24,958] Trial 156 finished with values: [0.3491302728652954, 0.9392921328544617] and parameters: {'epochs': 35, 'units': 160, 'n_hidden_layers': 5, 'batch_norm': False, 'drop_out': False, 'regularize': True, 'initializers': True, 'drop_out_rate': 0.09441348949582468, 'learning_rate': 0.004287884341388741, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:52:52,446] Trial 157 finished with values: [0.8751195073127747, 0.9339157938957214] and parameters: {'epochs': 43, 'units': 170, 'n_hidden_layers': 5, 'batch_norm': False, 'drop_out': False, 'regularize': True, 'initializers': True, 'drop_out_rate': 0.09303821587533304, 'learning_rate': 6.08245494026589e-05, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:53:50,652] Trial 159 finished with values: [0.22463184595108032, 0.9370519518852234] and parameters: {'epochs': 45, 'units': 100, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.15005436237336112, 'learning_rate': 4.7306327317026386e-05, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:53:56,412] Trial 160 finished with values: [0.23784363269805908, 0.9507168531417847] and parameters: {'epochs': 43, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.04456561511033785, 'learning_rate': 5.33660782798735e-05, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:54:09,513] Trial 158 finished with values: [0.21009257435798645, 0.9502688050270081] and parameters: {'epochs': 43, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.09569555026020743, 'learning_rate': 5.006390339127013e-05, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:55:39,601] Trial 161 finished with values: [0.2082545906305313, 0.9370519518852234] and parameters: {'epochs': 45, 'units': 100, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.3306382421521977, 'learning_rate': 0.0010500672032458364, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:56:07,579] Trial 163 finished with values: [0.23330174386501312, 0.9451164603233337] and parameters: {'epochs': 34, 'units': 105, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.022469238359684375, 'learning_rate': 0.0011120685296059142, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:56:32,546] Trial 162 finished with values: [0.18487820029258728, 0.9487007260322571] and parameters: {'epochs': 43, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.3347887545822438, 'learning_rate': 0.016630065369158262, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:57:04,113] Trial 164 finished with values: [0.1815885305404663, 0.9480286836624146] and parameters: {'epochs': 45, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.3371217775820984, 'learning_rate': 0.0013552998749157572, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:58:20,862] Trial 165 finished with values: [0.19077755510807037, 0.9511649012565613] and parameters: {'epochs': 44, 'units': 100, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.13217240112395262, 'learning_rate': 0.017146412196160435, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:58:50,047] Trial 166 finished with values: [0.2004423886537552, 0.9513888955116272] and parameters: {'epochs': 44, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.13208736151297712, 'learning_rate': 0.019120723136335952, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 09:58:56,522] Trial 167 finished with values: [0.2501046657562256, 0.9516128897666931] and parameters: {'epochs': 43, 'units': 170, 'n_hidden_layers': 2, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.18222918346549594, 'learning_rate': 0.09653815053102834, 'optimizer': 'RMSprop'}.\n",
+      "[I 2024-10-29 09:59:38,845] Trial 168 finished with values: [0.1811608076095581, 0.9529569745063782] and parameters: {'epochs': 44, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.13091217120534437, 'learning_rate': 0.0029843062837564146, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:01:00,521] Trial 169 finished with values: [0.19029828906059265, 0.9518369436264038] and parameters: {'epochs': 45, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.13755803297503866, 'learning_rate': 0.003538022619894899, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:01:31,203] Trial 170 finished with values: [0.19887949526309967, 0.9504928588867188] and parameters: {'epochs': 45, 'units': 100, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.14803903513010983, 'learning_rate': 0.0020978690722168124, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:01:50,392] Trial 171 finished with values: [0.20628739893436432, 0.9437723755836487] and parameters: {'epochs': 45, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.5040782820858403, 'learning_rate': 0.005065584300029753, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:02:18,953] Trial 172 finished with values: [0.1974962204694748, 0.9520609378814697] and parameters: {'epochs': 45, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.14600985036715286, 'learning_rate': 0.005405224631089444, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:04:00,966] Trial 173 finished with values: [0.1867121160030365, 0.9509408473968506] and parameters: {'epochs': 45, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.14793245928081342, 'learning_rate': 0.003916904586499278, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:04:05,759] Trial 174 finished with values: [0.20320288836956024, 0.9529569745063782] and parameters: {'epochs': 45, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.10967449468325403, 'learning_rate': 0.006039176583075321, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:04:35,035] Trial 175 finished with values: [0.23718291521072388, 0.9370519518852234] and parameters: {'epochs': 44, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.11658533017602091, 'learning_rate': 0.004520684999130133, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:05:11,851] Trial 176 finished with values: [0.20517635345458984, 0.9529569745063782] and parameters: {'epochs': 44, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.11061415183041576, 'learning_rate': 0.005104939306794679, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:06:30,325] Trial 177 finished with values: [0.19502417743206024, 0.9491487741470337] and parameters: {'epochs': 44, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.15378748543688836, 'learning_rate': 0.004716217246030045, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:06:55,734] Trial 178 finished with values: [0.2500581741333008, 0.9370519518852234] and parameters: {'epochs': 44, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.11649126029399173, 'learning_rate': 0.002682670991195031, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:07:28,976] Trial 179 finished with values: [0.2252541333436966, 0.9525089859962463] and parameters: {'epochs': 44, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.11081161668010635, 'learning_rate': 0.003013299972139937, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:08:10,367] Trial 180 finished with values: [0.21880848705768585, 0.9520609378814697] and parameters: {'epochs': 44, 'units': 110, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.11148938893474097, 'learning_rate': 0.0030394498186569626, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:09:06,515] Trial 181 finished with values: [0.1886795461177826, 0.9522849321365356] and parameters: {'epochs': 44, 'units': 100, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.1104308277016311, 'learning_rate': 0.0032554225813700983, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:09:35,748] Trial 182 finished with values: [0.18770165741443634, 0.9513888955116272] and parameters: {'epochs': 44, 'units': 110, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.13198896168276203, 'learning_rate': 0.003593015399996526, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:10:14,073] Trial 183 finished with values: [0.18822678923606873, 0.9525089859962463] and parameters: {'epochs': 45, 'units': 100, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.13122988653741116, 'learning_rate': 0.006848042379008072, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:11:10,129] Trial 184 finished with values: [0.21506571769714355, 0.9370519518852234] and parameters: {'epochs': 45, 'units': 100, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.2269556505659975, 'learning_rate': 0.00596493771663186, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:11:55,533] Trial 185 finished with values: [0.19113081693649292, 0.9513888955116272] and parameters: {'epochs': 45, 'units': 100, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.13057448705340702, 'learning_rate': 0.006067665791691562, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:12:15,244] Trial 186 finished with values: [0.19799892604351044, 0.9498208165168762] and parameters: {'epochs': 45, 'units': 110, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.17376367237411242, 'learning_rate': 0.00724694428320239, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:13:05,186] Trial 187 finished with values: [0.22769980132579803, 0.9370519518852234] and parameters: {'epochs': 45, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.1301168764349639, 'learning_rate': 0.006485005214586902, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:14:03,202] Trial 188 finished with values: [0.2275235652923584, 0.9370519518852234] and parameters: {'epochs': 45, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.14009283110522697, 'learning_rate': 0.006982251912193348, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:14:41,229] Trial 189 finished with values: [0.18562383949756622, 0.9511649012565613] and parameters: {'epochs': 44, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.1722299187946975, 'learning_rate': 0.008146035578222181, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:14:55,881] Trial 190 finished with values: [0.20527788996696472, 0.9520609378814697] and parameters: {'epochs': 44, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.1289226573084151, 'learning_rate': 0.008933460629247696, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:15:45,638] Trial 191 finished with values: [0.20850364863872528, 0.9529569745063782] and parameters: {'epochs': 44, 'units': 110, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.10808855951041105, 'learning_rate': 0.0032584635666048026, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:16:37,896] Trial 192 finished with values: [0.25126969814300537, 0.9484767317771912] and parameters: {'epochs': 43, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.05976839337057343, 'learning_rate': 0.0036528672154004698, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:17:32,758] Trial 194 finished with values: [0.2462809532880783, 0.9370519518852234] and parameters: {'epochs': 44, 'units': 110, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.10357027982384538, 'learning_rate': 0.0033914471869113134, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:17:43,449] Trial 193 finished with values: [0.21059775352478027, 0.9502688050270081] and parameters: {'epochs': 44, 'units': 115, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.10738624630149968, 'learning_rate': 0.003539955592519114, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:18:26,659] Trial 195 finished with values: [0.2510371804237366, 0.9464605450630188] and parameters: {'epochs': 43, 'units': 110, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.0545758990258805, 'learning_rate': 0.0035293631717326626, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:19:10,093] Trial 196 finished with values: [0.2472354769706726, 0.9480286836624146] and parameters: {'epochs': 43, 'units': 110, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.056540475490659686, 'learning_rate': 0.00404522944827714, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:20:10,264] Trial 198 finished with values: [0.2870546579360962, 0.9498208165168762] and parameters: {'epochs': 43, 'units': 110, 'n_hidden_layers': 3, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.05771378891608373, 'learning_rate': 0.008041262107217808, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:20:11,143] Trial 197 finished with values: [0.20917485654354095, 0.9493727684020996] and parameters: {'epochs': 43, 'units': 115, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.05941267830255548, 'learning_rate': 0.003974567375060208, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:20:45,455] Trial 199 finished with values: [0.2480260580778122, 0.9520609378814697] and parameters: {'epochs': 43, 'units': 100, 'n_hidden_layers': 3, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.07091089699569383, 'learning_rate': 0.01203549803887368, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:21:32,305] Trial 200 finished with values: [0.24427467584609985, 0.9536290168762207] and parameters: {'epochs': 43, 'units': 100, 'n_hidden_layers': 3, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.07596767465763393, 'learning_rate': 0.008448032618612942, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:22:14,747] Trial 201 finished with values: [0.29360926151275635, 0.9484767317771912] and parameters: {'epochs': 44, 'units': 105, 'n_hidden_layers': 2, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.07548675435417354, 'learning_rate': 0.00018099718829430752, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:22:36,017] Trial 202 finished with values: [0.30016857385635376, 0.947356641292572] and parameters: {'epochs': 44, 'units': 100, 'n_hidden_layers': 2, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.08136293340382751, 'learning_rate': 0.012639843876595058, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:23:10,012] Trial 203 finished with values: [0.2486743927001953, 0.9509408473968506] and parameters: {'epochs': 44, 'units': 155, 'n_hidden_layers': 2, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.2147931142721772, 'learning_rate': 0.002461387021440153, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:23:31,144] Trial 204 finished with values: [0.6412969827651978, 0.9262992739677429] and parameters: {'epochs': 44, 'units': 105, 'n_hidden_layers': 3, 'batch_norm': False, 'drop_out': False, 'regularize': True, 'initializers': True, 'drop_out_rate': 0.07995657744881965, 'learning_rate': 0.005452565367889496, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:24:17,592] Trial 205 finished with values: [0.6043422222137451, 0.9269713163375854] and parameters: {'epochs': 44, 'units': 105, 'n_hidden_layers': 3, 'batch_norm': False, 'drop_out': False, 'regularize': True, 'initializers': True, 'drop_out_rate': 0.08824188195966201, 'learning_rate': 0.0022177128459895776, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:24:31,107] Trial 207 finished with values: [0.501507043838501, 0.9327957034111023] and parameters: {'epochs': 30, 'units': 105, 'n_hidden_layers': 3, 'batch_norm': False, 'drop_out': False, 'regularize': True, 'initializers': True, 'drop_out_rate': 0.44278104561201026, 'learning_rate': 0.001683795984976774, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:24:31,148] Trial 206 finished with values: [0.604596734046936, 0.9368279576301575] and parameters: {'epochs': 44, 'units': 105, 'n_hidden_layers': 3, 'batch_norm': False, 'drop_out': False, 'regularize': True, 'initializers': True, 'drop_out_rate': 0.0833115110165753, 'learning_rate': 0.0023662787271760584, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:25:06,104] Trial 208 finished with values: [0.5012018084526062, 0.9330196976661682] and parameters: {'epochs': 34, 'units': 105, 'n_hidden_layers': 3, 'batch_norm': False, 'drop_out': False, 'regularize': True, 'initializers': False, 'drop_out_rate': 0.09611022209024905, 'learning_rate': 0.001464996455006911, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:25:54,492] Trial 209 finished with values: [0.45205506682395935, 0.9343637824058533] and parameters: {'epochs': 30, 'units': 105, 'n_hidden_layers': 3, 'batch_norm': False, 'drop_out': False, 'regularize': True, 'initializers': False, 'drop_out_rate': 0.10054248949883338, 'learning_rate': 0.0014768289166251973, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:26:57,253] Trial 210 finished with values: [0.24165070056915283, 0.9513888955116272] and parameters: {'epochs': 42, 'units': 105, 'n_hidden_layers': 3, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': False, 'drop_out_rate': 0.10064047203930133, 'learning_rate': 0.008664380458362942, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:27:05,479] Trial 211 finished with values: [0.2223552018404007, 0.9529569745063782] and parameters: {'epochs': 42, 'units': 105, 'n_hidden_layers': 3, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': False, 'drop_out_rate': 0.09883503411088355, 'learning_rate': 0.0688917892936986, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:28:02,474] Trial 212 finished with values: [0.23186185956001282, 0.9370519518852234] and parameters: {'epochs': 42, 'units': 110, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': False, 'drop_out_rate': 0.11464153449395151, 'learning_rate': 0.005022446474352951, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:28:46,204] Trial 213 finished with values: [0.23405809700489044, 0.9370519518852234] and parameters: {'epochs': 42, 'units': 140, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.1223820308025304, 'learning_rate': 0.008479727659202551, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:29:10,150] Trial 215 finished with values: [0.21036304533481598, 0.9370519518852234] and parameters: {'epochs': 28, 'units': 100, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.34828445243522943, 'learning_rate': 0.004904057843149625, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:29:49,202] Trial 214 finished with values: [0.2353568971157074, 0.9370519518852234] and parameters: {'epochs': 42, 'units': 100, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.580263117624341, 'learning_rate': 2.5969862673047758e-05, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:30:52,107] Trial 216 finished with values: [0.23610782623291016, 0.9370519518852234] and parameters: {'epochs': 43, 'units': 100, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.5951664661284747, 'learning_rate': 0.006409256463195987, 'optimizer': 'Adam'}.\n",
+      "[I 2024-10-29 10:31:26,502] Trial 217 finished with values: [0.2352587729692459, 0.9370519518852234] and parameters: {'epochs': 45, 'units': 100, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.7525234464424916, 'learning_rate': 0.006737347422984973, 'optimizer': 'Adam'}.\n",
+      "stopping the study\n",
+      "[I 2024-10-29 10:31:37,877] Trial 218 finished with values: [0.19473806023597717, 0.9457885026931763] and parameters: {'epochs': 45, 'units': 135, 'n_hidden_layers': 5, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.03775487032671989, 'learning_rate': 0.006559739238911348, 'optimizer': 'SGD'}.\n",
+      "[I 2024-10-29 10:31:49,327] Trial 219 finished with values: [0.19844688475131989, 0.9401881694793701] and parameters: {'epochs': 45, 'units': 155, 'n_hidden_layers': 2, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.5068607451797555, 'learning_rate': 2.16219472152134e-06, 'optimizer': 'SGD'}.\n",
+      "[I 2024-10-29 10:32:11,167] Trial 220 finished with values: [0.18331561982631683, 0.9487007260322571] and parameters: {'epochs': 45, 'units': 110, 'n_hidden_layers': 2, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.27390464831762973, 'learning_rate': 0.017576128337789796, 'optimizer': 'SGD'}.\n",
+      "study completed\n"
      ]
     }
    ],
    "source": [
-    "print('removing the previous study db file if exist')\n",
-    "try:\n",
-    "    !rm -rf loan_approval_ann_study.db\n",
-    "except Exception as e:\n",
-    "    print('could not remove the db file')\n",
-    "n_trials=100\n",
-    "print('creating and optimizing the study with no of trials = 100')\n",
-    "try:\n",
+    "\n",
+    "n_trials=500\n",
+    "patience = 100\n",
+    "early_stopping_cb = EarlyStoppingCallbackMinimize(patience=patience)\n",
+    "\n",
+    "previous_study_file_path = \"/kaggle/working/loan_approval_ann_study.db\"\n",
+    "if os.path.exists(previous_study_file_path):\n",
+    "    print(f'found the previous study at {previous_study_file_path}')\n",
+    "    print('resuming the study')\n",
+    "    loan_approval_ann_study = optuna.load_study(study_name=\"loan_approval_ann_study\", storage=\"sqlite:///\" + previous_study_file_path)\n",
+    "else:\n",
+    "    print('creating a new study')\n",
+    "     \n",
     "    loan_approval_ann_study = optuna.create_study(\n",
     "    storage='sqlite:///loan_approval_ann_study.db',\n",
     "    study_name='loan_approval_ann_study',\n",
-    "    directions=['minimize', 'minimize'],\n",
+    "    directions=['minimize', 'maximize'],\n",
     "    load_if_exists=True\n",
     "    )\n",
+    "print(f'created the study with name: {loan_approval_ann_study.study_name}')\n",
+    "loan_approval_ann_study.optimize(objective,  n_trials=n_trials, show_progress_bar=True,callbacks=[early_stopping_cb], n_jobs=-1)\n",
+    "print('study completed')\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "id": "03a7d845",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T10:32:11.259586Z",
+     "iopub.status.busy": "2024-10-29T10:32:11.258899Z",
+     "iopub.status.idle": "2024-10-29T10:32:11.300816Z",
+     "shell.execute_reply": "2024-10-29T10:32:11.300063Z"
+    },
+    "papermill": {
+     "duration": 0.072678,
+     "end_time": "2024-10-29T10:32:11.302815",
+     "exception": false,
+     "start_time": "2024-10-29T10:32:11.230137",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "resumed_study = optuna.load_study(storage=\"sqlite:////kaggle/working/loan_approval_ann_study.db\", study_name=\"loan_approval_ann_study\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "id": "99b29def",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T10:32:11.359032Z",
+     "iopub.status.busy": "2024-10-29T10:32:11.358379Z",
+     "iopub.status.idle": "2024-10-29T10:32:11.671023Z",
+     "shell.execute_reply": "2024-10-29T10:32:11.669937Z"
+    },
+    "papermill": {
+     "duration": 0.342843,
+     "end_time": "2024-10-29T10:32:11.673022",
+     "exception": false,
+     "start_time": "2024-10-29T10:32:11.330179",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'epochs': 44, 'units': 105, 'n_hidden_layers': 4, 'batch_norm': True, 'drop_out': True, 'regularize': False, 'initializers': True, 'drop_out_rate': 0.09403147989618182, 'learning_rate': 0.005532408528428981, 'optimizer': 'Adam'}\n",
+      "[0.19904504716396332, 0.9538530707359314]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# resumed_study = loan_approval_ann_study\n",
+    "best_value = 0\n",
+    "for trial in resumed_study.best_trials:\n",
+    "    curr = trial.values[0]\n",
+    "    if curr >= best_value:\n",
+    "        best_value = curr\n",
     "\n",
-    "    loan_approval_ann_study.optimize(objective,  n_trials=n_trials, show_progress_bar=True)\n",
-    "    print('study completed')\n",
-    "except Exception as e:\n",
-    "    print(f'could not create the study')\n",
-    "print(f'created the srudy with no of trials = {n_trials}')"
+    "for trial in resumed_study.best_trials:\n",
+    "    n = trial.values[0]\n",
+    "    if n >= best_value:\n",
+    "        print(trial.params)\n",
+    "        best_params = trial.params\n",
+    "        print(trial.values)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "id": "bf19e9da",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T10:32:11.729503Z",
+     "iopub.status.busy": "2024-10-29T10:32:11.729126Z",
+     "iopub.status.idle": "2024-10-29T10:32:11.735402Z",
+     "shell.execute_reply": "2024-10-29T10:32:11.734522Z"
+    },
+    "papermill": {
+     "duration": 0.036466,
+     "end_time": "2024-10-29T10:32:11.737294",
+     "exception": false,
+     "start_time": "2024-10-29T10:32:11.700828",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "{'epochs': 44,\n",
+       " 'units': 105,\n",
+       " 'n_hidden_layers': 4,\n",
+       " 'batch_norm': True,\n",
+       " 'drop_out': True,\n",
+       " 'regularize': False,\n",
+       " 'initializers': True,\n",
+       " 'drop_out_rate': 0.09403147989618182,\n",
+       " 'learning_rate': 0.005532408528428981,\n",
+       " 'optimizer': 'Adam'}"
+      ]
+     },
+     "execution_count": 44,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "best_params"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 45,
+   "id": "1151495e",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T10:32:11.793364Z",
+     "iopub.status.busy": "2024-10-29T10:32:11.793030Z",
+     "iopub.status.idle": "2024-10-29T10:32:12.231299Z",
+     "shell.execute_reply": "2024-10-29T10:32:12.230251Z"
+    },
+    "papermill": {
+     "duration": 0.46906,
+     "end_time": "2024-10-29T10:32:12.233790",
+     "exception": false,
+     "start_time": "2024-10-29T10:32:11.764730",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "final_train_dataset, = prepare_data_for_tpu(df_train, batch_size=64, features_cols=features_cols, target_col=target_col, poly=True, poly_degree=3, valid_split=False)\n",
+    "final_input_shape = final_train_dataset.element_spec[0].shape[1]  # Assuming first element is the feature tensor\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "id": "77b663d6",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T10:32:12.290688Z",
+     "iopub.status.busy": "2024-10-29T10:32:12.290351Z",
+     "iopub.status.idle": "2024-10-29T10:32:12.454152Z",
+     "shell.execute_reply": "2024-10-29T10:32:12.453276Z"
+    },
+    "papermill": {
+     "duration": 0.194328,
+     "end_time": "2024-10-29T10:32:12.456185",
+     "exception": false,
+     "start_time": "2024-10-29T10:32:12.261857",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<pre style=\"white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace\"><span style=\"font-weight: bold\">Model: \"sequential\"</span>\n",
+       "</pre>\n"
+      ],
+      "text/plain": [
+       "\u001b[1mModel: \"sequential\"\u001b[0m\n"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<pre style=\"white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace\">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓\n",
+       "┃<span style=\"font-weight: bold\"> Layer (type)                    </span>┃<span style=\"font-weight: bold\"> Output Shape           </span>┃<span style=\"font-weight: bold\">       Param # </span>┃\n",
+       "┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩\n",
+       "│ dense (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">Dense</span>)                   │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">105</span>)            │       <span style=\"color: #00af00; text-decoration-color: #00af00\">121,800</span> │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ dropout (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">Dropout</span>)               │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">105</span>)            │             <span style=\"color: #00af00; text-decoration-color: #00af00\">0</span> │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ batch_normalization             │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">105</span>)            │           <span style=\"color: #00af00; text-decoration-color: #00af00\">420</span> │\n",
+       "│ (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">BatchNormalization</span>)            │                        │               │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ dense_1 (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">Dense</span>)                 │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">26</span>)             │         <span style=\"color: #00af00; text-decoration-color: #00af00\">2,756</span> │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ dropout_1 (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">Dropout</span>)             │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">26</span>)             │             <span style=\"color: #00af00; text-decoration-color: #00af00\">0</span> │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ batch_normalization_1           │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">26</span>)             │           <span style=\"color: #00af00; text-decoration-color: #00af00\">104</span> │\n",
+       "│ (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">BatchNormalization</span>)            │                        │               │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ dense_2 (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">Dense</span>)                 │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">6</span>)              │           <span style=\"color: #00af00; text-decoration-color: #00af00\">162</span> │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ dropout_2 (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">Dropout</span>)             │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">6</span>)              │             <span style=\"color: #00af00; text-decoration-color: #00af00\">0</span> │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ batch_normalization_2           │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">6</span>)              │            <span style=\"color: #00af00; text-decoration-color: #00af00\">24</span> │\n",
+       "│ (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">BatchNormalization</span>)            │                        │               │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ dense_3 (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">Dense</span>)                 │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">2</span>)              │            <span style=\"color: #00af00; text-decoration-color: #00af00\">14</span> │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ dropout_3 (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">Dropout</span>)             │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">2</span>)              │             <span style=\"color: #00af00; text-decoration-color: #00af00\">0</span> │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ batch_normalization_3           │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">2</span>)              │             <span style=\"color: #00af00; text-decoration-color: #00af00\">8</span> │\n",
+       "│ (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">BatchNormalization</span>)            │                        │               │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ dense_4 (<span style=\"color: #0087ff; text-decoration-color: #0087ff\">Dense</span>)                 │ (<span style=\"color: #00d7ff; text-decoration-color: #00d7ff\">None</span>, <span style=\"color: #00af00; text-decoration-color: #00af00\">1</span>)              │             <span style=\"color: #00af00; text-decoration-color: #00af00\">3</span> │\n",
+       "└─────────────────────────────────┴────────────────────────┴───────────────┘\n",
+       "</pre>\n"
+      ],
+      "text/plain": [
+       "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓\n",
+       "┃\u001b[1m \u001b[0m\u001b[1mLayer (type)                   \u001b[0m\u001b[1m \u001b[0m┃\u001b[1m \u001b[0m\u001b[1mOutput Shape          \u001b[0m\u001b[1m \u001b[0m┃\u001b[1m \u001b[0m\u001b[1m      Param #\u001b[0m\u001b[1m \u001b[0m┃\n",
+       "┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩\n",
+       "│ dense (\u001b[38;5;33mDense\u001b[0m)                   │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m105\u001b[0m)            │       \u001b[38;5;34m121,800\u001b[0m │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ dropout (\u001b[38;5;33mDropout\u001b[0m)               │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m105\u001b[0m)            │             \u001b[38;5;34m0\u001b[0m │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ batch_normalization             │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m105\u001b[0m)            │           \u001b[38;5;34m420\u001b[0m │\n",
+       "│ (\u001b[38;5;33mBatchNormalization\u001b[0m)            │                        │               │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ dense_1 (\u001b[38;5;33mDense\u001b[0m)                 │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m26\u001b[0m)             │         \u001b[38;5;34m2,756\u001b[0m │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ dropout_1 (\u001b[38;5;33mDropout\u001b[0m)             │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m26\u001b[0m)             │             \u001b[38;5;34m0\u001b[0m │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ batch_normalization_1           │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m26\u001b[0m)             │           \u001b[38;5;34m104\u001b[0m │\n",
+       "│ (\u001b[38;5;33mBatchNormalization\u001b[0m)            │                        │               │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ dense_2 (\u001b[38;5;33mDense\u001b[0m)                 │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m6\u001b[0m)              │           \u001b[38;5;34m162\u001b[0m │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ dropout_2 (\u001b[38;5;33mDropout\u001b[0m)             │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m6\u001b[0m)              │             \u001b[38;5;34m0\u001b[0m │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ batch_normalization_2           │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m6\u001b[0m)              │            \u001b[38;5;34m24\u001b[0m │\n",
+       "│ (\u001b[38;5;33mBatchNormalization\u001b[0m)            │                        │               │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ dense_3 (\u001b[38;5;33mDense\u001b[0m)                 │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m2\u001b[0m)              │            \u001b[38;5;34m14\u001b[0m │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ dropout_3 (\u001b[38;5;33mDropout\u001b[0m)             │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m2\u001b[0m)              │             \u001b[38;5;34m0\u001b[0m │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ batch_normalization_3           │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m2\u001b[0m)              │             \u001b[38;5;34m8\u001b[0m │\n",
+       "│ (\u001b[38;5;33mBatchNormalization\u001b[0m)            │                        │               │\n",
+       "├─────────────────────────────────┼────────────────────────┼───────────────┤\n",
+       "│ dense_4 (\u001b[38;5;33mDense\u001b[0m)                 │ (\u001b[38;5;45mNone\u001b[0m, \u001b[38;5;34m1\u001b[0m)              │             \u001b[38;5;34m3\u001b[0m │\n",
+       "└─────────────────────────────────┴────────────────────────┴───────────────┘\n"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<pre style=\"white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace\"><span style=\"font-weight: bold\"> Total params: </span><span style=\"color: #00af00; text-decoration-color: #00af00\">125,291</span> (489.42 KB)\n",
+       "</pre>\n"
+      ],
+      "text/plain": [
+       "\u001b[1m Total params: \u001b[0m\u001b[38;5;34m125,291\u001b[0m (489.42 KB)\n"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<pre style=\"white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace\"><span style=\"font-weight: bold\"> Trainable params: </span><span style=\"color: #00af00; text-decoration-color: #00af00\">125,013</span> (488.33 KB)\n",
+       "</pre>\n"
+      ],
+      "text/plain": [
+       "\u001b[1m Trainable params: \u001b[0m\u001b[38;5;34m125,013\u001b[0m (488.33 KB)\n"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<pre style=\"white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace\"><span style=\"font-weight: bold\"> Non-trainable params: </span><span style=\"color: #00af00; text-decoration-color: #00af00\">278</span> (1.09 KB)\n",
+       "</pre>\n"
+      ],
+      "text/plain": [
+       "\u001b[1m Non-trainable params: \u001b[0m\u001b[38;5;34m278\u001b[0m (1.09 KB)\n"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "\n",
+    "final_model = build_model(\n",
+    "    input_shape=final_input_shape,\n",
+    "    units=best_params['units'],\n",
+    "    n_hidden_layers=best_params['n_hidden_layers'],\n",
+    "    batch_norm=best_params['batch_norm'],\n",
+    "    drop_out=best_params['drop_out'],\n",
+    "    regularize=best_params['regularize'],\n",
+    "    initializers=best_params['initializers'],\n",
+    "    drop_out_rate=best_params['drop_out_rate'],\n",
+    ")\n",
+    "final_model.summary()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 47,
+   "id": "6f8bc35f",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T10:32:12.514768Z",
+     "iopub.status.busy": "2024-10-29T10:32:12.514442Z",
+     "iopub.status.idle": "2024-10-29T10:32:12.519861Z",
+     "shell.execute_reply": "2024-10-29T10:32:12.518997Z"
+    },
+    "papermill": {
+     "duration": 0.036774,
+     "end_time": "2024-10-29T10:32:12.521795",
+     "exception": false,
+     "start_time": "2024-10-29T10:32:12.485021",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "1159"
+      ]
+     },
+     "execution_count": 47,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "final_input_shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 48,
+   "id": "f99b9af6",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T10:32:12.580231Z",
+     "iopub.status.busy": "2024-10-29T10:32:12.579936Z",
+     "iopub.status.idle": "2024-10-29T10:32:12.588074Z",
+     "shell.execute_reply": "2024-10-29T10:32:12.587293Z"
+    },
+    "papermill": {
+     "duration": 0.039657,
+     "end_time": "2024-10-29T10:32:12.590010",
+     "exception": false,
+     "start_time": "2024-10-29T10:32:12.550353",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "final_model = compile_model(final_model, optimizer_name=best_params['optimizer'], learning_rate=best_params['learning_rate'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "id": "61aedb46",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T10:32:12.648011Z",
+     "iopub.status.busy": "2024-10-29T10:32:12.647724Z",
+     "iopub.status.idle": "2024-10-29T10:33:02.962397Z",
+     "shell.execute_reply": "2024-10-29T10:33:02.961519Z"
+    },
+    "papermill": {
+     "duration": 50.34575,
+     "end_time": "2024-10-29T10:33:02.964296",
+     "exception": false,
+     "start_time": "2024-10-29T10:32:12.618546",
+     "status": "completed"
+    },
+    "scrolled": true,
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Epoch 1/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m16s\u001b[0m 22ms/step - accuracy: 0.7736 - loss: 0.4667\n",
+      "Epoch 2/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9344 - loss: 0.2117\n",
+      "Epoch 3/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9380 - loss: 0.1951\n",
+      "Epoch 4/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9406 - loss: 0.1896\n",
+      "Epoch 5/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9404 - loss: 0.1840\n",
+      "Epoch 6/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9417 - loss: 0.1798\n",
+      "Epoch 7/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9433 - loss: 0.1797\n",
+      "Epoch 8/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9451 - loss: 0.1719\n",
+      "Epoch 9/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9450 - loss: 0.1732\n",
+      "Epoch 10/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9478 - loss: 0.1679\n",
+      "Epoch 11/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9475 - loss: 0.1630\n",
+      "Epoch 12/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9429 - loss: 0.1772\n",
+      "Epoch 13/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9475 - loss: 0.1663\n",
+      "Epoch 14/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9451 - loss: 0.1686\n",
+      "Epoch 15/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9454 - loss: 0.1671\n",
+      "Epoch 16/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9462 - loss: 0.1638\n",
+      "Epoch 17/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9478 - loss: 0.1632\n",
+      "Epoch 18/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9487 - loss: 0.1580\n",
+      "Epoch 19/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9474 - loss: 0.1657\n",
+      "Epoch 20/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9493 - loss: 0.1555\n",
+      "Epoch 21/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9475 - loss: 0.1641\n",
+      "Epoch 22/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9516 - loss: 0.1536\n",
+      "Epoch 23/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9503 - loss: 0.1539\n",
+      "Epoch 24/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9471 - loss: 0.1579\n",
+      "Epoch 25/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9504 - loss: 0.1505\n",
+      "Epoch 26/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9497 - loss: 0.1530\n",
+      "Epoch 27/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9516 - loss: 0.1496\n",
+      "Epoch 28/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9504 - loss: 0.1525\n",
+      "Epoch 29/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9519 - loss: 0.1487\n",
+      "Epoch 30/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9502 - loss: 0.1471\n",
+      "Epoch 31/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9530 - loss: 0.1415\n",
+      "Epoch 32/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9511 - loss: 0.1458\n",
+      "Epoch 33/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9489 - loss: 0.1498\n",
+      "Epoch 34/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9500 - loss: 0.1476\n",
+      "Epoch 35/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9514 - loss: 0.1448\n",
+      "Epoch 36/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9510 - loss: 0.1453\n",
+      "Epoch 37/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9530 - loss: 0.1435\n",
+      "Epoch 38/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9548 - loss: 0.1374\n",
+      "Epoch 39/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9546 - loss: 0.1370\n",
+      "Epoch 40/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9540 - loss: 0.1362\n",
+      "Epoch 41/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9511 - loss: 0.1399\n",
+      "Epoch 42/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9530 - loss: 0.1354\n",
+      "Epoch 43/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9533 - loss: 0.1308\n",
+      "Epoch 44/44\n",
+      "\u001b[1m349/349\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step - accuracy: 0.9561 - loss: 0.1278\n"
+     ]
+    }
+   ],
+   "source": [
+    "history = final_model.fit(final_train_dataset, epochs=best_params['epochs'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "id": "8608f250",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T10:33:03.140503Z",
+     "iopub.status.busy": "2024-10-29T10:33:03.139845Z",
+     "iopub.status.idle": "2024-10-29T10:33:03.146681Z",
+     "shell.execute_reply": "2024-10-29T10:33:03.145635Z"
+    },
+    "papermill": {
+     "duration": 0.095681,
+     "end_time": "2024-10-29T10:33:03.148610",
+     "exception": false,
+     "start_time": "2024-10-29T10:33:03.052929",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(0.9534071087837219, 0.13572482764720917)"
+      ]
+     },
+     "execution_count": 50,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "history.history['accuracy'][-1], history.history['loss'][-1]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 51,
+   "id": "60f13513",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T10:33:03.320039Z",
+     "iopub.status.busy": "2024-10-29T10:33:03.319499Z",
+     "iopub.status.idle": "2024-10-29T10:33:03.402625Z",
+     "shell.execute_reply": "2024-10-29T10:33:03.401603Z"
+    },
+    "id": "iBXn-Au62pYN",
+    "outputId": "cc1f0839-eeb5-466d-c2f7-2c60c8319fca",
+    "papermill": {
+     "duration": 0.170553,
+     "end_time": "2024-10-29T10:33:03.404744",
+     "exception": false,
+     "start_time": "2024-10-29T10:33:03.234191",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "encoding the final test data set\n",
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "RangeIndex: 39098 entries, 0 to 39097\n",
+      "Data columns (total 21 columns):\n",
+      " #   Column                          Non-Null Count  Dtype  \n",
+      "---  ------                          --------------  -----  \n",
+      " 0   loan_grade                      39098 non-null  float64\n",
+      " 1   person_home_ownership_MORTGAGE  39098 non-null  float64\n",
+      " 2   person_home_ownership_OTHER     39098 non-null  float64\n",
+      " 3   person_home_ownership_OWN       39098 non-null  float64\n",
+      " 4   person_home_ownership_RENT      39098 non-null  float64\n",
+      " 5   loan_intent_DEBTCONSOLIDATION   39098 non-null  float64\n",
+      " 6   loan_intent_EDUCATION           39098 non-null  float64\n",
+      " 7   loan_intent_HOMEIMPROVEMENT     39098 non-null  float64\n",
+      " 8   loan_intent_MEDICAL             39098 non-null  float64\n",
+      " 9   loan_intent_PERSONAL            39098 non-null  float64\n",
+      " 10  loan_intent_VENTURE             39098 non-null  float64\n",
+      " 11  cb_person_default_on_file_N     39098 non-null  float64\n",
+      " 12  cb_person_default_on_file_Y     39098 non-null  float64\n",
+      " 13  id                              39098 non-null  float64\n",
+      " 14  person_age                      39098 non-null  float64\n",
+      " 15  person_income                   39098 non-null  float64\n",
+      " 16  person_emp_length               39098 non-null  float64\n",
+      " 17  loan_amnt                       39098 non-null  float64\n",
+      " 18  loan_int_rate                   39098 non-null  float64\n",
+      " 19  loan_percent_income             39098 non-null  float64\n",
+      " 20  cb_person_cred_hist_length      39098 non-null  float64\n",
+      "dtypes: float64(21)\n",
+      "memory usage: 6.3 MB\n"
+     ]
+    }
+   ],
+   "source": [
+    "from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder\n",
+    "from sklearn.compose import ColumnTransformer\n",
+    "from sklearn.pipeline import Pipeline\n",
+    "\n",
+    "\n",
+    "print('encoding the final test data set')\n",
+    "ord_enc_test = OrdinalEncoder()\n",
+    "one_hot_enc_test = OneHotEncoder(sparse_output=False)\n",
+    "\n",
+    "test_cat_cols = test_df.select_dtypes('object').columns\n",
+    "ordinal_cols = ['loan_grade']\n",
+    "one_hot_cols = [col for col in test_cat_cols if col != 'loan_grade']\n",
+    "remaining_cols = [col for col in test_df.columns if col not in list(test_cat_cols)]\n",
+    "\n",
+    "encoder_test = ColumnTransformer(\n",
+    "            transformers=[\n",
+    "                ('ordinal_encoder', ord_enc_test, ordinal_cols),\n",
+    "                ('one_hot_encoder', one_hot_enc_test, one_hot_cols),\n",
+    "                ('passthrough', 'passthrough', remaining_cols )\n",
+    "            ]\n",
+    ")\n",
+    "\n",
+    "encoded_data = encoder_test.fit_transform(test_df)\n",
+    "one_hot_enc_test.fit(test_df[one_hot_cols])\n",
+    "one_hot_encoded_cols = one_hot_enc_test.get_feature_names_out(one_hot_cols)\n",
+    "all_cols = ordinal_cols + list(one_hot_encoded_cols) + remaining_cols\n",
+    "test_df_encoded = pd.DataFrame(encoded_data, columns=all_cols)\n",
+    "test_df_encoded.info()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 52,
+   "id": "06c9eda8",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T10:33:03.577671Z",
+     "iopub.status.busy": "2024-10-29T10:33:03.577030Z",
+     "iopub.status.idle": "2024-10-29T10:33:03.586103Z",
+     "shell.execute_reply": "2024-10-29T10:33:03.585207Z"
+    },
+    "id": "FklppLUM2pYO",
+    "papermill": {
+     "duration": 0.097332,
+     "end_time": "2024-10-29T10:33:03.588059",
+     "exception": false,
+     "start_time": "2024-10-29T10:33:03.490727",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "import tensorflow as tf\n",
+    "import pandas as pd\n",
+    "from sklearn.preprocessing import StandardScaler, PolynomialFeatures\n",
+    "from sklearn.pipeline import Pipeline\n",
+    "\n",
+    "def prepare_test_data_for_tpu(df: pd.DataFrame, features_cols: list[str], batch_size: int = 32, poly_degree: int = 2, poly: bool = False):\n",
+    "\n",
+    "    df = df.copy()\n",
+    "    features = df[features_cols]\n",
+    "\n",
+    "    # Define pipeline for scaling and optional polynomial features\n",
+    "    pipe = Pipeline([\n",
+    "        ('scaler', StandardScaler()),\n",
+    "        ('poly', PolynomialFeatures(degree=poly_degree, include_bias=False, interaction_only=True)) if poly else None\n",
+    "    ])\n",
+    "    pipe.steps = [step for step in pipe.steps if step is not None]\n",
+    "\n",
+    "    # Transform features\n",
+    "    features_final = pipe.fit_transform(features)\n",
+    "    features_final_df = pd.DataFrame(features_final, columns=[f'feature_{i}' for i in range(features_final.shape[1])])\n",
+    "\n",
+    "    # Create tf.data.Dataset without shuffling, batching only\n",
+    "    dataset = tf.data.Dataset.from_tensor_slices(features_final_df.values)\n",
+    "    dataset = dataset.batch(batch_size).prefetch(tf.data.experimental.AUTOTUNE)\n",
+    "\n",
+    "    return dataset\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 53,
+   "id": "54fe8694",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T10:33:03.759737Z",
+     "iopub.status.busy": "2024-10-29T10:33:03.759406Z",
+     "iopub.status.idle": "2024-10-29T10:33:07.980214Z",
+     "shell.execute_reply": "2024-10-29T10:33:07.979315Z"
+    },
+    "papermill": {
+     "duration": 4.309262,
+     "end_time": "2024-10-29T10:33:07.982489",
+     "exception": false,
+     "start_time": "2024-10-29T10:33:03.673227",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\u001b[1m1222/1222\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m3s\u001b[0m 2ms/step\n"
+     ]
+    }
+   ],
+   "source": [
+    "final_test_dataset = prepare_test_data_for_tpu(test_df_encoded, batch_size=32, features_cols=features_cols,  poly=True, poly_degree=3)\n",
+    "y_pred = final_model.predict(final_test_dataset, batch_size=32)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 54,
+   "id": "a43209d6",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T10:33:08.163085Z",
+     "iopub.status.busy": "2024-10-29T10:33:08.162736Z",
+     "iopub.status.idle": "2024-10-29T10:33:11.046717Z",
+     "shell.execute_reply": "2024-10-29T10:33:11.045642Z"
+    },
+    "papermill": {
+     "duration": 2.977162,
+     "end_time": "2024-10-29T10:33:11.049162",
+     "exception": false,
+     "start_time": "2024-10-29T10:33:08.072000",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\u001b[1m611/611\u001b[0m \u001b[32m━━━━━━━━━━━━━━━━━━━━\u001b[0m\u001b[37m\u001b[0m \u001b[1m1s\u001b[0m 2ms/step\n"
+     ]
+    }
+   ],
+   "source": [
+    "import tensorflow as tf\n",
+    "import pandas as pd\n",
+    "from sklearn.preprocessing import StandardScaler, PolynomialFeatures\n",
+    "from sklearn.pipeline import Pipeline\n",
+    "\n",
+    "def prepare_test_data_for_tpu(df: pd.DataFrame, features_cols: list[str], batch_size: int = 32, poly_degree: int = 2, poly: bool = False):\n",
+    "    df = df.copy()\n",
+    "    features = df[features_cols]\n",
+    "\n",
+    "    # Define pipeline for scaling and optional polynomial features\n",
+    "    steps = [('scaler', StandardScaler())]\n",
+    "    if poly:\n",
+    "        steps.append(('poly', PolynomialFeatures(degree=poly_degree, include_bias=False, interaction_only=True)))\n",
+    "    \n",
+    "    # Create the pipeline\n",
+    "    pipe = Pipeline(steps)\n",
+    "\n",
+    "    # Transform features\n",
+    "    features_final = pipe.fit_transform(features)\n",
+    "    \n",
+    "    # Create DataFrame from transformed features\n",
+    "    feature_names = [f'feature_{i}' for i in range(features_final.shape[1])]\n",
+    "    features_final_df = pd.DataFrame(features_final, columns=feature_names)\n",
+    "\n",
+    "    # If your model expects a specific input shape or structure, modify here\n",
+    "    if final_model.input_shape[1:] == features_final_df.shape[1:]:\n",
+    "        # Create tf.data.Dataset without shuffling\n",
+    "        dataset = tf.data.Dataset.from_tensor_slices(features_final_df.values)  # Use .values to get a numpy array\n",
+    "        dataset = dataset.batch(batch_size).prefetch(tf.data.experimental.AUTOTUNE)\n",
+    "    else:\n",
+    "        raise ValueError(\"Feature shape does not match model input shape.\")\n",
+    "\n",
+    "    return dataset\n",
+    "\n",
+    "# Prepare the test dataset\n",
+    "final_test_dataset = prepare_test_data_for_tpu(test_df_encoded, batch_size=64, features_cols=features_cols, poly=True, poly_degree=3)\n",
+    "\n",
+    "# Predict using the final model\n",
+    "y_pred = final_model.predict(final_test_dataset)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 55,
+   "id": "96da0118",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T10:33:11.233976Z",
+     "iopub.status.busy": "2024-10-29T10:33:11.233599Z",
+     "iopub.status.idle": "2024-10-29T10:33:11.239560Z",
+     "shell.execute_reply": "2024-10-29T10:33:11.238692Z"
+    },
+    "papermill": {
+     "duration": 0.100886,
+     "end_time": "2024-10-29T10:33:11.241532",
+     "exception": false,
+     "start_time": "2024-10-29T10:33:11.140646",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(39098,)"
+      ]
+     },
+     "execution_count": 55,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y_pred.ravel().shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 56,
+   "id": "b111d709",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T10:33:11.423034Z",
+     "iopub.status.busy": "2024-10-29T10:33:11.422709Z",
+     "iopub.status.idle": "2024-10-29T10:33:11.437636Z",
+     "shell.execute_reply": "2024-10-29T10:33:11.436681Z"
+    },
+    "papermill": {
+     "duration": 0.10768,
+     "end_time": "2024-10-29T10:33:11.439629",
+     "exception": false,
+     "start_time": "2024-10-29T10:33:11.331949",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>id</th>\n",
+       "      <th>loan_status</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>58645.0</td>\n",
+       "      <td>0.994940</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>58646.0</td>\n",
+       "      <td>0.034376</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>58647.0</td>\n",
+       "      <td>0.665069</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>58648.0</td>\n",
+       "      <td>0.008978</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>58649.0</td>\n",
+       "      <td>0.335355</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "        id  loan_status\n",
+       "0  58645.0     0.994940\n",
+       "1  58646.0     0.034376\n",
+       "2  58647.0     0.665069\n",
+       "3  58648.0     0.008978\n",
+       "4  58649.0     0.335355"
+      ]
+     },
+     "execution_count": 56,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "submission_df = pd.DataFrame({\n",
+    "    'id':test_df_encoded['id'],\n",
+    "    'loan_status':y_pred.ravel()\n",
+    "})\n",
+    "submission_df.head()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 57,
+   "id": "eef41e98",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T10:33:11.623158Z",
+     "iopub.status.busy": "2024-10-29T10:33:11.622446Z",
+     "iopub.status.idle": "2024-10-29T10:33:11.735604Z",
+     "shell.execute_reply": "2024-10-29T10:33:11.734646Z"
+    },
+    "papermill": {
+     "duration": 0.206073,
+     "end_time": "2024-10-29T10:33:11.737836",
+     "exception": false,
+     "start_time": "2024-10-29T10:33:11.531763",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "submission_df.to_csv('submission.csv', index=False)"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "85867b55",
+   "id": "3abe0519",
    "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-10-29T08:53:06.740839Z",
+     "iopub.status.busy": "2024-10-29T08:53:06.740167Z",
+     "iopub.status.idle": "2024-10-29T08:53:06.747186Z",
+     "shell.execute_reply": "2024-10-29T08:53:06.746115Z",
+     "shell.execute_reply.started": "2024-10-29T08:53:06.740788Z"
+    },
     "papermill": {
-     "duration": 0.014959,
-     "end_time": "2024-10-25T21:08:14.701986",
+     "duration": 0.089571,
+     "end_time": "2024-10-29T10:33:11.917847",
      "exception": false,
-     "start_time": "2024-10-25T21:08:14.687027",
+     "start_time": "2024-10-29T10:33:11.828276",
      "status": "completed"
     },
     "tags": []
    },
    "outputs": [],
-   "source": [
-    "\n"
-   ]
+   "source": []
   },
   {
    "cell_type": "code",
-   "execution_count": 37,
-   "id": "2e73d63a",
+   "execution_count": null,
+   "id": "9d6adae5",
    "metadata": {
-    "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:14.734691Z",
-     "iopub.status.busy": "2024-10-25T21:08:14.733877Z",
-     "iopub.status.idle": "2024-10-25T21:08:14.738863Z",
-     "shell.execute_reply": "2024-10-25T21:08:14.738017Z"
-    },
-    "id": "iBXn-Au62pYN",
-    "outputId": "cc1f0839-eeb5-466d-c2f7-2c60c8319fca",
     "papermill": {
-     "duration": 0.023664,
-     "end_time": "2024-10-25T21:08:14.740731",
+     "duration": 0.090208,
+     "end_time": "2024-10-29T10:33:12.097908",
      "exception": false,
-     "start_time": "2024-10-25T21:08:14.717067",
+     "start_time": "2024-10-29T10:33:12.007700",
      "status": "completed"
     },
     "tags": []
    },
    "outputs": [],
-   "source": [
-    "# from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder\n",
-    "# from sklearn.compose import ColumnTransformer\n",
-    "# from sklearn.pipeline import Pipeline\n",
-    "\n",
-    "\n",
-    "# print('encoding the final test data set')\n",
-    "# ord_enc_test = OrdinalEncoder()\n",
-    "# one_hot_enc_test = OneHotEncoder(sparse_output=False)\n",
-    "\n",
-    "# test_cat_cols = test_df.select_dtypes('object').columns\n",
-    "# ordinal_cols = ['loan_grade']\n",
-    "# one_hot_cols = [col for col in test_cat_cols if col != 'loan_grade']\n",
-    "# remaining_cols = [col for col in test_df.columns if col not in list(test_cat_cols)]\n",
-    "\n",
-    "# encoder_test = ColumnTransformer(\n",
-    "#             transformers=[\n",
-    "#                 ('ordinal_encoder', ord_enc_test, ordinal_cols),\n",
-    "#                 ('one_hot_encoder', one_hot_enc_test, one_hot_cols),\n",
-    "#                 ('passthrough', 'passthrough', remaining_cols )\n",
-    "#             ]\n",
-    "# )\n",
-    "\n",
-    "# encoded_data = encoder_test.fit_transform(test_df)\n",
-    "# one_hot_enc_test.fit(test_df[one_hot_cols])\n",
-    "# one_hot_encoded_cols = one_hot_enc_test.get_feature_names_out(one_hot_cols)\n",
-    "# all_cols = ordinal_cols + list(one_hot_encoded_cols) + remaining_cols\n",
-    "# test_df_encoded = pd.DataFrame(encoded_data, columns=all_cols)\n",
-    "# test_df_encoded.info()"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 38,
-   "id": "dc550ec7",
-   "metadata": {
-    "execution": {
-     "iopub.execute_input": "2024-10-25T21:08:14.772240Z",
-     "iopub.status.busy": "2024-10-25T21:08:14.771961Z",
-     "iopub.status.idle": "2024-10-25T21:08:14.776466Z",
-     "shell.execute_reply": "2024-10-25T21:08:14.775624Z"
-    },
-    "id": "FklppLUM2pYO",
-    "papermill": {
-     "duration": 0.02228,
-     "end_time": "2024-10-25T21:08:14.778265",
-     "exception": false,
-     "start_time": "2024-10-25T21:08:14.755985",
-     "status": "completed"
-    },
-    "tags": []
-   },
-   "outputs": [],
-   "source": [
-    "# import tensorflow as tf\n",
-    "# import pandas as pd\n",
-    "# from sklearn.preprocessing import StandardScaler, PolynomialFeatures\n",
-    "# from sklearn.pipeline import Pipeline\n",
-    "\n",
-    "# def prepare_test_data_for_tpu(df: pd.DataFrame, features_cols: list[str], target_col: str, batch_size: int = 32, poly_degree: int = 2, poly: bool = False):\n",
-    "\n",
-    "#     df = df.copy()\n",
-    "#     features = df[features_cols]\n",
-    "#     target = df[target_col]\n",
-    "\n",
-    "#     # Define pipeline for scaling and optional polynomial features\n",
-    "#     pipe = Pipeline([\n",
-    "#         ('scaler', StandardScaler()),\n",
-    "#         ('poly', PolynomialFeatures(degree=poly_degree, include_bias=False, interaction_only=True)) if poly else None\n",
-    "#     ])\n",
-    "#     pipe.steps = [step for step in pipe.steps if step is not None]\n",
-    "\n",
-    "#     # Transform features\n",
-    "#     features_final = pipe.fit_transform(features)\n",
-    "#     features_final_df = pd.DataFrame(features_final, columns=[f'feature_{i}' for i in range(features_final.shape[1])])\n",
-    "\n",
-    "#     # Create tf.data.Dataset without shuffling, batching only\n",
-    "#     dataset = tf.data.Dataset.from_tensor_slices((dict(features_final_df), target))\n",
-    "#     dataset = dataset.batch(batch_size).prefetch(tf.data.experimental.AUTOTUNE)\n",
-    "\n",
-    "#     return dataset\n"
-   ]
+   "source": []
   }
  ],
  "metadata": {
@@ -1703,7 +2701,7 @@
    "provenance": []
   },
   "kaggle": {
-   "accelerator": "nvidiaTeslaT4",
+   "accelerator": "gpu",
    "dataSources": [
     {
      "databundleVersionId": 9709193,
@@ -1716,8 +2714,8 @@
      "sourceType": "datasetVersion"
     },
     {
-     "datasetId": 5948628,
-     "sourceId": 9722405,
+     "datasetId": 5970710,
+     "sourceId": 9752014,
      "sourceType": "datasetVersion"
     }
    ],
@@ -1746,20 +2744,20 @@
   },
   "papermill": {
    "default_parameters": {},
-   "duration": 55.881315,
-   "end_time": "2024-10-25T21:08:17.826157",
+   "duration": 4366.180309,
+   "end_time": "2024-10-29T10:33:15.811856",
    "environment_variables": {},
    "exception": null,
    "input_path": "__notebook__.ipynb",
    "output_path": "__notebook__.ipynb",
    "parameters": {},
-   "start_time": "2024-10-25T21:07:21.944842",
+   "start_time": "2024-10-29T09:20:29.631547",
    "version": "2.6.0"
   },
   "widgets": {
    "application/vnd.jupyter.widget-state+json": {
     "state": {
-     "0ac5ae90381d461581bebf77a681ec8e": {
+     "10dd8df82dc14cdb8e7215447964cfa2": {
       "model_module": "@jupyter-widgets/base",
       "model_module_version": "1.2.0",
       "model_name": "LayoutModel",
@@ -1811,7 +2809,132 @@
        "width": null
       }
      },
-     "1700b92aad8149c293e1bbf94e0f8d5a": {
+     "24334fd5d0f54fd2b5072b998d013258": {
+      "model_module": "@jupyter-widgets/controls",
+      "model_module_version": "1.5.0",
+      "model_name": "HBoxModel",
+      "state": {
+       "_dom_classes": [],
+       "_model_module": "@jupyter-widgets/controls",
+       "_model_module_version": "1.5.0",
+       "_model_name": "HBoxModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/controls",
+       "_view_module_version": "1.5.0",
+       "_view_name": "HBoxView",
+       "box_style": "",
+       "children": [
+        "IPY_MODEL_34967575d2f14b448ab9ffd80501ad65",
+        "IPY_MODEL_fba480818ef8499194e18389daef5353",
+        "IPY_MODEL_94dfe81884df49bbb1cc2a46d7905148"
+       ],
+       "layout": "IPY_MODEL_b091cdc26dcd459f8c38fe3dd0e76b7a"
+      }
+     },
+     "34967575d2f14b448ab9ffd80501ad65": {
+      "model_module": "@jupyter-widgets/controls",
+      "model_module_version": "1.5.0",
+      "model_name": "HTMLModel",
+      "state": {
+       "_dom_classes": [],
+       "_model_module": "@jupyter-widgets/controls",
+       "_model_module_version": "1.5.0",
+       "_model_name": "HTMLModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/controls",
+       "_view_module_version": "1.5.0",
+       "_view_name": "HTMLView",
+       "description": "",
+       "description_tooltip": null,
+       "layout": "IPY_MODEL_10dd8df82dc14cdb8e7215447964cfa2",
+       "placeholder": "​",
+       "style": "IPY_MODEL_5f055cb5058d42f6abed6a0e975622c9",
+       "value": " 22%"
+      }
+     },
+     "4039466c6bc44a04ac095634986531dd": {
+      "model_module": "@jupyter-widgets/controls",
+      "model_module_version": "1.5.0",
+      "model_name": "DescriptionStyleModel",
+      "state": {
+       "_model_module": "@jupyter-widgets/controls",
+       "_model_module_version": "1.5.0",
+       "_model_name": "DescriptionStyleModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/base",
+       "_view_module_version": "1.2.0",
+       "_view_name": "StyleView",
+       "description_width": ""
+      }
+     },
+     "4712be4602ec4011bba660d9c34d6e9e": {
+      "model_module": "@jupyter-widgets/base",
+      "model_module_version": "1.2.0",
+      "model_name": "LayoutModel",
+      "state": {
+       "_model_module": "@jupyter-widgets/base",
+       "_model_module_version": "1.2.0",
+       "_model_name": "LayoutModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/base",
+       "_view_module_version": "1.2.0",
+       "_view_name": "LayoutView",
+       "align_content": null,
+       "align_items": null,
+       "align_self": null,
+       "border": null,
+       "bottom": null,
+       "display": null,
+       "flex": null,
+       "flex_flow": null,
+       "grid_area": null,
+       "grid_auto_columns": null,
+       "grid_auto_flow": null,
+       "grid_auto_rows": null,
+       "grid_column": null,
+       "grid_gap": null,
+       "grid_row": null,
+       "grid_template_areas": null,
+       "grid_template_columns": null,
+       "grid_template_rows": null,
+       "height": null,
+       "justify_content": null,
+       "justify_items": null,
+       "left": null,
+       "margin": null,
+       "max_height": null,
+       "max_width": null,
+       "min_height": null,
+       "min_width": null,
+       "object_fit": null,
+       "object_position": null,
+       "order": null,
+       "overflow": null,
+       "overflow_x": null,
+       "overflow_y": null,
+       "padding": null,
+       "right": null,
+       "top": null,
+       "visibility": null,
+       "width": null
+      }
+     },
+     "5f055cb5058d42f6abed6a0e975622c9": {
+      "model_module": "@jupyter-widgets/controls",
+      "model_module_version": "1.5.0",
+      "model_name": "DescriptionStyleModel",
+      "state": {
+       "_model_module": "@jupyter-widgets/controls",
+       "_model_module_version": "1.5.0",
+       "_model_name": "DescriptionStyleModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/base",
+       "_view_module_version": "1.2.0",
+       "_view_name": "StyleView",
+       "description_width": ""
+      }
+     },
+     "7216ce2d2adb45ab9fabe844a1977ec4": {
       "model_module": "@jupyter-widgets/controls",
       "model_module_version": "1.5.0",
       "model_name": "ProgressStyleModel",
@@ -1827,74 +2950,7 @@
        "description_width": ""
       }
      },
-     "2dbccdf0c9184f2eb1afae897d331ee3": {
-      "model_module": "@jupyter-widgets/controls",
-      "model_module_version": "1.5.0",
-      "model_name": "DescriptionStyleModel",
-      "state": {
-       "_model_module": "@jupyter-widgets/controls",
-       "_model_module_version": "1.5.0",
-       "_model_name": "DescriptionStyleModel",
-       "_view_count": null,
-       "_view_module": "@jupyter-widgets/base",
-       "_view_module_version": "1.2.0",
-       "_view_name": "StyleView",
-       "description_width": ""
-      }
-     },
-     "34c21e44ff3d402591207abc1878cf0a": {
-      "model_module": "@jupyter-widgets/base",
-      "model_module_version": "1.2.0",
-      "model_name": "LayoutModel",
-      "state": {
-       "_model_module": "@jupyter-widgets/base",
-       "_model_module_version": "1.2.0",
-       "_model_name": "LayoutModel",
-       "_view_count": null,
-       "_view_module": "@jupyter-widgets/base",
-       "_view_module_version": "1.2.0",
-       "_view_name": "LayoutView",
-       "align_content": null,
-       "align_items": null,
-       "align_self": null,
-       "border": null,
-       "bottom": null,
-       "display": null,
-       "flex": null,
-       "flex_flow": null,
-       "grid_area": null,
-       "grid_auto_columns": null,
-       "grid_auto_flow": null,
-       "grid_auto_rows": null,
-       "grid_column": null,
-       "grid_gap": null,
-       "grid_row": null,
-       "grid_template_areas": null,
-       "grid_template_columns": null,
-       "grid_template_rows": null,
-       "height": null,
-       "justify_content": null,
-       "justify_items": null,
-       "left": null,
-       "margin": null,
-       "max_height": null,
-       "max_width": null,
-       "min_height": null,
-       "min_width": null,
-       "object_fit": null,
-       "object_position": null,
-       "order": null,
-       "overflow": null,
-       "overflow_x": null,
-       "overflow_y": null,
-       "padding": null,
-       "right": null,
-       "top": null,
-       "visibility": null,
-       "width": null
-      }
-     },
-     "8ffaa682dee74355b0e09985d7adff18": {
+     "94dfe81884df49bbb1cc2a46d7905148": {
       "model_module": "@jupyter-widgets/controls",
       "model_module_version": "1.5.0",
       "model_name": "HTMLModel",
@@ -1909,28 +2965,13 @@
        "_view_name": "HTMLView",
        "description": "",
        "description_tooltip": null,
-       "layout": "IPY_MODEL_dc19654a982c40278d87996254829cde",
+       "layout": "IPY_MODEL_ed24d04ed36b48edbd3e4e886eda7a06",
        "placeholder": "​",
-       "style": "IPY_MODEL_2dbccdf0c9184f2eb1afae897d331ee3",
-       "value": "  0%"
+       "style": "IPY_MODEL_4039466c6bc44a04ac095634986531dd",
+       "value": " 112/500 [1:10:50&lt;2:40:28, 24.82s/it]"
       }
      },
-     "9b5bae8888fd4f479d32ccbc25dc6078": {
-      "model_module": "@jupyter-widgets/controls",
-      "model_module_version": "1.5.0",
-      "model_name": "DescriptionStyleModel",
-      "state": {
-       "_model_module": "@jupyter-widgets/controls",
-       "_model_module_version": "1.5.0",
-       "_model_name": "DescriptionStyleModel",
-       "_view_count": null,
-       "_view_module": "@jupyter-widgets/base",
-       "_view_module_version": "1.2.0",
-       "_view_name": "StyleView",
-       "description_width": ""
-      }
-     },
-     "a0834cc7c8cd4af1b7ef166ecd77135c": {
+     "b091cdc26dcd459f8c38fe3dd0e76b7a": {
       "model_module": "@jupyter-widgets/base",
       "model_module_version": "1.2.0",
       "model_name": "LayoutModel",
@@ -1982,7 +3023,59 @@
        "width": null
       }
      },
-     "c2e7ff369c434a169a0b10eaed752dd6": {
+     "ed24d04ed36b48edbd3e4e886eda7a06": {
+      "model_module": "@jupyter-widgets/base",
+      "model_module_version": "1.2.0",
+      "model_name": "LayoutModel",
+      "state": {
+       "_model_module": "@jupyter-widgets/base",
+       "_model_module_version": "1.2.0",
+       "_model_name": "LayoutModel",
+       "_view_count": null,
+       "_view_module": "@jupyter-widgets/base",
+       "_view_module_version": "1.2.0",
+       "_view_name": "LayoutView",
+       "align_content": null,
+       "align_items": null,
+       "align_self": null,
+       "border": null,
+       "bottom": null,
+       "display": null,
+       "flex": null,
+       "flex_flow": null,
+       "grid_area": null,
+       "grid_auto_columns": null,
+       "grid_auto_flow": null,
+       "grid_auto_rows": null,
+       "grid_column": null,
+       "grid_gap": null,
+       "grid_row": null,
+       "grid_template_areas": null,
+       "grid_template_columns": null,
+       "grid_template_rows": null,
+       "height": null,
+       "justify_content": null,
+       "justify_items": null,
+       "left": null,
+       "margin": null,
+       "max_height": null,
+       "max_width": null,
+       "min_height": null,
+       "min_width": null,
+       "object_fit": null,
+       "object_position": null,
+       "order": null,
+       "overflow": null,
+       "overflow_x": null,
+       "overflow_y": null,
+       "padding": null,
+       "right": null,
+       "top": null,
+       "visibility": null,
+       "width": null
+      }
+     },
+     "fba480818ef8499194e18389daef5353": {
       "model_module": "@jupyter-widgets/controls",
       "model_module_version": "1.5.0",
       "model_name": "FloatProgressModel",
@@ -1998,107 +3091,12 @@
        "bar_style": "danger",
        "description": "",
        "description_tooltip": null,
-       "layout": "IPY_MODEL_a0834cc7c8cd4af1b7ef166ecd77135c",
-       "max": 100.0,
+       "layout": "IPY_MODEL_4712be4602ec4011bba660d9c34d6e9e",
+       "max": 500.0,
        "min": 0.0,
        "orientation": "horizontal",
-       "style": "IPY_MODEL_1700b92aad8149c293e1bbf94e0f8d5a",
-       "value": 0.0
-      }
-     },
-     "c954ee714d964c0cb2146a6928f17bb8": {
-      "model_module": "@jupyter-widgets/controls",
-      "model_module_version": "1.5.0",
-      "model_name": "HTMLModel",
-      "state": {
-       "_dom_classes": [],
-       "_model_module": "@jupyter-widgets/controls",
-       "_model_module_version": "1.5.0",
-       "_model_name": "HTMLModel",
-       "_view_count": null,
-       "_view_module": "@jupyter-widgets/controls",
-       "_view_module_version": "1.5.0",
-       "_view_name": "HTMLView",
-       "description": "",
-       "description_tooltip": null,
-       "layout": "IPY_MODEL_34c21e44ff3d402591207abc1878cf0a",
-       "placeholder": "​",
-       "style": "IPY_MODEL_9b5bae8888fd4f479d32ccbc25dc6078",
-       "value": " 0/100 [00:05&lt;?, ?it/s]"
-      }
-     },
-     "dc19654a982c40278d87996254829cde": {
-      "model_module": "@jupyter-widgets/base",
-      "model_module_version": "1.2.0",
-      "model_name": "LayoutModel",
-      "state": {
-       "_model_module": "@jupyter-widgets/base",
-       "_model_module_version": "1.2.0",
-       "_model_name": "LayoutModel",
-       "_view_count": null,
-       "_view_module": "@jupyter-widgets/base",
-       "_view_module_version": "1.2.0",
-       "_view_name": "LayoutView",
-       "align_content": null,
-       "align_items": null,
-       "align_self": null,
-       "border": null,
-       "bottom": null,
-       "display": null,
-       "flex": null,
-       "flex_flow": null,
-       "grid_area": null,
-       "grid_auto_columns": null,
-       "grid_auto_flow": null,
-       "grid_auto_rows": null,
-       "grid_column": null,
-       "grid_gap": null,
-       "grid_row": null,
-       "grid_template_areas": null,
-       "grid_template_columns": null,
-       "grid_template_rows": null,
-       "height": null,
-       "justify_content": null,
-       "justify_items": null,
-       "left": null,
-       "margin": null,
-       "max_height": null,
-       "max_width": null,
-       "min_height": null,
-       "min_width": null,
-       "object_fit": null,
-       "object_position": null,
-       "order": null,
-       "overflow": null,
-       "overflow_x": null,
-       "overflow_y": null,
-       "padding": null,
-       "right": null,
-       "top": null,
-       "visibility": null,
-       "width": null
-      }
-     },
-     "df27768319f6478fbd1410e7a32b95b2": {
-      "model_module": "@jupyter-widgets/controls",
-      "model_module_version": "1.5.0",
-      "model_name": "HBoxModel",
-      "state": {
-       "_dom_classes": [],
-       "_model_module": "@jupyter-widgets/controls",
-       "_model_module_version": "1.5.0",
-       "_model_name": "HBoxModel",
-       "_view_count": null,
-       "_view_module": "@jupyter-widgets/controls",
-       "_view_module_version": "1.5.0",
-       "_view_name": "HBoxView",
-       "box_style": "",
-       "children": [
-        "IPY_MODEL_8ffaa682dee74355b0e09985d7adff18",
-        "IPY_MODEL_c2e7ff369c434a169a0b10eaed752dd6",
-        "IPY_MODEL_c954ee714d964c0cb2146a6928f17bb8"
-       ],
-       "layout": "IPY_MODEL_0ac5ae90381d461581bebf77a681ec8e"
+       "style": "IPY_MODEL_7216ce2d2adb45ab9fabe844a1977ec4",
+       "value": 112.0
       }
      }
     },
