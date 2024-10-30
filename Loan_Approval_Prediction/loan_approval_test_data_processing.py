@@ -50,38 +50,23 @@ def preprocess_test_data(test_df, train_data_stats=None):
     num_cols = [col for col in df.select_dtypes(include=['int', 'float']).columns 
                 if col not in ('id', 'loan_status')]
     
-    # Remove outliers using IQR method
-    def remove_outliers(data, col, beta):
-        iqr = stats.iqr(data[col])
-        q1, q3 = data[col].quantile(0.25), data[col].quantile(0.75)
-        outlier_low = q1 - beta * iqr
-        outlier_high = q3 + beta * iqr
-        return data[(data[col] >= outlier_low) & (data[col] <= outlier_high)]
     
-    # Apply different beta values for different columns
-    for col in num_cols:
-        beta = 6.0 if col == 'person_income' else (3.0 if col == 'loan_amnt' else 1.5)
-        df = remove_outliers(df, col, beta)
     
     # Generate combination features from categorical variables
-    def generate_categorical_combinations(df, cat_cols):
+    def generate_new_features(df:pd.DataFrame, feature_cols:list[str]=None, top_features:int=5):
         df = df.copy()
-        new_features = []
-        # Create all possible pairs of categorical columns
-        for col1, col2 in itertools.combinations(cat_cols, 2):
-            # Get unique combinations from the pair of columns
-            combinations = df.groupby([col1, col2]).size().reset_index()
-            # Create binary features for each combination
-            for _, row in combinations.iterrows():
-                new_col = f'{row[col1]}_{row[col2]}'
-                df[new_col] = ((df[col1] == row[col1]) & 
-                              (df[col2] == row[col2])).astype(int)
-                new_features.append(new_col)
-        return df, new_features
+        for col_pair in itertools.combinations(feature_cols, 2):
+            new_col = f'{col_pair[0]}_{[1]}'
+#           
+            df[new_col] = ((df[feature_cols[0]] == str(index[0])) & (df[feature_cols[1]] == str(index[1]))).astype(int)
+        return df, new_cols
 
-    # Generate categorical combinations before encoding
-    df, new_cat_features = generate_categorical_combinations(df, cat_cols)
-    
+    df_temp_2 = df.copy()
+    new_features = []
+    for col_pair in itertools.combinations(cat_cols, 2):
+        df_temp_2, new_cols = generate_new_features(df=df_temp_2, feature_cols=col_pair)
+        new_features.extend(new_cols)
+    df = df_temp_2.copy()
     # Handle categorical variables
     # Convert cb_person_default_on_file to numeric
     df['cb_person_default_on_file'] = df['cb_person_default_on_file'].map({'Y': 1, 'N': 0})
