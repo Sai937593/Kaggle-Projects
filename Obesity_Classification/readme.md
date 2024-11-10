@@ -43,7 +43,6 @@ Develop a model to classify obesity levels from survey data.
 
 ## Project Structure
 1.  `notebooks/`: Jupyter notebooks.
-2.  `data/`: Dataset.
 3.  `requirements.txt`: Dependencies.
 
 
