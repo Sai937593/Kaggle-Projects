@@ -109,3 +109,119 @@ xgb_reg_study.optimize(objective, n_trials=100, show_progress_bar=True)
 # Print the best parameters
 print("Best parameters:", xgb_reg_study.best_params)
 print("Best validation score (RMSLE):", xgb_reg_study.best_value)
+
+
+# Get the best parameters from the study
+best_params = xgb_reg_study.best_params
+
+# Create final model parameters by combining best parameters with other required settings
+final_params = {
+    'objective': 'reg:squaredlogerror',
+    'eval_metric': 'rmsle',
+    'learning_rate': best_params['learning_rate'],
+    'max_depth': best_params['max_depth'],
+    'reg_alpha': best_params['reg_alpha'],
+    'reg_lambda': best_params['reg_lambda'],
+    'subsample': best_params['subsample'],
+    'colsample_bytree': best_params['colsample_bytree'],
+    'gamma': best_params['gamma'],
+    'random_state': 42,
+    'tree_method': 'hist',
+    'device': 'cuda'
+}
+
+# Create DMatrix for training and testing
+dtrain = xgb.DMatrix(X_train, label=y_train)
+dtest = xgb.DMatrix(X_test, label=y_test)
+
+# Train the final model
+final_model = xgb.train(
+    final_params,
+    dtrain,
+    num_boost_round=best_params['num_boost_round'],
+    evals=[(dtrain, 'train'), (dtest, 'test')],
+    early_stopping_rounds=10,
+    verbose_eval=10,  # Print evaluation every 10 rounds
+    custom_metric=rmsle_eval
+)
+
+# Make predictions
+train_predictions = final_model.predict(dtrain)
+test_predictions = final_model.predict(dtest)
+
+# Calculate RMSLE on both training and test sets
+train_rmsle = rmsle(y_train, train_predictions)
+test_rmsle = rmsle(y_test, test_predictions)
+
+print(f"Training RMSLE: {train_rmsle:.4f}")
+print(f"Test RMSLE: {test_rmsle:.4f}")
+
+# Optional: Feature importance analysis
+feature_importance = final_model.get_score(importance_type='gain')
+feature_importance = pd.DataFrame.from_dict(feature_importance, orient='index', columns=['importance'])
+feature_importance = feature_importance.sort_values('importance', ascending=False)
+
+print("\nTop 10 Most Important Features:")
+print(feature_importance.head(10))
+
+# Optional: Visualize predictions vs actual values
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 6))
+plt.scatter(y_test, test_predictions, alpha=0.5)
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--', lw=2)
+plt.xlabel('Actual Values')
+plt.ylabel('Predicted Values')
+plt.title('Actual vs Predicted Values')
+plt.tight_layout()
+plt.show()
+
+# Optional: Plot residuals
+residuals = y_test - test_predictions
+plt.figure(figsize=(10, 6))
+plt.scatter(test_predictions, residuals, alpha=0.5)
+plt.xlabel('Predicted Values')
+plt.ylabel('Residuals')
+plt.title('Residuals vs Predicted Values')
+plt.axhline(y=0, color='r', linestyle='--')
+plt.tight_layout()
+plt.show()
+
+# Optional: Save the model
+final_model.save_model('xgboost_final_model.json')
+
+# If you want to analyze the error distribution
+import seaborn as sns
+
+plt.figure(figsize=(10, 6))
+sns.histplot(residuals, bins=50)
+plt.xlabel('Residuals')
+plt.ylabel('Count')
+plt.title('Distribution of Residuals')
+plt.tight_layout()
+plt.show()
+
+# Calculate additional metrics if needed
+from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
+
+mae = mean_absolute_error(y_test, test_predictions)
+r2 = r2_score(y_test, test_predictions)
+rmse = np.sqrt(mean_squared_error(y_test, test_predictions))
+
+print("\nAdditional Metrics:")
+print(f"MAE: {mae:.4f}")
+print(f"RMSE: {rmse:.4f}")
+print(f"R² Score: {r2:.4f}")
+
+# Optional: Create a prediction intervals (if needed)
+def prediction_interval(y_true, y_pred, confidence=0.95):
+    residuals = y_true - y_pred
+    residual_std = np.std(residuals)
+    margin_of_error = residual_std * stats.norm.ppf((1 + confidence) / 2)
+    lower_bound = y_pred - margin_of_error
+    upper_bound = y_pred + margin_of_error
+    return lower_bound, upper_bound
+
+lower, upper = prediction_interval(y_test, test_predictions)
+prediction_coverage = np.mean((y_test >= lower) & (y_test <= upper))
+print(f"\nPrediction Interval Coverage (95%): {prediction_coverage:.2%}")
