@@ -69,7 +69,7 @@ For each competition, I typically follow this workflow:
 - Feel free to open issues or submit pull requests
 
 ## Connect With Me
-- **Kaggle Profile:** nainiv
+- **Kaggle Profile:** https://www.kaggle.com/nainiv
 - **LinkedIn:** www.linkedin.com/in/sai-nivas-kalicherla-067477301
 - **Email:** sainivaskalicherla@gmail.com
 
