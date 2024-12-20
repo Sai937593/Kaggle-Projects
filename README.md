@@ -69,9 +69,9 @@ For each competition, I typically follow this workflow:
 - Feel free to open issues or submit pull requests
 
 ## Connect With Me
-- **Kaggle Profile:** [Your Kaggle Username]
-- **LinkedIn:** [Your LinkedIn Profile]
-- **Email:** [Your Email]
+- **Kaggle Profile:** nainiv
+- **LinkedIn:** www.linkedin.com/in/sai-nivas-kalicherla-067477301
+- **Email:** sainivaskalicherla@gmail.com
 
 ## License
 This repository is open-source and available under the MIT License.
