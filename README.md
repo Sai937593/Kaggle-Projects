@@ -15,9 +15,6 @@ This repository contains my solutions and approaches to various Kaggle competiti
   - Advanced Feature Engineering
 - **Detailed Solution:** [View Project Folder](playground-series-s4e12-insurance-premium/)
 
-### 2. [Upcoming/Other Competitions]
-- Placeholder for future competitions
-
 ## Skills Demonstrated
 ![Skills](https://img.shields.io/badge/Skills-Machine%20Learning%20%7C%20Data%20Science%20%7C%20Predictive%20Modeling-blue)
 
